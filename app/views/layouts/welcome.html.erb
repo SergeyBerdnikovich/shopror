@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>
+    <%= site_name %>: <%= yield :title %>
+  </title>
+  <link rel="shortcut icon" href="/assets/favicon.ico" />
+
+  <%= stylesheet_link_tag "foundation" %>
+  <%= stylesheet_link_tag 'site/app.css' %>
+  <%= stylesheet_link_tag 'global.css' %>
+  <%= stylesheet_link_tag 'http://fonts.googleapis.com/css?family=Sofia' %>
+    <!--[if lt IE 8]
+  <%= stylesheet_link_tag 'ie.css', :media => 'screen, projection'%>
+  <![endif]-->
+  <!--[if lt IE 7]
+      <%= stylesheet_link_tag 'ie6.css', :media => 'screen, projection' %>
+  <![endif]-->
+  <%= csrf_meta_tag %>
+
+  <%= javascript_include_tag 'application' %>
+  <%= javascript_include_tag "foundation" %>
+  <%#, :cache => 'all_1' %>
+  <%= yield :head %>
+
+</head>
+<body id="index">
+<!--[if lt IE 8]><div style='clear:both;height:59px;padding:0 15px 0 15px;position:relative;z-index:10000;text-align:center;'><a href="http://www.microsoft.com/windows/internet-explorer/default.aspx?ocid=ie6_countdown_bannercode"><img src="http://storage.ie6countdown.com/assets/100/images/banners/warning_bar_0000_us.jpg" border="0" height="42" width="820" alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today." /></a></div><![endif]-->
+<div id="wrapper1">
+<div id="wrapper2">
+<div id="wrapper3">
+  <!-- Header -->
+  <div id="header">
+    <a id="header_logo" href="http://monica.dvporg.com" title="Lingerie">
+      <img class="logo" src="putlogohere!!!!!!!!!!!!!" alt="Lingerie" />
+    </a>
+    <div id="header_right">
+      <!-- Block user information module HEADER -->
+<div id="header_user">
+    
+
+</div>
+<!-- /Block user information module HEADER --><!-- Block currencies module -->
+
+  <% if notice || alert %>
+    <div class="row">
+      <%= raw "<p class='flash_notice'> #{notice}</p>"  if notice %>
+      <%= raw "<p class='flash_error'>#{alert}</p>"     if alert %>
+    </div>
+  <% end %>
+
+
+<div id="currencies_block_top">
+</div>
+<!-- /Block currencies module --><div class="clearblock"></div>
+  <%= render :partial => '/shared/welcome_header'%>
+<div id="languages_block_top">
+  <ul id="first-languages">
+          <li class="selected_language">
+                  en
+              </li>
+          <li >
+                                          <a href="http://livedemo00.template-help.com/prestashop_38102/?&amp;id_lang=2" title="Français (French)">
+          
+                  fr
+                  </a>
+              </li>
+          <li >
+                                          <a href="http://livedemo00.template-help.com/prestashop_38102/?&amp;id_lang=3" title="Español (Spanish)">
+          
+                  es
+                  </a>
+              </li>
+      </ul>
+</div>
+<!-- /Block languages module -->
+    </div>
+  </div>
+  <div id="columns">
+  <%= yield %>
+
+    <div class="clearblock"></div>
+  </div>
+</div>
+<!-- Footer -->
+  <div id="footer_wrapper">
+    <div id="footer">
+  <%= render 'shared/main_footer' %>
+  <%= yield :bottom %>
+
+</div>
+  </div>
+</div>
+</div>
+
+</body>
+  <%= yield :below_body %>
+</html>
+
+</html>
