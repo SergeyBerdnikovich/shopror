@@ -1,3 +1,4 @@
+# coding: utf-8
 module ApplicationHelper
 
   ### The next three helpers are great to use to add and remove nested attributes in forms.
@@ -30,7 +31,7 @@ EXAMPLE USAGE!!
   def add_child_link(name, association)
     link_to(name, "javascript:void(0);", :class => "add_child", :"data-association" => association)
   end
-  
+
   def add_child_button(name, association)
     link_to(name, "javascript:void(0);", :class => "add_child button", :"data-association" => association)
   end
@@ -46,5 +47,24 @@ EXAMPLE USAGE!!
         raw( render(:partial => options[:partial], :locals => {options[:form_builder_local] => f }.merge(options[:locals])) )
       end
     end
+  end
+
+  def child_product_types_for(product_type)
+    html = ""
+    html << "<ul class='sub'>"
+    ProductType.for_parent_of(product_type).each do |pr_type_lvl_2|
+      product_types_lvl3 = ProductType.for_parent_of(pr_type_lvl_2)
+      html << "<li class='mid'><a href='/products?product_type_id=#{pr_type_lvl_2.id}' class=#{'fly' unless product_types_lvl3.blank?}>#{pr_type_lvl_2.name}</a>"
+      unless product_types_lvl3.blank?
+        html << "<ul>"
+        product_types_lvl3.each do |pr_type_lvl_3|
+          html << "<li><a href='/products?product_type_id=#{pr_type_lvl_3.id}'>#{pr_type_lvl_3.name}</a></li>"
+        end
+        html << "</ul>"
+      end
+      html << "</li>"
+    end
+    html << "</ul>"
+    html
   end
 end

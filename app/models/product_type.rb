@@ -16,4 +16,6 @@ class ProductType < ActiveRecord::Base
     grid
   end
 
+  scope :for_parent_of,->(product_type) { where('parent_id = ?', product_type) }
+
 end
