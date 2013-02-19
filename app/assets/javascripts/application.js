@@ -3,3 +3,8 @@
 //
 //= require_tree  ./jquery
 //= require_tree  ./layout
+//= require_self
+//= require_tree .
+
+$(document).ready ->
+  $('#slider').nivoSlider();

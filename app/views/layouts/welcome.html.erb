@@ -36,9 +36,17 @@
         <div id="header_right">
           <!-- Block user information module HEADER -->
           <div id="header_user">
-            <%= link_to 'cart', shopping_cart_items_path %>
-            <%= link_to 'myaccount', myaccount_overview_path(current_user) %>
-            <%= link_to 'wish_items', wish_items_path %>
+            <ul>
+            <li><a href="/"><img src="/assets/menu/home1.png" width="50" height="50"></a></li>
+            <li><a href=<%= shopping_cart_items_path %>><img src="/assets/menu/shopcartdown.png" width="50" height="50"></a></li>
+            <% if current_user %>
+              <li><a href=<%= myaccount_overview_path %>><img src="/assets/menu/user.png" width="50" height="50"></a></li>
+              <li><a href=<%= wish_items_path %>><img src="/assets/menu/aqua_smooth_folder_clock.png" width="50" height="50"></a></li>
+              <li><a href="/logout"><img src="/assets/menu/application_exit.png" width="50" height="50"></a></li>
+            <% else %>
+              <li><a href="/login"><img src="/assets/menu/preferences_system_login.png" width="50" height="50"></a></li>
+            <% end %>
+            </ul>
           </div>
           <div class="clearblock"></div>
           <ul id="tmheaderlinks">

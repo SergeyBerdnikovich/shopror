@@ -1,13 +1,19 @@
-<% content_for :head do -%>
-  <%= stylesheet_link_tag 'home_page.css' %>
-<% end %>
+<%= stylesheet_link_tag 'nivo-slider/themes/default/default.css' %>
+<%= stylesheet_link_tag 'nivo-slider/nivo-slider.css' %>
 
-
-<div id='left_side_panel' class='span-6 last'>
-&nbsp;
+<div id="wrapper">
+  <div class="slider-wrapper theme-default">
+    <div id="slider" class="NivoSlider">
+      <img src="http://cs14102.userapi.com/c7005/v7005067/502/sNEBavZ8DJc.jpg" alt="" />
+      <img src="http://cs14102.userapi.com/c7005/v7005067/4c8/Lq9j57rRIbI.jpg" alt="" />
+      <img src="http://cs14102.userapi.com/c7005/v7005067/4c0/wL0BEtEEggM.jpg" alt="" />
+      <img src="http://cs14102.userapi.com/c7005/v7005067/398/1-XtmYIS02c.jpg" alt="" />
+    </div>
+  </div>
 </div>
 
-<div id='featured_item' class='span-18 last'>
-  <%= image_tag 'home.png' %>
-</div>
-
+<script type="text/javascript">
+  $(window).load(function() {
+    $('#slider').nivoSlider();
+  });
+</script>
