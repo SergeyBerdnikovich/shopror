@@ -34,6 +34,7 @@ class Image < ActiveRecord::Base
   validate :validate_photo
 
   attr_accessor :photo_link
+  attr_accessible :for_slider, :position, :caption, :photo, :photo_from_link
 
   default_scope :order => 'position'
 
