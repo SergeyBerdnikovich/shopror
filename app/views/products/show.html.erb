@@ -5,7 +5,7 @@
 
 <div id='product' class='clearfix'>
 
-  <div class=' float-left last'>
+
     <% if @product.active_variants.empty? %>
       <div id='no-variant-available' class=' four  last'>
         Sorry this product is not currently available.
@@ -15,40 +15,52 @@
          <!-- <ul class='horizontal-list'>
             <li><%= link_to 'Share', '#share-product', :class => 'button small share' %></li>
           </ul> -->
-          <ul id="pikame" class="jcarousel-skin-pika">
-            <% @product.images.each do |image|%>
-              <li>
-                <a><%= image_tag(image.photo.url(:large)) %></a>
-              </li>
-            <% end %>
-            <% if @product.images.empty? %>
-              <li>
-                <a><%= image_tag(@product.featured_image(:large)) %></a>
-              </li>
-            <% end %>
-          </ul>
+        <ul id="pikame" class="jcarousel-skin-pika">
+          <% @product.images.each do |image|%>
+            <li>
+              <a><%= image_tag(image.photo.url(:large)) %></a>
+            </li>
+          <% end %>
+          <% if @product.images.empty? %>
+            <li>
+              <a><%= image_tag(@product.featured_image(:large)) %></a>
+            </li>
+          <% end %>
+        </ul>
+        <div id='hero_variant'>
+          <% if @product.hero_variant.low_stock? %>
+            <%= image_tag("ribbons/#{@product.hero_variant.stock_status}.png",
+                          :width => 63, :height => 62,
+                          :style => 'border:none;',
+                          :class => 'upper_left_overlay'
+                          ) %>
+          <% end %>
+        </div>
       </div>
-      <div id='hero_variant'>
-        <% if @product.hero_variant.low_stock? %>
-          <%= image_tag("ribbons/#{@product.hero_variant.stock_status}.png",
-                        :width => 63, :height => 62,
-                        :style => 'border:none;',
-                        :class => 'upper_left_overlay'
-                         ) %>
-        <% end %>
-      </div>
-      <div id='right_2_product_wrapper' class='six columns last'>
+
+      <div id='right_2_product_wrapper' >
           <div id='right_product_wrapper' class=''>
-            <div class='product_title_name'><%= @product.name %></div>
+            <div class='product_title_name'><h4><%= @product.name %></h4></div>
+            <hr id='product'/><br>
             <% if @product.active_variants.count > 0 %>
               <div class='product_content'>
                 <div class='product_content_price'>
-                  <%= number_to_currency @product.active_variants.first.price %>
+                  <h4><%= number_to_currency @product.active_variants.first.price %></h4>
                 </div>
-                <div class='product_content_description'>
-                  <%= raw @product.description %>
+                <div class='quantity'>
+                  <%= form_for  @cart_item, :url  => shopping_cart_items_path(@cart_item),
+                                            :html => { :id => 'new_cart_item' } do |f| %>
+                    <%= f.hidden_field :variant_id %>
+                    Quantity:
+                      <%= f.select :quantity, [1,2,3,4,5,6], {:include_blank => true}, {:class => 'one'} %>
+                  <% end %>
                 </div>
-
+                <div class='add_to_cart_wrapper '>
+                  <% unless @product.active_variants.empty? %>
+                    <a href='#' id='submit_add_to_cart' class='button'><img src='/assets/product/shop_cart.png' width='50' height='50'> Add to Cart</a>
+                  <% end %>
+                </div>
+                <hr id='product'/><br>
               </div>
               <div id='your_product' class='panel'>
                 <% @product.active_variants.each_with_index do |variant, i| %>
@@ -69,19 +81,11 @@
                       </div>
                     <% end %>
                     <hr id='product'/><br>
-                    <%= form_for  @cart_item,
-                                  :url  => shopping_cart_items_path(@cart_item),
-                                  :html => { :id => 'new_cart_item' } do |f| %>
-                        <%= f.hidden_field :variant_id %>
-                        Quantity:
-                        <%= f.select :quantity, [1,2,3,4,5,6], {:include_blank => true}, {:class => 'one'} %>
-                        <div class='add_to_cart_wrapper '>
-                          <% unless @product.active_variants.empty? %>
-                            <a href='#' id='submit_add_to_cart' class='button'><img src='/assets/product/shop_cart.png' width='50' height='50'> Add to Cart</a>
-                          <% end %>
-                        </div>
-                    <% end %>
+
                   </div>
+              </div>
+              <div class='product_content_description'>
+                <%= raw @product.description %>
               </div>
               <div id='product_your_properties'>
                 &nbsp;
@@ -93,8 +97,8 @@
       </div>
 
     <% end %>
-  </div>
-<div class='clearfix' style='height:50px;'>&nbsp</div>
+
+  <div class='clearfix' style='height:50px;'>&nbsp</div>
 </div>
 <div id='generic-dialog'></div>
 

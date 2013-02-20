@@ -105,18 +105,49 @@ a.product_descr:hover {color:#d94882;}
   font: 24px "Sofia";
   color: 000;
 }
+
 #hero_variant {
   height: 1px;
   width: 1px;
 }
 #hero_variant img {
-  margin: -608px 0 0 0;
+  margin: -408px 0 0 0;
   position: relative;
 }
-#right_2_product_wrapper {
-  padding-top: 80px;
-}
+
 hr#product {
-  width: 100px;
+  width: 400px;
   float: left;
+  color: white;
+}
+
+#left_product_wrapper {
+  width: 520px;
+}
+
+#right_2_product_wrapper {
+  width: 400px;
+  float: right;
+  margin: -300px 0 0 0;
+}
+
+.product_content_price {
+  width: 70px;
+}
+.product_content_price h4 {
+  color: #D94882;
+  font: 24px "Sofia";
+}
+.product_title_name h4 {
+  color: #D94882;
+  font: 24px "Sofia";
+}
+
+.quantity {
+  float: right;
+  margin: -35px 120px 0 0;
+}
+h4 {
+  color: #D94882;
+  font: 24px "Sofia";
 }
