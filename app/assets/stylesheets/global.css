@@ -100,3 +100,23 @@ a.product_descr:hover {color:#d94882;}
 .nine.columns h4 {
   font: 24px "Sofia";
 }
+
+.add_to_cart_wrapper a{
+  font: 24px "Sofia";
+  color: 000;
+}
+#hero_variant {
+  height: 1px;
+  width: 1px;
+}
+#hero_variant img {
+  margin: -608px 0 0 0;
+  position: relative;
+}
+#right_2_product_wrapper {
+  padding-top: 80px;
+}
+hr#product {
+  width: 100px;
+  float: left;
+}

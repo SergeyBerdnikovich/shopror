@@ -1,6 +1,5 @@
 
 <% content_for :head do -%>
-  <%= stylesheet_link_tag 'product_page.css' %>
   <%= stylesheet_link_tag 'pikachoose_product.css' %>
 <% end %>
 
@@ -12,19 +11,10 @@
         Sorry this product is not currently available.
       </div>
     <% else %>
-
-
       <div id='left_product_wrapper' class='columns five'>
          <!-- <ul class='horizontal-list'>
             <li><%= link_to 'Share', '#share-product', :class => 'button small share' %></li>
           </ul> -->
-          <% if @product.hero_variant.low_stock? %>
-            <%= image_tag("ribbons/#{@product.hero_variant.stock_status}.png",
-                          :width => 63, :height => 62,
-                          :style => 'border:none;',
-                          :class => 'upper_left_overlay'
-                           ) %>
-          <% end %>
           <ul id="pikame" class="jcarousel-skin-pika">
             <% @product.images.each do |image|%>
               <li>
@@ -37,7 +27,15 @@
               </li>
             <% end %>
           </ul>
-
+      </div>
+      <div id='hero_variant'>
+        <% if @product.hero_variant.low_stock? %>
+          <%= image_tag("ribbons/#{@product.hero_variant.stock_status}.png",
+                        :width => 63, :height => 62,
+                        :style => 'border:none;',
+                        :class => 'upper_left_overlay'
+                         ) %>
+        <% end %>
       </div>
       <div id='right_2_product_wrapper' class='six columns last'>
           <div id='right_product_wrapper' class=''>
@@ -70,7 +68,7 @@
                         </ul>
                       </div>
                     <% end %>
-                    <hr/>
+                    <hr id='product'/><br>
                     <%= form_for  @cart_item,
                                   :url  => shopping_cart_items_path(@cart_item),
                                   :html => { :id => 'new_cart_item' } do |f| %>
@@ -79,7 +77,7 @@
                         <%= f.select :quantity, [1,2,3,4,5,6], {:include_blank => true}, {:class => 'one'} %>
                         <div class='add_to_cart_wrapper '>
                           <% unless @product.active_variants.empty? %>
-                            <%= link_to 'Add to Cart', '#', :id => 'submit_add_to_cart', :class => 'button' %>
+                            <a href='#' id='submit_add_to_cart' class='button'><img src='/assets/product/shop_cart.png' width='50' height='50'> Add to Cart</a>
                           <% end %>
                         </div>
                     <% end %>
