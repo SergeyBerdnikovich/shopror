@@ -44,6 +44,7 @@ class Variant < ActiveRecord::Base
 
   validates :inventory_id, :presence => true
   validates :price,       :presence => true
+  validates :cost,       :presence => true
   validates :product_id,  :presence => true
   validates :sku,         :presence => true,       :length => { :maximum => 255 }
 
