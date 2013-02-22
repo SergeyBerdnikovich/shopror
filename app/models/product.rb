@@ -25,6 +25,8 @@
 class VariantRequiredError < StandardError; end
 
 class Product < ActiveRecord::Base
+  self.per_page = 6
+
   has_friendly_id :permalink, :use_slug => false
 
   serialize :product_keywords, Array

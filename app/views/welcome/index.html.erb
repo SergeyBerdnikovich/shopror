@@ -24,6 +24,7 @@
     });
   });
 </script>
+</div>
 </header>
 <div class="columns clearfix">
   <div id="center_column" class="center_column">
@@ -33,13 +34,13 @@
         <ul>
           <% @featured_products.each_with_index do |product, i| %>
             <li>
-              <a class="product_image" href="<%= product_path(product) %>" title="<%= product.name %>">
+              <a class="product_image" href="<%= product_path(product.id) %>" title="<%= product.name %>">
                 <img src="<%= product.featured_image(:medium) %>" alt="<%= product.name %>" width="240" height="220"/>
               </a>
-              <h5><a href="<%= product_path(product) %>" title="<%= product.name %>"><%= product.name %></a></h5>
+              <h5><a href="<%= product_path(product.id) %>" title="<%= product.name %>"><%= product.name %></a></h5>
               <div>
                 <span class="price"><%= number_to_currency product.price_range.last %></span>
-                <a href="<%= product_path(product) %>" title="View">View</a>
+                <a href="<%= product_path(product.id) %>" title="View">View</a>
               </div>
             </li>
           <% end %>

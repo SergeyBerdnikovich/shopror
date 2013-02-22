@@ -1,52 +1,113 @@
-
-<% content_for :head do -%>
-  <%= stylesheet_link_tag 'products_page.css' %>
-<% end %>
-
-<div id='featured_item' class='nine columns'>
-
-  <div id='interesting_items' >
-    <ul id='interesting_items-list'>
-      <% @products.each_with_index do |product, i| %>
-        <li id='interesting_product_<%= i %>' class=''>
-          <div class='interesting_items-image'>
-
-            <%= link_to product_path(product), title: product.name do %>
-
-              <div class='no-hover-show'>
-                <% if product.hero_variant.try(:low_stock?) %>
-                  <%= image_tag("ribbons/#{product.hero_variant.stock_status}.png",
-                                :width => 63, :height => 62,
-                                :class => 'upper_left_overlay' ) %>
-                <% end %>
-                <div class='hover-details unfade'>
-                  <p class='bottom-hover-details'>
-                    <%= number_to_currency product.price_range.first %>
-                    <% if product.price_range? %>
-                        to
-                        <%= number_to_currency product.price_range.last %>
-                    <% end %>
-                  </p>
-                </div>
-              </div>
-              <%= link_to image_tag(product.featured_image(:medium)), product_path(product), title: product.name, class:  'clearfix' %>
-            <% end %>
+<script type="text/javascript" src="/prestashop_42486/themes/theme538/js/products-comparison.js"></script>
+<script type="text/javascript" src="/assets/shopping/cart.js"></script>
+</div>
+</header>
+  <div class="columns clearfix">
+    <div id="center_column" class="center_column">
+<!-- Breadcrumb -->
+      <div class="breadcrumb bgcolor bordercolor">
+        <div class="breadcrumb_inner">
+        <a href="/" title="return to Home">Home</a>
+        <span class="navigation-pipe" >&gt;</span>
+        <span class="navigation_page">Products</span>
+      </div>
+    </div>
+<!-- /Breadcrumb -->
+    <h1>Products</h1>
+    <div class="sortPagiBar clearfix">
+      <div class="product_sort">
+        <ul class="product_view">
+          <li id="product_view_grid"></li>
+          <li id="product_view_list" class="current"></li>
+        </ul>
+      </div>
+<!-- /Sort products -->
+    </div>
+    <ul id="product_list" class="bordercolor list">
+      <% @products.each do |product| %>
+        <li class="ajax_block_product bordercolor">
+          <a href="<%= product_path(product.id) %>" class="product_img_link" title="<%= product.name %>">
+            <img src="<%= product.featured_image(:medium) %>" width="188" height="188" alt="" />
+          </a>
+          <div class="center_block">
+            <h3>
+              <a class="product_link" href="<%= product_path(product.id) %>" title="<%= product.name %>"><%= product.name %></a>
+            </h3>
+            <p class="product_desc">
+              <a class="product_descr" href="<%= product_path(product.id) %>" title="<%= product.description %>" ><%= product.description %>
+              </a>
+            </p>
           </div>
+          <div class="right_block bordercolor">
+            <span class="price"><%= number_to_currency product.price_range.last %></span>
 
-          <div class='interesting_items-details'><%= product.name %><br/>
-
+            <a class="ajax_add_to_cart_button exclusive" rel="ajax_id_product_1" href="localhost:3000/shopping/cart_items%26id_product%3D<%= product.id %>%26token%3D123dde34481d75c8fbceb29e243904e3e75=" title="Add to cart">Add to cart</a>
+            <div class='add_to_cart_wrapper '>
+              <% unless product.active_variants.empty? %>
+                <%= link_to 'Add to Cart', '#', :id => 'submit_add_to_cart', :class => 'button' %>
+              <% end %>
+            </div>
+            <a class="button" href="<%= product_path(product.id) %>" title="View">View</a>
           </div>
         </li>
       <% end %>
+      <script>
+        (function($) {
+          $(function() {
+            function createCookie(name,value,days) {
+            if (days) {
+              var date = new Date();
+              date.setTime(date.getTime()+(days*24*60*60*1000));
+              var expires = "; expires="+date.toGMTString();
+            }
+            else var expires = "";
+            document.cookie = name+"="+value+expires+"; path=/";
+          }
+          function readCookie(name) {
+            var nameEQ = name + "=";
+            var ca = document.cookie.split(';');
+            for(var i=0;i < ca.length;i++) {
+              var c = ca[i];
+              while (c.charAt(0)==' ') c = c.substring(1,c.length);
+              if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length,c.length);
+            }
+            return null;
+          }
+          function eraseCookie(name) {
+            createCookie(name,"",-1);
+          }
+          $('ul.product_view').each(function(i) {
+            var cookie = readCookie('tabCookie'+i);
+            if (cookie) $(this).find('li').eq(cookie).addClass('current').siblings().removeClass('current')
+              .parents('#center_column').find('#product_list').addClass('list').removeClass('grid').eq(cookie).addClass('grid').removeClass('list');
+          })
+          $('ul.product_view').delegate('li:not(.current)', 'click', function(i) {
+            $(this).addClass('current').siblings().removeClass('current')
+              .parents('#center_column').find('#product_list').removeClass('grid').addClass('list').eq($(this).index()).addClass('grid').removeClass('list')
+
+                var cookie = readCookie('tabCookie'+i);
+            if (cookie) $(this).find('#product_list').eq(cookie).removeClass('grid').addClass('list').siblings().removeClass('list')
+            var ulIndex = $('ul.product_view').index($(this).parents('ul.product_view'));
+            eraseCookie('tabCookie'+ulIndex);
+            createCookie('tabCookie'+ulIndex, $(this).index(), 365);
+            })
+          })
+        })(jQuery)
+      </script>
     </ul>
-    <div class='clearfix'></div>
-  </div>
-
-
-</div>
-
-<div id='right_side_panel' class='three columns last'>
-  <div id='right_side_panel_promo' class=''>
-    Join our web site and get additional Savings....  <%= image_tag "logos/#{Image::MAIN_LOGO}.png", :alt => 'hadean image.'%>
+<!-- Pagination -->
+    <div id="pagination">
+      <%= will_paginate @products %>
+      <form action="http://localhost:3000/products" method="get" id="pagination_form">
+        <a class="button_mini" href="javascript:document.getElementById('pagination_form').submit();">Ok</a>
+        <label for="nb_item">items:</label>
+        <select name="per" id="nb_item">
+          <option value="6" <%= 'selected=selected' if params[:per] == '6' %>>6</option>
+          <option value="9" <%= 'selected=selected' if params[:per] == '9' %>>9</option>
+          <option value="12" <%= 'selected=selected' if params[:per] == '12' %>>12</option>
+        </select>
+      </form>
+    </div>
+<!-- /Pagination -->
   </div>
 </div>

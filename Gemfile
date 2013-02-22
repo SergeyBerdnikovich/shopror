@@ -46,7 +46,7 @@ gem 'will_paginate', '~> 3.0.4'
 group :production do
   gem 'mysql2', '~> 0.3.10'
 #  gem 'pg'
-end 
+end
 
 group :development do
   gem 'sqlite3'

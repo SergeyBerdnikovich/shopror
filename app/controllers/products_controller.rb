@@ -8,9 +8,9 @@ class ProductsController < ApplicationController
       product_types = product_type.self_and_descendants.map(&:id)
     end
     if product_types
-      @products = products.where('product_type_id IN (?)', product_types)
+      @products = products.where('product_type_id IN (?)', product_types).paginate(:page => params[:page], :per_page => params[:per])
     else
-      @products = products.all
+      @products = products.page(params[:page]).paginate(:page => params[:page], :per_page => params[:per])
     end
   end
 
