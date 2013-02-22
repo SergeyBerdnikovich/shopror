@@ -51,10 +51,10 @@ EXAMPLE USAGE!!
 
   def child_product_types_for(product_type)
     html = ""
-    html << "<ul class='sub'>"
+    html << "<ul>"
     ProductType.for_parent_of(product_type).each do |pr_type_lvl_2|
       product_types_lvl3 = ProductType.for_parent_of(pr_type_lvl_2)
-      html << "<li class='mid'><a href='/products?product_type_id=#{pr_type_lvl_2.id}' class=#{'fly' unless product_types_lvl3.blank?}>#{pr_type_lvl_2.name}</a>"
+      html << "<li><a href='/products?product_type_id=#{pr_type_lvl_2.id}' class=#{'fly' unless product_types_lvl3.blank?}>#{pr_type_lvl_2.name}</a>"
       unless product_types_lvl3.blank?
         html << "<ul>"
         product_types_lvl3.each do |pr_type_lvl_3|
@@ -66,5 +66,9 @@ EXAMPLE USAGE!!
     end
     html << "</ul>"
     html
+  end
+
+  def facebook_like
+    content_tag :iframe, nil, :src => "http://www.facebook.com/plugins/like.php?href=#{CGI::escape(request.url)}&layout=standard&show_faces=true&width=450&action=like&font=arial&colorscheme=light&height=80", :scrolling => 'no', :frameborder => '0', :allowtransparency => true, :id => :facebook_like
   end
 end

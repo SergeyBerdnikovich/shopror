@@ -83,7 +83,7 @@ class Product < ActiveRecord::Base
   # @param [Optional Symbol] the size of the image expected back
   # @return [String] name of the file to show from the public folder
   def featured_image(image_size = :small)
-    images.first ? images.first.photo.url(image_size) : "no_image_#{image_size.to_s}.jpg"
+    images.first ? images.first.photo.url(image_size) : "/assets/maket/no-image-blog-one.png"
   end
 
   # Price of cheapest variant

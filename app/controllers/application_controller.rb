@@ -1,6 +1,6 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
-  layout 'welcome'
+  layout 'welcome2'
 
   helper_method :current_user,
                 :current_user_id,

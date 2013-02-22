@@ -1,60 +1,148 @@
-<!DOCTYPE html>
-<html>
+  <!DOCTYPE html>
+<!--[if lt IE 7 ]><html class="ie ie6 no-js" lang="en"><![endif]-->
+<!--[if IE 7 ]><html class="ie ie7 no-js" lang="en"><![endif]-->
+<!--[if IE 8 ]><html class="ie ie8 no-js" lang="en"><![endif]-->
+<!--[if IE 9 ]><html class="ie ie9 no-js" lang="en"><![endif]-->
+<!--[if gt IE 9]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
-  <title>
-    <%= site_name %>: <%= yield :title %>
-  </title>
-  <link rel="shortcut icon" href="/assets/favicon.ico" />
-
-  <%= stylesheet_link_tag "foundation" %>
-  <%= stylesheet_link_tag 'site/app.css' %>
-  <%= stylesheet_link_tag 'global.css' %>
-
-    <!--[if lt IE 8]
-  <%= stylesheet_link_tag 'ie.css', :media => 'screen, projection'%>
-  <![endif]-->
-  <!--[if lt IE 7]
-      <%= stylesheet_link_tag 'ie6.css', :media => 'screen, projection' %>
-  <![endif]-->
-  <%= csrf_meta_tag %>
-  <%= javascript_include_tag 'application' %>
-  <%= javascript_include_tag "foundation" %>
-  <%#, :cache => 'all_1' %>
-  <%= yield :head %>
-
+  <meta charset="utf-8">
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <script type="text/javascript">var NREUMQ=NREUMQ||[];NREUMQ.push(["mark","firstbyte",new Date().getTime()]);</script>
+<title>Linda</title>
+  <meta name="description" content="Shop powered by PrestaShop" />
+  <meta name="keywords" content="shop, prestashop" />
+  <meta name="generator" content="PrestaShop" />
+  <meta name="robots" content="index,follow" />
+  <meta name="author" content="Prestashop 1.5">
+  <script type="text/javascript">
+    var baseDir = 'http://localhost:3000/';
+    var baseUri = 'http://localhost:3000/';
+    var static_token = '123dde34481d75c8fbceb29e243904e3e75';
+    var token = '123d6c8db0a2417d0b46a12f7bd2f5ce4db';
+    var priceDisplayPrecision = 2;
+    var priceDisplayMethod = 0;
+    var roundMode = 2;
+  </script>
+  <link href="/assets/maket/themes/theme538/css/global.css" rel="stylesheet" type="text/css" media="all" />
+  <link href="/assets/maket/modules/carriercompare/style.css" rel="stylesheet" type="text/css" media="all" />
+  <link href="/assets/maket/js/jquery/plugins/autocomplete/jquery.autocomplete.css" rel="stylesheet" type="text/css" media="all" />
+  <link href="/assets/maket/modules/homefeatured/homefeatured.css" rel="stylesheet" type="text/css" media="all" />
+  <link href="/assets/maket/modules/sendtoafriend/sendtoafriend.css" rel="stylesheet" type="text/css" media="all" />
+  <link href="/assets/maket/themes/theme538/css/global.css" rel="stylesheet" type="text/css" media="all" />
+  <link href='http://fonts.googleapis.com/css?family=Cambo' rel='stylesheet' type='text/css'>
+  <link href='http://fonts.googleapis.com/css?family=Droid+Sans:400,700' rel='stylesheet' type='text/css'>
+  <link href='http://fonts.googleapis.com/css?family=Cabin+Condensed:600,500' rel='stylesheet' type='text/css'>
+  <script type="text/javascript" src="/assets/maket/jquery/jquery-1.7.2.min.js"></script>
+  <script type="text/javascript" src="/assets/maket/jquery/plugins/jquery.easing.js"></script>
+  <script type="text/javascript" src="/assets/maket/tools.js"></script>
+  <script type="text/javascript" src="/assets/maket/modules/carriercompare/carriercompare.js"></script>
+  <script type="text/javascript" src="/assets/maket/modules/blockcart/ajax-cart.js"></script>
+  <script type="text/javascript" src="/assets/maket/jquery/plugins/autocomplete/jquery.autocomplete.js"></script>
+  <script type="text/javascript" src="/assets/maket/modules/blocktopmenu/js/hoverIntent.js"></script>
+  <script type="text/javascript" src="/assets/maket/modules/blocktopmenu/js/superfish-modified.js"></script>
+  <script type="text/javascript" src="/assets/maket/themes/theme538/js/cookies.js"></script>
+  <script type="text/javascript" src="/assets/maket/themes/theme538/js/script.js"></script>
+  <script type="text/javascript" src="/assets/maket/themes/theme538/js/jscript_xjquery.jqtransform.js"></script>
+  <script type="text/javascript" src="/assets/maket/themes/theme538/js/modernizr-2.5.3.min.js"></script>
 </head>
 <body id="index">
 <!--[if lt IE 8]><div style='clear:both;height:59px;padding:0 15px 0 15px;position:relative;z-index:10000;text-align:center;'><a href="http://www.microsoft.com/windows/internet-explorer/default.aspx?ocid=ie6_countdown_bannercode"><img src="http://storage.ie6countdown.com/assets/100/images/banners/warning_bar_0000_us.jpg" border="0" height="42" width="820" alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today." /></a></div><![endif]-->
+<div id="back_top"><a href="#top">TOP</a></div>
 <div id="wrapper1">
   <div id="wrapper2">
-    <div id="wrapper3">
-      <!-- Header -->
-      <div id="header">
-        <a id="header_logo" href="http://monica.dvporg.com" title="Lingerie">
-          <img class="logo" src="http://livedemo00.template-help.com/prestashop_38102/themes/theme315/img/logo.png?1330335444" alt="Lingerie" />
-        </a>
-        <div id="header_right">
-          <!-- Block user information module HEADER -->
-          <div id="header_user">
-            <ul>
-            <li><a href="/"><img src="/assets/menu/home1.png" width="50" height="50"></a></li>
-            <li><a href=<%= shopping_cart_items_path %>><img src="/assets/menu/shopcartdown.png" width="50" height="50"></a></li>
-            <% if current_user %>
-              <li><a href=<%= myaccount_overview_path %>><img src="/assets/menu/user.png" width="50" height="50"></a></li>
-              <li><a href=<%= wish_items_path %>><img src="/assets/menu/aqua_smooth_folder_clock.png" width="50" height="50"></a></li>
-              <li><a href="/logout"><img src="/assets/menu/application_exit.png" width="50" height="50"></a></li>
-            <% else %>
-              <li><a href="/login"><img src="/assets/menu/preferences_system_login.png" width="50" height="50"></a></li>
-            <% end %>
-            </ul>
-          </div>
-          <div class="clearblock"></div>
+    <div id="wrapper3" class="clearfix">
+      <header>
+        <div id="header">
+          <a id="header_logo" href="http://livedemo00.template-help.com/prestashop_42486/" title="Linda">
+            <img class="logo" src="http://livedemo00.template-help.com/prestashop_42486/themes/theme538/img/logo.png?1356703148" alt="Linda" />
+          </a>
           <ul id="tmheaderlinks">
-            <%= render :partial => '/shared/welcome_header'%>
+            <li><a href="/" class="active">home</a></li>
+            <li><a href="#">specials</a></li>
+            <li><a href="#">delivery</a></li>
+            <li><a href="#" >contact</a></li>
+          </ul><!-- Block user information module HEADER -->
+          <ul id="header_user">
+            <li id="user_info">
+              Welcome(&nbsp;<a class="login" href="/login">Log in</a>&nbsp;)
+            </li>
+            <li id="your_account">
+              <a href="<%= myaccount_overview_path %>" title="Your Account">Your Account</a>
+            </li>
+            <li id="shopping_cart">
+              <a href="<%= shopping_cart_items_path %>" title="Your Shopping Cart">Cart:
+                <span class="ajax_cart_quantity hidden">0</span>
+                <span class="ajax_cart_product_txt hidden">product</span>
+                <span class="ajax_cart_product_txt_s hidden">products</span>
+                <span class="ajax_cart_no_product">(empty)</span>
+              </a>
+            </li>
           </ul>
-        </div>
-      </div>
-      <div>
+          <script type="text/javascript">
+            var CUSTOMIZE_TEXTFIELD = 1;
+            var img_dir = '/assets/maket/';
+          </script>
+          <script type="text/javascript">
+            var customizationIdMessage = 'Customization #';
+            var removingLinkText = 'remove this product from my cart';
+            var freeShippingTranslation = 'Free shipping!';
+            var freeProductTranslation = 'Free!';
+            var delete_txt = 'Delete';
+          </script>
+<!-- MODULE Block cart -->
+          <div id="cart_block" class="block exclusive">
+            <h4><a href="#">Cart</a></h4>
+              <div class="block_content">
+              <!-- block list of products -->
+                <div id="cart_block_list" class="expanded">
+                  <p id="cart_block_no_products">No products</p>
+                    <div class="cart-prices">
+                      <div class="cart-prices-block">
+                        <span id="cart_block_shipping_cost" class="price ajax_cart_shipping_cost">$0.00</span>
+                        <span>Shipping</span>
+                      </div>
+                      <div class="cart-prices-block">
+                        <span id="cart_block_total" class="price ajax_block_cart_total">$0.00</span>
+                        <span>Total</span>
+                      </div>
+                    </div>
+                    <p id="cart-buttons">
+                      <a href="#" class="button_mini" title="Cart">Cart</a>
+                      <a href="#" id="button_order_cart" class="exclusive" title="Check out"><span></span>Check out</a>
+                    </p>
+                  </div>
+                </div>
+              </div>
+<!-- /MODULE Block cart -->
+              <div id="topmenu">
+                <ul class="sf-menu clearfix">
+                  <li >
+                    <a href="/products?product_type_id=<%= @costumes.id if @costumes %>">Costumes</a>
+                    <%== child_product_types_for @costumes %>
+                  </li>
+                  <li >
+                    <a href="/products?product_type_id=<%= @clothing.id if @clothing %>">Clothing</a>
+                    <%== child_product_types_for @clothing %>
+                  </li>
+                  <li >
+                    <a href="/products?product_type_id=<%= @lingerie.id if @lingerie %>">Lingerie</a>
+                    <%== child_product_types_for @lingerie %>
+                  </li>
+                  <li >
+                    <a href="/products?product_type_id=<%= @shapewear.id if @shapewear %>">Shapewear</a>
+                    <%== child_product_types_for @shapewear %>
+                  </li>
+                  <li >
+                    <a href="/products?product_type_id=<%= @dance_wear_and_equipment.id if @dance_wear_and_equipment %>">Dance Wear and Equipment</a>
+                    <%== child_product_types_for @dance_wear_and_equipment %>
+                  </li>
+                  <li >
+                    <a href="/products?product_type_id=<%= @shoes_and_boots.id if @shoes_and_boots %>">Shoes and Boots</a>
+                    <%== child_product_types_for @shoes_and_boots %>
+                  </li>
+                </ul>
+              </div>
+
         <% if notice || alert %>
           <div class="row">
             <%= raw "<p class='flash_notice'> #{notice}</p>"  if notice %>
@@ -62,16 +150,49 @@
           </div>
         <% end %>
         <%= yield %>
+
+          <footer>
+            <div id="footer" class="clearfix">
+              <div id="tmfooterlinks">
+                <div>
+                  <h4>Information</h4>
+                    <ul>
+                      <li><a href="index.php?controller=sitemap">Sitemap</a></li>
+                      <li><a href="index.php?id_cms=2&controller=cms&id_lang=1">Legal Notice</a></li>
+                      <li><a href="index.php?id_cms=3&controller=cms&id_lang=1">Terms and conditions</a></li>
+                      <li><a href="index.php?id_cms=4&controller=cms&id_lang=1">About us</a></li>
+                      <li><a href="index.php?controller=contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div>
+                  <h4>Our offers</h4>
+                  <ul>
+                    <li><a href="index.php?controller=new-products">New products</a></li>
+                    <li><a href="index.php?controller=prices-drop">Specials</a></li>
+                    <li><a href="index.php?controller=best-sales">Top sellers</a></li>
+                    <li><a href="index.php?controller=manufacturer">Manufacturers</a></li>
+                    <li><a href="index.php?controller=supplier">Suppliers</a></li>
+                  </ul>
+                </div>
+                <div>
+                  <h4>My account</h4>
+                  <ul>
+                    <li><a href="index.php?controller=history">My orders</a></li>
+                    <li><a href="index.php?controller=addresses">My addresses</a></li>
+                    <li><a href="index.php?controller=identity">My personal info</a></li>
+                    <li><a href="index.php?controller=order-slip">My credit slips</a></li>
+                    <li><a href="index.php?controller=discount">My vouchers</a></li>
+                  </ul>
+                </div>
+                <p>&copy; 2013 Powered by <a href="#">PrestaShop</a>&trade;. All rights reserved</p>
+              </div>
+    <!-- [[%FOOTER_LINK]] -->
+            </div>
+          </footer>
+        </div>
       </div>
     </div>
-  </div>
-</div>
-<div id="footer_wrapper">
-  <div id="footer">
-    <%= render 'shared/main_footer' %>
-    <%= yield :bottom %>
-  </div>
-</div>
+    <script type="text/javascript" src="/assets/maket/ga.js"></script>
+    <script type="text/javascript">if(!NREUMQ.f){NREUMQ.f=function(){NREUMQ.push(["load",new Date().getTime()]);var e=document.createElement("script");e.type="text/javascript";e.src=(("http:"===document.location.protocol)?"http:":"https:")+"//"+"d1ros97qkrwjf5.cloudfront.net/42/eum/rum.js";document.body.appendChild(e);if(NREUMQ.a)NREUMQ.a();};NREUMQ.a=window.onload;window.onload=NREUMQ.f;};NREUMQ.push(["nrfj","beacon-1.newrelic.com","72d7dcce33","1388850","ZV1TZ0FTVkFVWkwKXlwXZEFaHRIdXVdcBkkcSFlD",0,2243,new Date().getTime(),"","","","",""]);</script>
 </body>
-  <%= yield :below_body %>
 </html>

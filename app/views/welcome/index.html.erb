@@ -1,101 +1,51 @@
-<%= stylesheet_link_tag 'nivo-slider/themes/default/default.css' %>
-<%= stylesheet_link_tag 'nivo-slider/nivo-slider.css' %>
-
-<div id="wrapper">
-  <div class="slider-wrapper theme-default">
-    <div id="slider" class="NivoSlider">
+<script type="text/javascript" src="/assets/maket/modules/tmslider/js/jquery.roundabout.js"></script>
+<div id="tmslider">
+  <div>
+    <ul id="myRoundabout">
       <% @gallery.each do |image| %>
-        <img src=<%= image.photo.url(:large) %> alt="" />
+        <li>
+          <a href="#">
+            <img src="<%= image.photo.url(:large) %>" alt="" />
+          </a>
+        </li>
       <% end %>
-    </div>
+    </ul>
   </div>
 </div>
-
 <script type="text/javascript">
-  $(window).load(function() {
-    $('#slider').nivoSlider();
+  $(document).ready(function() {
+    $('#myRoundabout').roundabout({
+      duration:1000,
+      autoplayDuration:7000,
+      minScale:0.649,
+      maxScale:1.0,
+      minOpacity:1,
+    autoplay:true
+    });
   });
 </script>
-
-<% content_for :head do -%>
-  <%= stylesheet_link_tag 'products_page.css' %>
-<% end %>
-
-<div id='latest_item' class='nine columns'>
-  <h4>Latest Products:</h4><br>
-  <div id='interesting_items' >
-    <ul id='interesting_items-list'>
-      <% @latest_products.each_with_index do |product, i| %>
-        <li id='interesting_product_<%= i %>' class=''>
-          <div class='interesting_items-image'>
-
-            <%= link_to product_path(product), title: product.name do %>
-
-              <div class='no-hover-show'>
-                <% if product.hero_variant.try(:low_stock?) %>
-                  <%= image_tag("ribbons/#{product.hero_variant.stock_status}.png",
-                                :width => 63, :height => 62,
-                                :class => 'upper_left_overlay' ) %>
-                <% end %>
-                <div class='hover-details unfade'>
-                  <p class='bottom-hover-details'>
-                    <%= number_to_currency product.price_range.first %>
-                    <% if product.price_range? %>
-                        to
-                        <%= number_to_currency product.price_range.last %>
-                    <% end %>
-                  </p>
-                </div>
+</header>
+<div class="columns clearfix">
+  <div id="center_column" class="center_column">
+<!-- MODULE Home Featured Products -->
+    <div id="featured_products">
+      <div class="block_content">
+        <ul>
+          <% @featured_products.each_with_index do |product, i| %>
+            <li>
+              <a class="product_image" href="<%= product_path(product) %>" title="<%= product.name %>">
+                <img src="<%= product.featured_image(:medium) %>" alt="<%= product.name %>" width="240" height="220"/>
+              </a>
+              <h5><a href="<%= product_path(product) %>" title="<%= product.name %>"><%= product.name %></a></h5>
+              <div>
+                <span class="price"><%= number_to_currency product.price_range.last %></span>
+                <a href="<%= product_path(product) %>" title="View">View</a>
               </div>
-              <%= link_to image_tag(product.featured_image(:medium)), product_path(product), title: product.name, class:  'clearfix' %>
-            <% end %>
-          </div>
-
-          <div class='interesting_items-details'><%= product.name %><br/>
-
-          </div>
-        </li>
-      <% end %>
-    </ul>
-    <div class='clearfix'></div>
-  </div>
-</div>
-<div id='featured_item' class='nine columns'>
-  <h4>Featured Products:</h4><br>
-  <div id='interesting_items' >
-    <ul id='interesting_items-list'>
-      <% @featured_products.each_with_index do |product, i| %>
-        <li id='interesting_product_<%= i %>' class=''>
-          <div class='interesting_items-image'>
-
-            <%= link_to product_path(product), title: product.name do %>
-
-              <div class='no-hover-show'>
-                <% if product.hero_variant.try(:low_stock?) %>
-                  <%= image_tag("ribbons/#{product.hero_variant.stock_status}.png",
-                                :width => 63, :height => 62,
-                                :class => 'upper_left_overlay' ) %>
-                <% end %>
-                <div class='hover-details unfade'>
-                  <p class='bottom-hover-details'>
-                    <%= number_to_currency product.price_range.first %>
-                    <% if product.price_range? %>
-                        to
-                        <%= number_to_currency product.price_range.last %>
-                    <% end %>
-                  </p>
-                </div>
-              </div>
-              <%= link_to image_tag(product.featured_image(:medium)), product_path(product), title: product.name, class:  'clearfix' %>
-            <% end %>
-          </div>
-
-          <div class='interesting_items-details'><%= product.name %><br/>
-
-          </div>
-        </li>
-      <% end %>
-    </ul>
-    <div class='clearfix'></div>
+            </li>
+          <% end %>
+        </ul>
+        <div class="clearblock"></div>
+      </div>
+    </div>
   </div>
 </div>
