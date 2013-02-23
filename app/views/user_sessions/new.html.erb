@@ -45,12 +45,12 @@
 
               <li>
                   <%=form.label :email, 'Email' %>
-                  <%= form.email_field :email, :autocomplete => 'off', :autocapitalize => 'off' %>
+                  <%=form.email_field :email, :class=> "account_input",:autocomplete => 'off', :autocapitalize => 'off' %>
               </li>
 
               <li>
                   <%=form.label :password, 'Password' %>
-                  <%= form.password_field :password, :autocomplete => 'off', :autocapitalize => 'off' %>
+                  <%= form.password_field :password, :class=> "account_input", :autocomplete => 'off', :autocapitalize => 'off' %>
               </li>
 
          </ol>
@@ -70,23 +70,23 @@
          <ol id='registration_form'>
               <li>
                   <%=form.label :first_name, 'First name*' %>
-                  <%= form.text_field :first_name %>
+                  <%= form.text_field :first_name , :class=> "account_input"%>
               </li>
               <li>
                   <%=form.label :last_name %>
-                  <%= form.text_field :last_name %>
+                  <%= form.text_field :last_name , :class=> "account_input"%>
               </li>
               <li>
                   <%=form.label :email, 'Email' %>
-                  <%= form.email_field :email, :autocomplete => 'off', :autocapitalize => 'off'  %>
+                  <%= form.email_field :email, :class=> "account_input", :autocomplete => 'off', :autocapitalize => 'off'  %>
               </li>
               <li>
                   <%=form.label :password, 'Password' %>
-                  <%= form.password_field :password, :autocomplete => 'off', :autocapitalize => 'off'  %>
+                  <%= form.password_field :password, :class=> "account_input", :autocomplete => 'off', :autocapitalize => 'off'  %>
               </li>
               <li>
                   <%=form.label :password_confirmation, 'Confirm' %>
-                  <%= form.password_field :password_confirmation, :autocomplete => 'off', :autocapitalize => 'off'  %>
+                  <%= form.password_field :password_confirmation, :class=> "account_input", :autocomplete => 'off', :autocapitalize => 'off'  %>
               </li>
          </ol>
       <%#= form.buttons do %>

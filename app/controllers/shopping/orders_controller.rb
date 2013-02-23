@@ -28,6 +28,8 @@ class Shopping::OrdersController < Shopping::BaseController
 
   # POST /shopping/orders
   def update
+
+    ere['if'] = 0
     @order = find_or_create_order
     @order.ip_address = request.remote_ip
 

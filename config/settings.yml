@@ -17,10 +17,10 @@ mailer:
   username: someLOGIN
   password: s0meth1ngs3cr3t
 paypal:
-  ip:         192.168.0.1
-  login:      someLOGIN.yahoo.com
-  password:   somePASSWORD
-  signature:  someSIGNATURE
+  ip:         212.168.2.2
+  login:      sqwomeLOGIN.yahoo.com
+  password:   soqwemePASSWORD
+  signature:  someqweSIGNATURE
 authnet:
   login:      sdfsdf
   password:   sdfsdfsdf

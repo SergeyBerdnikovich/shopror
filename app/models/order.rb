@@ -345,7 +345,11 @@ class Order < ActiveRecord::Base
   # @return [Decimal] amount of the shipping charges
   def shipping_charges(items = nil)
     return @order_shipping_charges if defined?(@order_shipping_charges)
+    begin
     @order_shipping_charges = shipping_rates(items).inject(0.0) {|sum, shipping_rate|  sum + shipping_rate.rate  }
+    rescue
+    @order_shipping_charges = 0
+    end
   end
 
   def display_shipping_charges
@@ -362,8 +366,11 @@ class Order < ActiveRecord::Base
   def shipping_rates(items = nil)
     items ||= OrderItem.order_items_in_cart(self.id)
     rates = items.inject([]) do |rates, item|
+      begin
       rates << item.shipping_rate if item.shipping_rate.individual? || !rates.include?(item.shipping_rate)
       rates
+      rescue
+      end
     end
   end
 
