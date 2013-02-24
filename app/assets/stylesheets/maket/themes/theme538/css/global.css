@@ -1768,3 +1768,16 @@ a.color-myaccount {color:#ad013d;}
 /* 404.tpl */
 p.error404 {border:2px solid #dd0000;background:#f5f5f5;margin:20px 0 0 0;padding:10px;line-height:32px;}
 p.error404 img {margin:0 10px 0 0;}
+
+.add_to_cart_wrapper#product {
+  width: 100px;
+  margin-top: -25px;
+  margin-left: 250px;
+}
+.quantity {
+  padding-left: 130px;
+}
+
+#buy_block div.price {
+  padding: 20px 0 0;
+}

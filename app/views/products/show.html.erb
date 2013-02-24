@@ -1,117 +1,163 @@
+  <!DOCTYPE html>
+<!--[if lt IE 7 ]><html class="ie ie6 no-js" lang="en"><![endif]-->
+<!--[if IE 7 ]><html class="ie ie7 no-js" lang="en"><![endif]-->
+<!--[if IE 8 ]><html class="ie ie8 no-js" lang="en"><![endif]-->
+<!--[if IE 9 ]><html class="ie ie9 no-js" lang="en"><![endif]-->
+<!--[if gt IE 9]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+<link href="/assets/maket/js/jquery/plugins/fancybox/jquery.fancybox.css" rel="stylesheet" type="text/css" media="all" />
+<link href="/assets/maket/js/jquery/plugins/jqzoom/jquery.jqzoom.css" rel="stylesheet" type="text/css" media="all" />
+<script type="text/javascript" src="/assets/maket/jquery/plugins/fancybox/jquery.fancybox.js"></script>
+<script type="text/javascript" src="/assets/maket/jquery/plugins/jquery.idTabs.js"></script>
+<script type="text/javascript" src="/assets/maket/jquery/plugins/jquery.scrollTo.js"></script>
+<script type="text/javascript" src="/assets/maket/jquery/plugins/jquery.serialScroll.js"></script>
 
-<% content_for :head do -%>
-  <%= stylesheet_link_tag 'pikachoose_product.css' %>
-<% end %>
+<script type="text/javascript" src="/assets/maket/themes/theme538/js/product.js"></script>
+<script type="text/javascript" src="/assets/maket/jquery/plugins/jqzoom/jquery.jqzoom.js"></script>
+<script type="text/javascript" src="/assets/shopping/cart.js"></script>
+  </div>
+</header>
 
-<div id='product' class='clearfix'>
+<div class="columns clearfix">
+  <div id="center_column" class="center_column">
+    <script type="text/javascript">
+    // <![CDATA[
+    var jqZoomEnabled = true;
 
+    // Parameters
+    var productHasAttributes = false;
 
-    <% if @product.active_variants.empty? %>
-      <div id='no-variant-available' class=' four  last'>
-        Sorry this product is not currently available.
+    // Images
+    var combinationImages = new Array();
+
+    combinationImages[0] = new Array();
+          combinationImages[0][0] = 1;
+          combinationImages[0][1] = 2;
+          combinationImages[0][2] = 3;
+          combinationImages[0][3] = 4;
+    </script>
+<!-- Breadcrumb -->
+    <div class="breadcrumb bgcolor bordercolor">
+      <div class="breadcrumb_inner">
+        <a href="/" title="return to Home">Home</a>
+        <span class="navigation-pipe" >&gt;</span>
+        <a href="/products" title="return to Home">Products</a>
+        <span class="navigation-pipe" >&gt;</span>
+        <span class="navigation_page"><%= @product.name %></span>
       </div>
-    <% else %>
-      <div id='left_product_wrapper' class='columns five'>
-         <!-- <ul class='horizontal-list'>
-            <li><%= link_to 'Share', '#share-product', :class => 'button small share' %></li>
-          </ul> -->
-        <ul id="pikame" class="jcarousel-skin-pika">
-          <% @product.images.each do |image|%>
-            <li>
-              <a><%= image_tag(image.photo.url(:large)) %></a>
-            </li>
-          <% end %>
-          <% if @product.images.empty? %>
-            <li>
-              <a><%= image_tag(@product.featured_image(:large)) %></a>
-            </li>
-          <% end %>
-        </ul>
-        <div id='hero_variant'>
-          <% if @product.hero_variant.low_stock? %>
-            <%= image_tag("ribbons/#{@product.hero_variant.stock_status}.png",
-                          :width => 63, :height => 62,
-                          :style => 'border:none;',
-                          :class => 'upper_left_overlay'
-                          ) %>
-          <% end %>
+    </div>
+<!-- /Breadcrumb -->
+    <div id="primary_block" class="clearfix">
+    <!-- right infos-->
+      <div id="pb-right-column">
+<!-- product img-->
+        <div id="image-block" class="bordercolor">
+          <img src="http://localhost:3000/<%= @product.featured_image(:original) %>" class="jqzoom" alt="http://localhost:3000/<%= @product.featured_image(:original) %>" id="bigpic" width="304" height="304" />
         </div>
-      </div>
-
-      <div id='right_2_product_wrapper' >
-          <div id='right_product_wrapper' class=''>
-            <div class='product_title_name'><h4><%= @product.name %></h4></div>
-            <hr id='product'/><br>
-            <% if @product.active_variants.count > 0 %>
-              <div class='product_content'>
-                <div class='product_content_price'>
-                  <h4><%= number_to_currency @product.active_variants.first.price %></h4>
-                </div>
-                <div class='quantity'>
-                  <%= form_for  @cart_item, :url  => shopping_cart_items_path(@cart_item),
-                                            :html => { :id => 'new_cart_item' } do |f| %>
-                    <%= f.hidden_field :variant_id %>
-                    Quantity:
-                      <%= f.select :quantity, [1,2,3,4,5,6], {:include_blank => true}, {:class => 'one'} %>
-                  <% end %>
-                </div>
-                <div class='add_to_cart_wrapper '>
-                  <% unless @product.active_variants.empty? %>
-                    <a href='#' id='submit_add_to_cart' class='button'><img src='/assets/product/shop_cart.png' width='50' height='50'> Add to Cart</a>
-                  <% end %>
-                </div>
-                <hr id='product'/><br>
-              </div>
-              <div id='your_product' class='panel'>
-                <% @product.active_variants.each_with_index do |variant, i| %>
-                  <div id='variant_<%= variant.id %>'
-                       class='button variant_select secondary <%= 'selected_variant' if i == 0 %>'
-                       data-variant_id='<%= variant.id %>'>
-                    <%#= raw variant.primary_property.try(:property_name)  %> <%= raw variant.product_name %>
-                  </div>
-                <% end %>
-                  <div  class='properties_inner_wrapper clearfix' >
-                    <% @product.active_variants.each_with_index do |var, i| %>
-                      <div id='variant_properties_<%= var.id %>' class='variant_properties <%= 'selected' if i == 0 %>'>
-                        <ul>
-                          <% var.variant_properties.each do |prop| %>
-                            <li><label><%= prop.property_name %>:</label>  <%= prop.description %></li>
-                          <% end %>
-                        </ul>
-                      </div>
-                    <% end %>
-                    <hr id='product'/><br>
-
-                  </div>
-              </div>
-              <div class='product_content_description'>
-                <%= raw @product.description %>
-              </div>
-              <div id='product_your_properties'>
-                &nbsp;
-                <%= render :partial => 'properties' %>
-              </div>
-              <%= facebook_like %>
+<!-- thumbnails -->
+        <div id="views_block" >
+          <span class="view_scroll_spacer">
+            <a id="view_scroll_left" class="hidden" title="Other views" href="javascript:{}">Previous</a>
+          </span>
+          <div id="thumbs_list">
+            <ul id="thumbs_list_frame">
+              <% @product.images.each_with_index do |image, i| %>
+              <li id="thumbnail_<%= i+1 %>" class="<%= 'thumb_last' if i == 3 %>">
+                <a href="http://localhost:3000/<%= image.photo.url(:original) %>" rel="other-views" class="thickbox bordercolor" title="">
+                  <img id="thumb_<%= i+1 %>" src="http://localhost:3000/<%= image.photo.url(:original) %>" alt="" height="80" width="80" />
+                </a>
+              </li>
             <% end %>
+            </ul>
+          </div>
+          <a id="view_scroll_right" title="Other views" href="javascript:{}">Next</a>
+        </div>
+<!-- usefull links-->
+      </div>
+<!-- left infos-->
+      <div id="pb-left-column">
+        <h1><%= @product.name %></h1>
+        <!-- add to cart form-->
+<!-- prices -->
+        <div id='buy_block' class='bordercolor'>
+          <div class="price bordercolor" >
+            <span class="our_price_display bordercolor">
+              <span id="our_price_display" class="pricecolor">
+                <h1><%= number_to_currency @product.active_variants.first.price %></h1>
+              </span>
+            </span>
+            <div class='quantity'>
+              <%= form_for  @cart_item, :url  => shopping_cart_items_path(@cart_item),
+                                        :html => { :id => 'new_cart_item' } do |f| %>
+                <%= f.hidden_field :variant_id %>
+                Quantity:
+                  <%= f.select :quantity, [1,2,3,4,5,6], {:include_blank => true}, {:class => 'one'} %>
+              <% end %>
+            </div>
+            <div class='add_to_cart_wrapper' id='product'>
+              <% unless @product.active_variants.empty? %>
+                <a href='#' id='submit_add_to_cart' class='button'>Add to Cart</a>
+              <% end %>
             </div>
           </div>
-      </div>
-
-    <% end %>
-
-  <div class='clearfix' style='height:50px;'>&nbsp</div>
+        </div>
+        <div class="clear"></div>
+        <div id="short_description_block" class="bordercolor">
+          <div id="short_description_content" class="rte align_justify">
+            <p><%== @product.description %></p>
+          </div>
+          <p class="buttons_bottom_block">
+            <a href="javascript:{}" class="button">More details</a>
+          </p>
+<!--[if !IE]> -->
+          <div class="share bordercolor">
+            <div class="addthis_toolbox addthis_default_style ">
+              <a class="addthis_button_facebook_like" fb:like:layout="button_count"></a>
+              <a class="addthis_button_tweet"></a>
+              <a class="addthis_button_pinterest_pinit"></a>
+              <a class="addthis_counter addthis_pill_style"></a>
+            </div>
+            <script type="text/javascript">var addthis_config = {"data_track_addressbar":true};</script>
+            <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5129de45024e4e78"></script>
+          </div>
+<!-- <![endif]-->
+        <div class="clearblock"></div>
+    </div>
+        <!-- hidden datas -->
+  </div>
 </div>
-<div id='generic-dialog'></div>
-
-<% content_for :below_body do -%>
-  <%= javascript_include_tag 'shopping/cart.js' %>
-  <%= javascript_include_tag 'jquery.jcarousel.js' %>
-  <%= javascript_include_tag 'jquery.pikachoose.full.js' %>
-
-  <script>
-    $(document).ready(function (){
-        $("#pikame").PikaChoose({autoPlay:true, carousel:false, carouselVertical:false});
-        $('#pikame').data('pikachoose').Pause();
-    });
-  </script>
-<% end %>
+<!-- description and features -->
+<div id="more_info_block">
+  <ul id="more_info_tabs" class="idTabs idTabsShort ">
+    <li>
+      <a href="#idTab1">Description</a>
+    </li>
+    <li>
+      <a href="#idTab2">Data sheet</a>
+    </li>
+  </ul>
+  <div id="more_info_sheets" class="bordercolor bgcolor">
+      <!-- full description -->
+    <div id="idTab1">
+      <div>
+        <%== @product.description %>
+      </div>
+    </div>
+        <!-- product's features -->
+    <ul id="idTab2" class="bullet">
+      <% @product.active_variants.each_with_index do |var, i| %>
+        <div id='variant_properties_<%= var.id %>' class='variant_properties <%= 'selected' if i == 0 %>'>
+          <ul>
+            <% var.variant_properties.each do |prop| %>
+              <li><label><%= prop.property_name %>:</label>  <%= prop.description %></li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
+    </ul>
+  </div>
+</div>
+</div>
+</div>
+</body>
+</html>
