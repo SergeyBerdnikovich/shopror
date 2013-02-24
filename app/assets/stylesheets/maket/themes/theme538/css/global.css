@@ -1781,3 +1781,20 @@ p.error404 img {margin:0 10px 0 0;}
 #buy_block div.price {
   padding: 20px 0 0;
 }
+#update_all_cart ul li {
+  width: 300px;
+}
+.two.columns input {
+  margin-top: -40px;
+}
+#image_for_cart img {
+  width: 155px;
+  height: 155px;
+}
+#image_for_cart {
+  width: 110px;
+}
+#product_list li {
+  width: 160px;
+}
+
