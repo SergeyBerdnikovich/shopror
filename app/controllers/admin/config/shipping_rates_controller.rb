@@ -1,4 +1,5 @@
 class Admin::Config::ShippingRatesController < Admin::Config::BaseController
+
   # GET /shipping_rates
   def index
     form_info

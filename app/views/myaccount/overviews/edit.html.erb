@@ -1,8 +1,11 @@
+</div>
+</header>
+<div class="columns clearfix">
+  <div class='nine columns'>
+    <h4> Edit Profile </h4>
 
-<div class='nine columns'>
-  <h3> Edit Profile </h3>
-
-  <%= form_for current_user, :url => myaccount_overview_path, :method => 'PUT' do |f| %>
-    <%=  render :partial => 'form', :locals => {:f => f} %>
-  <% end %>
+    <%= form_for current_user, :url => myaccount_overview_path, :method => 'PUT' do |f| %>
+      <%=  render :partial => 'form', :locals => {:f => f} %>
+    <% end %>
+  </div>
 </div>

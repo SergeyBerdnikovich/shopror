@@ -1,4 +1,5 @@
 class Admin::Config::AccountsController < Admin::Config::BaseController
+  layout 'admin'
   # GET /accounts
   def index
     @accounts = Account.all

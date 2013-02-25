@@ -1,4 +1,5 @@
 class Admin::Config::ShippingMethodsController < Admin::Config::BaseController
+
   # GET /admin/config/shipping_methods
   def index
     @shipping_methods = ShippingMethod.all

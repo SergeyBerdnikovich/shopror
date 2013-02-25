@@ -1,4 +1,5 @@
 class Admin::Config::OverviewsController < Admin::Config::BaseController
+
   # GET /admin/config/overviews
   def index
     #@admin_config_overviews = Admin::Config::Overview.all

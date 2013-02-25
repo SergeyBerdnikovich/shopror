@@ -1,7 +1,11 @@
-<div class='nine columns'>
-  <h3> <%= current_user.name %> Store Credits </h3>
+</div>
+</header>
+<div class="columns clearfix">
+  <div class='nine columns'>
+    <h4> <%= current_user.name %> Store Credits </h4>
 
-  <p id='users-credits' class=''>
-      You currently have <%= number_to_currency @store_credit.amount %> worth of credits.
-  </p>
+    <p id='users-credits' class=''>
+        You currently have <%= number_to_currency @store_credit.amount %> worth of credits.
+    </p>
+  </div>
 </div>

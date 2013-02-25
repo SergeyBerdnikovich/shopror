@@ -12,22 +12,22 @@
 <div class='main-address'>
     <div class="inline twelve ">
       <div class="field six columns">
-         <%= f.label :first_name %>
+         <%= f.label :first_name %><br />
          <%= f.text_field :first_name, :class => '' %>
       </div>
 
       <div class="field six columns">
-        <%= f.label :last_name %>
+        <%= f.label :last_name %><br />
         <%= f.text_field :last_name, :class => '' %>
       </div>
     </div>
     <div class='clear'></div>
       <div class="twelve columns">
         <div class="field">
-          <%= f.label :address1 %>
+          <%= f.label :address1 %><br />
           <%= f.text_field :address1 %><br/>
 
-          <%= f.label :address2 %>
+          <%= f.label :address2 %><br />
           <%= f.text_field :address2 %>
         </div>
       </div>
@@ -35,38 +35,38 @@
     <div class='clearfix'></div>
       <div class=" twelve clearfix">
         <div class="field five columns">
-          <%= f.label :city %>
+          <%= f.label :city %><br />
           <%= f.text_field :city %>
         </div>
 
       <% if nil %>
         <div class="field four">
-          <%= f.label :state_name %>
+          <%= f.label :state_name %><br />
           <%= f.text_field :state_name %>
         </div>
       <% end %>
       <% if Settings.require_state_in_address %>
         <div class="field four columns">
-          <%= f.label    :state_id, "State/Province" %>
+          <%= f.label    :state_id, "State/Province" %><br />
           <%= f.select   :state_id, @states,
                         :include_blank => true %>
         </div>
       <% elsif countries.size == 1 %>
         <div class="field column">
-          <%= f.label :country_id, "Country" %>
+          <%= f.label :country_id, "Country" %><br />
           <%= countries.first.name %>
           <%= f.hidden_field   :country_id %>
         </div>
       <% else %>
         <div class="field column">
-          <%= f.label    :country_id, "Country" %>
+          <%= f.label    :country_id, "Country" %><br />
           <%= f.select   :country_id, select_countries,
-                        :include_blank => true %>
+                         :include_blank => true %>
         </div>
       <% end %>
 
-        <div class="field two columns">
-          <%= f.label :zip_code %>
+        <div class="field column">
+          <%= f.label :zip_code %><br />
           <%= f.text_field :zip_code %>
         </div>
       </div>

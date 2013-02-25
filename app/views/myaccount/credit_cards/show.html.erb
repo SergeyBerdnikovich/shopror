@@ -1,14 +1,18 @@
-<div class='nine columns'>
-  <h3> Credit Card </h3>
+</div>
+</header>
+<div class="columns clearfix">
+  <div class='nine columns'>
+    <h4> Credit Card </h4>
 
-<  p>
-    <strong>Name:</strong>
-    <%= @credit_card.name %>
-  </p>
+    <p>
+      <strong>Name:</strong>
+      <%= @credit_card.name %>
+    </p>
 
-  <p>
-    <%= link_to "Edit", edit_myaccount_credit_card_path(@credit_card), :class => 'button' %> |
-    <%= link_to "Destroy", myaccount_credit_card_path(@credit_card), :data => {:confirm => 'Are you sure?'}, :method => :delete, :class => 'button' %> |
-    <%= link_to "View All", myaccount_credit_cards_path, :class => 'button' %>
-  </p>
+    <p>
+      <%= link_to "Edit", edit_myaccount_credit_card_path(@credit_card), :class => 'button' %> |
+      <%= link_to "Destroy", myaccount_credit_card_path(@credit_card), :data => {:confirm => 'Are you sure?'}, :method => :delete, :class => 'button' %> |
+      <%= link_to "View All", myaccount_credit_cards_path, :class => 'button' %>
+    </p>
+  </div>
 </div>

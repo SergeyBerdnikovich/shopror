@@ -1,4 +1,5 @@
 class Admin::Config::CountriesController < Admin::Config::BaseController
+
   helper_method :sort_column, :sort_direction
   def index
     @countries = Country.order(sort_column + " " + sort_direction).

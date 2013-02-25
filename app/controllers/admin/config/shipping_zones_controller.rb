@@ -1,4 +1,5 @@
 class Admin::Config::ShippingZonesController < Admin::Config::BaseController
+
   # GET /admin/config/shipping_zones
   def index
     @shipping_zones = ShippingZone.all

@@ -2,19 +2,19 @@
   <fieldset id="myaccount-profile" class='five columns'>
      <ul>
        <li>
-         <%= f.label :first_name %>
+         <%= f.label :first_name %><br />
          <%= f.text_field :first_name, :placeholder => "First Name" %>
         </li>
         <li>
-          <%= f.label :last_name %>
+          <%= f.label :last_name %><br />
           <%= f.text_field :last_name %>
         </li>
         <li>
-          <%= f.label :email %>
+          <%= f.label :email %><br />
           <%= f.text_field :email %>
         </li>
         <li>
-          <%= f.label :form_birth_date, "Birthday" %>
+          <%= f.label :form_birth_date, "Birthday" %><br />
           <%= f.text_field :form_birth_date, :class => 'ui-yearpicker', :placeholder => "Birthday mm/dd/yyyy" %>
         </li>
      </ul>
@@ -24,11 +24,11 @@
   <fieldset id="myaccount-profile-password" class='five '>
     <ul>
       <li>
-        <%= f.label :password %>
+        <%= f.label :password %><br />
         <%= f.password_field :password %>
       </li>
       <li>
-        <%= f.label :password_confirmation %>
+        <%= f.label :password_confirmation %><br />
         <%= f.password_field :password_confirmation %>
       </li>
     </ul>

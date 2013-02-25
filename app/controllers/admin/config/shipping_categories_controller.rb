@@ -1,4 +1,5 @@
 class Admin::Config::ShippingCategoriesController < Admin::Config::BaseController
+
   # GET /admin/merchandise/shipping_categories
   def index
     @shipping_categories = ShippingCategory.all

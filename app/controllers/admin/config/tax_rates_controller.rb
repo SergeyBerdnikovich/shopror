@@ -1,6 +1,7 @@
 class Admin::Config::TaxRatesController < Admin::Config::BaseController
   helper_method :countries
 
+
   # GET /admin/config/tax_rates
   def index
     @tax_rates = TaxRate.all
