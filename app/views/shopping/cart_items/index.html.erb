@@ -41,24 +41,27 @@
         </div>
         <div class="clear"></div>
       <% end %>
-      <div>
-        <% unless @cart_items.blank? %>
-          <b>Shopping Cart Items--To Buy Now</b>
-          <%#= cart_form.fields_for :shopping_cart_items, @cart_items do |cart_items_form| %>
-          <ul id="product_list" class="bordercolor grid">
-            <% @cart_items.each_with_index do |item, i| %>
-              <%= cart_form.fields_for :shopping_cart_items, item do |cart_items_form| %>
-                <%= render :partial => 'cart_item', :locals => {:cart_items_form => cart_items_form, :item => item, :i => i }%>
+      <div id='cart'>
+        <div id='cart_item'>
+          <% unless @cart_items.blank? %>
+            <b><h4>Shopping Cart Items--To Buy Now</h4></b>
+            <%#= cart_form.fields_for :shopping_cart_items, @cart_items do |cart_items_form| %>
+            <ul id="product_list" class="bordercolor grid">
+              <% @cart_items.each_with_index do |item, i| %>
+                <%= cart_form.fields_for :shopping_cart_items, item do |cart_items_form| %>
+                  <%= render :partial => 'cart_item', :locals => {:cart_items_form => cart_items_form, :item => item, :i => i }%>
+                <% end %>
               <% end %>
-            <% end %>
-          </u>
-        <% end %>
-      </div>
-      <div>
-        <% unless @saved_cart_items.empty? %>
-          <b>Saved Items--To Buy Later</b>
-          <%= render :partial => '/shopping/cart_items/saved_items' unless @saved_cart_items.empty? %>
-        <% end %>
+            </u>
+          <% end %>
+        </div>
+        <div id='saved_items'>
+          <% unless @saved_cart_items.empty? %>
+          <br />
+            <b><h4>Saved Items--To Buy Later</h4></b>
+            <%= render :partial => '/shopping/cart_items/saved_items' unless @saved_cart_items.empty? %>
+          <% end %>
+        </div>
       </div>
     <% end %>
   </div>

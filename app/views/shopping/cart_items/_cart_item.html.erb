@@ -12,6 +12,9 @@
   </div>
   <div>
     <b class="price"><%= number_to_currency item.price %></b>
+  </div>
+  <div id='cart_quantity'>
+    <b>Qty. <%= cart_items_form.text_field :quantity, :size=>"2" %></b>
   </div><br />
   <div id='remove_<%= i %>_from_cart'>
     <%= link_to 'Save for Later',

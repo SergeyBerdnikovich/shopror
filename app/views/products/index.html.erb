@@ -40,13 +40,7 @@
           </div>
           <div class="right_block bordercolor">
             <span class="price"><%= number_to_currency product.price_range.last %></span>
-
-            <a class="ajax_add_to_cart_button exclusive" rel="ajax_id_product_1" href="localhost:3000/shopping/cart_items%26id_product%3D<%= product.id %>%26token%3D123dde34481d75c8fbceb29e243904e3e75=" title="Add to cart">Add to cart</a>
-            <div class='add_to_cart_wrapper '>
-              <% unless product.active_variants.empty? %>
-                <%= link_to 'Add to Cart', '#', :id => 'submit_add_to_cart', :class => 'button' %>
-              <% end %>
-            </div>
+            <br />
             <a class="button" href="<%= product_path(product.id) %>" title="View">View</a>
           </div>
         </li>

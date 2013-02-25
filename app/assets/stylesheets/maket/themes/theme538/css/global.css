@@ -1794,7 +1794,21 @@ p.error404 img {margin:0 10px 0 0;}
 #image_for_cart {
   width: 110px;
 }
-#product_list li {
+div#cart li {
   width: 160px;
 }
 
+#cart_quantity {
+  margin: -30px 0 0 130px;
+}
+@font-face {
+  font-family: 'Sofia';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Sofia'), local('Sofia-Regular'), url(http://themes.googleusercontent.com/static/fonts/sofia/v2/eNNA2vlZnUPtgq9g__E3cA.woff) format('woff');
+}
+
+h4 {
+  color: #D94882;
+  font: 24px "Sofia";
+}
