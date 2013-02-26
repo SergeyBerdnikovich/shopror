@@ -6,6 +6,8 @@
   <%= form_for @product, :url  => admin_merchandise_products_description_path(@product) do |f| %>
     <%= f.text_field :name %>
     <%= f.text_area :description_markup, :id => "markItUp", :cols => "92", :rows => "15" %>
+    <label>featured?</label>
+    <%= f.check_box   :featured %><br />
     <%= f.submit "Update", :class  => "button" %>
   <% end %>
 </div>

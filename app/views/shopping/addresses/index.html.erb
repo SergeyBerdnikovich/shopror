@@ -1,10 +1,18 @@
 </div>
 </header>
 <div class="columns clearfix">
+  <div class="breadcrumb bgcolor bordercolor">
+    <div class="breadcrumb_inner">
+      <a href="http://livedemo00.template-help.com/prestashop_42486/" title="return to Home">Home</a>
+      <span class="navigation-pipe" >&gt;</span>
+      <span class="navigation_page">Address</span>
+    </div>
+  </div>
+
   <% if  @shopping_addresses.empty? %>
-    <h2>New Address</h2>
+    <h1 id="shopping">New Address</h1>
   <% else %>
-    <h3>Pick a Shipping Address</h3>
+    <h1 id="shopping">Pick a Shipping Address</h1>
   <% end %>
 
   <div id='shopping_addresses_selections' class='twelve last'>

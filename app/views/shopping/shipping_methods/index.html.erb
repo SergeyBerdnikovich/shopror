@@ -1,37 +1,68 @@
 </div>
 </header>
 <div class="columns clearfix">
-  <h4>Pick a Shipping Method</h4>
+  <div class="breadcrumb bgcolor bordercolor">
+    <div class="breadcrumb_inner">
+      <a href="http://livedemo00.template-help.com/prestashop_42486/" title="return to Home">Home</a>
+      <span class="navigation-pipe" >&gt;</span>
+      <span class="navigation_page">Shipping Method</span>
+    </div>
+  </div>
+  <h1 id="shopping">Pick a Shipping Method</h1>
 
-  <div class='clearfix'>
-    <%= form_tag(shopping_shipping_method_path(session_order.id), :method => :put) do -%>
+  <div>
+  <%= form_tag(shopping_shipping_method_path(session_order.id), :method => :put) do %>
+    <table class="std">
+      <thead>
+        <tr>
+          <td><span>Product</span></td>
+          <td><span>Title</span></td>
+          <td><span>Qty</span></td>
+          <td><span>Cost</span></td>
+        </tr>
+      </thead>
       <% @order_items.group_by(&:shipping_category_id).each do |shipping_category_id, items| %>
-        <div class='column float-left ten line_items_blue last'>
-            <% items.each do |item| %>
-              <div class='nine clearfix panel'>
-                  <div class='six columns'>
-                    <%= image_tag(item.variant.product.featured_image(:mini)) %>
-                    <%= item.variant.product.name %> Quantity: <%= item.quantity %>
-                  </div>
-                  <div class='five columns last' style='text-align:left;'>
-                    <%= raw item.variant.display_property_details %>
-                  </div>
-              </div>
-            <% end %>
-            <ul class='ten side-nav'>
-            <% items.first.shipping_rate_options(session_order.sub_total).each do |rate| %>
-              <li>
-                <%= radio_button_tag "shipping_category[#{shipping_category_id}]", rate.id %>
-                <%= rate.name_rate_min %>
-              </li>
-            <% end %>
-            </ul>
-        </div>
+        <tbody>
+          <% items.each do |item| %>
+            <tr>
+              <td>
+                <a href="#">
+                  <%= image_tag(item.variant.product.featured_image(:mini)) %>
+                </a>
+              </td>
+              <td>
+                <h5>
+                  <a href="#"><%= item.variant.product.name %></a>
+                </h5>
+              </td>
+              <td>
+                <span><%= item.quantity %></span>
+              </td>
+              <td>
+                <span><%= item.variant.product.price * item.quantity %></span>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+        <ul class='ten side-nav'>
+          <% items.first.shipping_rate_options(session_order.sub_total).each do |rate| %>
+            <li>
+              <%= radio_button_tag "shipping_category[#{shipping_category_id}]", rate.id %>
+              <%= rate.name_rate_min %>
+            </li>
+          <% end %>
+        </ul>
       <% end %>
-      <div class='ten clearfix offset-by-two'>
-        <%= submit_tag 'continue', :class => 'button' %>
-      </div>
-
-    <% end %>
+      <tfoot>
+        <tr>
+          <td colspan="3"><span>Total:</span></td>
+          <td><span>$<%=@order_items.inject(0){|sum, item| sum + item.variant.product.price} %></span></td>
+        </tr>
+      </tfoot>
+    </table>
+    <div class='ten clearfix offset-by-two'>
+      <%= submit_tag 'continue', :class => 'button' %>
+    </div>
+  <% end %>
   </div>
 </div>
