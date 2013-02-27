@@ -63,8 +63,8 @@
             <ul id="thumbs_list_frame">
               <% @product.images.each_with_index do |image, i| %>
               <li id="thumbnail_<%= i+1 %>" class="<%= 'thumb_last' if i == 3 %>">
-                <a href="http://localhost:3000/<%= image.photo.url(:original) %>" rel="other-views" class="thickbox bordercolor" title="">
-                  <img id="thumb_<%= i+1 %>" src="http://localhost:3000/<%= image.photo.url(:original) %>" alt="" height="80" width="80" />
+                <a href="<%= image.photo.url(:original) %>" rel="other-views" class="thickbox bordercolor" title="">
+                  <img id="thumb_<%= i+1 %>" src="<%= image.photo.url(:original) %>" alt="" height="80" width="80" />
                 </a>
               </li>
             <% end %>
