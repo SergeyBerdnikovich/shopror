@@ -162,11 +162,6 @@ class ApplicationController < ActionController::Base
     }
   end
   def initial_menu
-    @costumes = ProductType.find_by_name('Costumes')
-    @clothing = ProductType.find_by_name('Clothing')
-    @lingerie = ProductType.find_by_name('Lingerie')
-    @shapewear = ProductType.find_by_name('Shapewear')
-    @dance_wear_and_equipment = ProductType.find_by_name('Dance Wear and Equipment')
-    @shoes_and_boots = ProductType.find_by_name('Shoes and Boots')
+    @product_types_for_menu = ProductType.where(:parent_id => nil)
   end
 end

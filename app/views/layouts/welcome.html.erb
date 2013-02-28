@@ -115,30 +115,12 @@
 <!-- /MODULE Block cart -->
               <div id="topmenu">
                 <ul class="sf-menu clearfix">
-                  <li >
-                    <a href="/products?product_type_id=<%= @costumes.id if @costumes %>">Costumes</a>
-                    <%== child_product_types_for @costumes %>
-                  </li>
-                  <li >
-                    <a href="/products?product_type_id=<%= @clothing.id if @clothing %>">Clothing</a>
-                    <%== child_product_types_for @clothing %>
-                  </li>
-                  <li >
-                    <a href="/products?product_type_id=<%= @lingerie.id if @lingerie %>">Lingerie</a>
-                    <%== child_product_types_for @lingerie %>
-                  </li>
-                  <li >
-                    <a href="/products?product_type_id=<%= @shapewear.id if @shapewear %>">Shapewear</a>
-                    <%== child_product_types_for @shapewear %>
-                  </li>
-                  <li >
-                    <a href="/products?product_type_id=<%= @dance_wear_and_equipment.id if @dance_wear_and_equipment %>">Dance Wear and Equipment</a>
-                    <%== child_product_types_for @dance_wear_and_equipment %>
-                  </li>
-                  <li >
-                    <a href="/products?product_type_id=<%= @shoes_and_boots.id if @shoes_and_boots %>">Shoes and Boots</a>
-                    <%== child_product_types_for @shoes_and_boots %>
-                  </li>
+                  <% @product_types_for_menu.each do |product_type| %>
+                    <li >
+                      <a href="/products?product_type_id=<%= product_type.id%>"><%= product_type.name %></a>
+                      <%== child_product_types_for product_type %>
+                    </li>
+                  <% end %>
                 </ul>
               </div>
 
