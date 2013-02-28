@@ -2,6 +2,15 @@
 </header>
 <div class="columns clearfix">
   <div class='nine columns'>
+<!-- Breadcrumb -->
+    <div class="breadcrumb bgcolor bordercolor">
+      <div class="breadcrumb_inner">
+        <a href="/" title="return to Home">Home</a>
+        <span class="navigation-pipe" >&gt;</span>
+        <span class="navigation_page">Addresses</span>
+      </div>
+    </div><br />
+<!-- /Breadcrumb -->
     <h4> Addresses </h4>
     <% if @addresses.empty? %>
       <p>
@@ -11,14 +20,14 @@
       <ul>
         <% for address in @addresses %>
           <li><br/>
-            <%= render :partial => '/shared/compact_address', :locals => { :shopping_address => address } %>
-            <%= link_to "Edit", edit_myaccount_address_path(address) %> |
-            <%= link_to "Remove", myaccount_address_path(address), :confirm => 'Are you sure?', :method => :delete %>
+            <%= render :partial => '/shared/compact_address', :locals => { :shopping_address => address } %><br />
+            <%= link_to "Edit", edit_myaccount_address_path(address), :class => 'button ar-small-black-button' %> |
+            <%= link_to "Remove", myaccount_address_path(address), :confirm => 'Are you sure?', :method => :delete, :class => 'button ar-small-black-button' %>
           </li>
         <% end %>
       </ul>
-    <% end %>
+    <% end %><br />
 
-    <p><%= link_to "New Address", new_myaccount_address_path, :class => 'b-link' %></p>
+    <p><%= link_to "New Address", new_myaccount_address_path, :class => 'button ar-small-black-button' %></p><br />
   </div>
 </div>

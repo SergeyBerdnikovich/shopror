@@ -1,6 +1,17 @@
 </div>
 </header>
 <div class="columns clearfix">
+<!-- Breadcrumb -->
+  <div class="breadcrumb bgcolor bordercolor">
+    <div class="breadcrumb_inner">
+      <a href="/" title="return to Home">Home</a>
+      <span class="navigation-pipe" >&gt;</span>
+      <a href="/login" title="return to Home">Login</a>
+      <span class="navigation-pipe" >&gt;</span>
+      <span class="navigation_page">Password reset</span>
+    </div>
+  </div><br />
+<!-- /Breadcrumb -->
   <% content_for :head do -%>
     <%= stylesheet_link_tag 'signup.css' %>
     <%#= stylesheet_link_tag 'cupertino/jquery-ui-1.8.12.custom' %>
@@ -18,7 +29,7 @@
         <%= f.label :email %><br />
         <%= f.text_field :email %>
       </div>
-      <p>
+      <p><br />
       <%= submit_tag 'Continue', :class => 'button' %>
       </p>
     <% end %>

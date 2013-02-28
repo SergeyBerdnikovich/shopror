@@ -1,12 +1,23 @@
 </div>
 </header>
 <div class="columns clearfix">
+<!-- Breadcrumb -->
+    <div class="breadcrumb bgcolor bordercolor">
+      <div class="breadcrumb_inner">
+        <a href="/" title="return to Home">Home</a>
+        <span class="navigation-pipe" >&gt;</span>
+        <a href="/shopping/addresses/" title="return to Address">Adress</a>
+        <span class="navigation-pipe" >&gt;</span>
+        <span class="navigation_page">Edit</span>
+      </div>
+    </div><br />
+<!-- /Breadcrumb -->
   <h1>Editing Address</h1>
 
   <%= form_for(@form_address, :url => shopping_address_path(@form_address)) do |f| %>
     <%= render :partial => 'form', :locals => {:f => f} %>
-  <% end %>
+  <% end %><br />
 
 
-  <%= link_to 'Back', shopping_addresses_path %>
-</div>
+  <%= link_to 'Back', shopping_addresses_path, :class => "button" %>
+</div><br />

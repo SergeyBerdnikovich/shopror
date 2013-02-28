@@ -18,10 +18,10 @@
   <div id='shopping_addresses_selections' class='twelve last'>
     <% @shopping_addresses.each do |shopping_address| %>
       <div class='four columns last box'>
-        <%= render :partial => '/shared/compact_address', :locals => {:shopping_address => shopping_address} %>
-        <%= button_to 'Use', select_address_shopping_address_path(shopping_address), :class => 'button spade inline-block', :method => :put %>
-        <%= link_to 'Edit', edit_shopping_address_path(shopping_address) %>
-        <%= link_to 'Delete', shopping_address_path(shopping_address), :data => {:confirm => 'Are you sure?'}, :method => :delete %>
+        <%= render :partial => '/shared/compact_address', :locals => {:shopping_address => shopping_address} %><br />
+        <%= button_to 'Use', select_address_shopping_address_path(shopping_address), :class => 'button spade inline-block', :method => :put %><br />
+        <%= link_to 'Edit', edit_shopping_address_path(shopping_address), :class => 'button' %>
+        <%= link_to 'Delete', shopping_address_path(shopping_address), :data => {:confirm => 'Are you sure?'}, :method => :delete, :class => 'button' %>
       </div>
       <hr style='color:#aac'/>
     <% end %>
@@ -32,5 +32,5 @@
   <br />
   <%= form_for @shopping_address, :url => shopping_addresses_path do |address_form| %>
     <%= render :partial =>  'form', :locals => {:f => address_form}  %>
-  <% end %>
+  <% end %><br />
 </div>

@@ -1,9 +1,20 @@
-<div class='seven clearfix <%= cycle("line_item_blue", "line_item_light_gray") -%>'>
-    <div class='seven columns '>
-      <%= image_tag(items.first.variant.product.featured_image(:mini)) %>
-      <%= items.first.variant.product.name %> Quantity: <%= items.size %>
-    </div>
-    <div class='five columns last'>
-      <%= raw items.first.variant.display_property_details %>
-    </div>
-</div>
+<li>
+  <div id='image_for_cart'>
+    <%= image_tag items.first.variant.product.featured_image(:original) %>
+  </div>
+  <div id='name_for_cart'>
+    <b>
+      <%= link_to items.first.variant.product_name, product_path(items.first.variant.product) %>
+    </b>
+    <%= items.first.variant.brand_name.blank? ? '' : ['-', items.first.variant.brand_name].join(' ') %><br/>
+    <%= items.first.variant.display_stock_status('', '') %>
+    <br/><br />
+  </div>
+  <div>
+    <b class="price"><%= number_to_currency items.first.price %></b>
+  </div>
+  <div id='cart_quantity'>
+    <b>Qty. <%= items.size %></b>
+  </div>
+</li>
+

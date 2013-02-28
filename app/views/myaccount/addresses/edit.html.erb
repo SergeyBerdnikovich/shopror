@@ -2,6 +2,17 @@
 </header>
 <div class="columns clearfix">
   <div class='nine columns'>
+<!-- Breadcrumb -->
+    <div class="breadcrumb bgcolor bordercolor">
+      <div class="breadcrumb_inner">
+        <a href="/" title="return to Home">Home</a>
+        <span class="navigation-pipe" >&gt;</span>
+        <a href="/myaccount/addresses" title="return to Addresses">Addresses</a>
+        <span class="navigation-pipe" >&gt;</span>
+        <span class="navigation_page">Edit</span>
+      </div>
+    </div><br />
+<!-- /Breadcrumb -->
     <h4> Edit Address </h4>
 
     <%= form_for(@form_address, :url => myaccount_address_path(@form_address)) do |f| %>
@@ -11,5 +22,5 @@
       <%= link_to 'Show', myaccount_address_path( @form_address ), :class => 'secondary small button' %>
       <%= link_to 'Back to List', myaccount_addresses_path, :class => 'secondary small button' %>
     </div>
-  </div>
+  </div><br />
 </div>

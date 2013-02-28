@@ -2,6 +2,17 @@
 </header>
 <div class="columns clearfix">
   <div class='nine columns'>
+<!-- Breadcrumb -->
+    <div class="breadcrumb bgcolor bordercolor">
+      <div class="breadcrumb_inner">
+        <a href="/" title="return to Home">Home</a>
+        <span class="navigation-pipe" >&gt;</span>
+        <a href="/myaccount/overview" title="return to My account">My account</a>
+        <span class="navigation-pipe" >&gt;</span>
+        <span class="navigation_page">Edit</span>
+      </div>
+    </div><br />
+<!-- /Breadcrumb -->
     <h4> Edit Profile </h4>
 
     <%= form_for current_user, :url => myaccount_overview_path, :method => 'PUT' do |f| %>

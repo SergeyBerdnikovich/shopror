@@ -2,12 +2,25 @@
 </header>
 <div class="columns clearfix">
   <div class='nine columns'>
+<!-- Breadcrumb -->
+    <div class="breadcrumb bgcolor bordercolor">
+      <div class="breadcrumb_inner">
+        <a href="/" title="return to Home">Home</a>
+        <span class="navigation-pipe" >&gt;</span>
+        <a href="/myaccount/overview" title="return to My account">My account</a>
+        <span class="navigation-pipe" >&gt;</span>
+        <a href="/myaccount/overview/credit_cards" title="return to Credit Cards">Credit Cards</a>
+        <span class="navigation-pipe" >&gt;</span>
+        <span class="navigation_page">New</span>
+      </div>
+    </div><br />
+<!-- /Breadcrumb -->
     <h4> New Credit Card </h4>
 
     <%= form_for(@credit_card, :url => myaccount_credit_cards_path(@credit_card)) do |f| %>
       <%= render :partial => 'form', :locals => {:f => f} %>
-    <% end %>
+    <% end %><br />
 
     <%= link_to 'Back to List', myaccount_credit_cards_path, :class => 'button' %>
-  </div>
+  </div><br />
 </div>

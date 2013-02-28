@@ -1837,3 +1837,17 @@ table.std a {
 table.std span {
   color :#000;
 }
+ul#order_list li {
+  width: 160px;
+}
+ul#order_address li#first {
+  width: 400px;
+}
+ul#order_address li#last {
+  width: 400px;
+  float: right;
+  margin-top: -130px;
+}
+table.std.order th, table.std.order td {
+  border-width: 1px;
+}

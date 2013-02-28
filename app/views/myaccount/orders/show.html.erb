@@ -6,6 +6,19 @@
   <% end %>
 
   <div class='nine columns'>
+<!-- Breadcrumb -->
+    <div class="breadcrumb bgcolor bordercolor">
+      <div class="breadcrumb_inner">
+        <a href="/" title="return to Home">Home</a>
+        <span class="navigation-pipe" >&gt;</span>
+        <a href="/myaccount/overview" title="return to My account">My account</a>
+        <span class="navigation-pipe" >&gt;</span>
+        <a href="/myaccount/orders" title="return to My account">Orders</a>
+        <span class="navigation-pipe" >&gt;</span>
+        <span class="navigation_page">Show</span>
+      </div>
+    </div><br />
+<!-- /Breadcrumb -->
     <h3> Order # <%= @order.number %> </h3>
 
     <div class='pretty_table ten'>
@@ -41,5 +54,5 @@
         </tbody>
       </table>
     </div>
-  </div>
+  </div><br />
 </div>
