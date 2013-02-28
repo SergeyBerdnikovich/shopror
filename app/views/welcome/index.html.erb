@@ -31,6 +31,7 @@
 <!-- MODULE Home Featured Products -->
     <div id="featured_products">
       <div class="block_content">
+        <h1 if='shopping'>Featured products</h1>
         <ul>
           <% @featured_products.each_with_index do |product, i| %>
             <li>
@@ -47,6 +48,26 @@
         </ul>
         <div class="clearblock"></div>
       </div>
+    <div id="latest_products">
+      <div class="block_content">
+        <h1 if='shopping'>Latest products</h1>
+        <ul>
+          <% @latest_products.each_with_index do |product, i| %>
+            <li>
+              <a class="product_image" href="<%= product_path(product.id) %>" title="<%= product.name %>">
+                <img src="<%= product.featured_image(:medium) %>" alt="<%= product.name %>" width="240" height="220"/>
+              </a>
+              <h5><a href="<%= product_path(product.id) %>" title="<%= product.name %>"><%= product.name %></a></h5>
+              <div>
+                <span class="price"><%= number_to_currency product.price_range.last %></span>
+                <a href="<%= product_path(product.id) %>" title="View">View</a>
+              </div>
+            </li>
+          <% end %>
+        </ul>
+        <div class="clearblock"></div>
+      </div>
     </div>
+        </div>
   </div>
 </div>

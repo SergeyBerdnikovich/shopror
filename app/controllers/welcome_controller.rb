@@ -6,7 +6,7 @@ class WelcomeController < ApplicationController
     @featured_product = Product.featured
     @best_selling_products = Product.limit(5)
     @other_products  ## search 2 or 3 categories (maybe based on the user)
-    @latest_products = Product.limit(4).active
+    @latest_products = Product.limit(3).active.where(:featured => false)
     @featured_products = Product.limit(6).active.where(:featured => true)
     @gallery = Image.where(:for_slider => true)
     unless @featured_product
