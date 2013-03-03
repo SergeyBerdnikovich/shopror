@@ -4,7 +4,7 @@
   </div>
   <div id='name_for_cart'>
     <b>
-      <%= link_to items.first.variant.product_name, product_path(items.first.variant.product) %>
+      <%= link_to items.first.variant.product.name, product_path(items.first.variant.product) %>
     </b>
     <%= items.first.variant.brand_name.blank? ? '' : ['-', items.first.variant.brand_name].join(' ') %><br/>
     <%= items.first.variant.display_stock_status('', '') %>

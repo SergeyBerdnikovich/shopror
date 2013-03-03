@@ -85,21 +85,8 @@
           </tr>
         </tfoot>
       </table>
-      <%= form_tag( shopping_order_path(@order),
-                                    :method => :put,
-                                    #:as   => :order,
-                                    :id   => 'purchase_order') do  %>
-        <div class="field ">
-          <%= label_tag  :name %>
-        </div>
-        <div class='clear'></div>
-        <div class="field six column">
-          <%= label_tag 'First' %><br />
-           <%= text_field_tag(:first_name, @credit_card.first_name) %>
-        </div><br />
 
-        <%= submit_tag 'Complete Order', :class => 'button success' %>
-      <% end %><br />
+      <%= link_to "Checkout", @order.paypal_url(products_url, payment_notifications_url) %><br /><br />
     </div>
   </div>
 </div>

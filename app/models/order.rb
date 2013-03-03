@@ -496,6 +496,28 @@ class Order < ActiveRecord::Base
     grid
   end
 
+  def paypal_url(return_url, notify_url)
+    values = {
+      :business => 'seller_1361961029_biz@gmail.com',
+      :cmd => '_cart',
+      :upload => 1,
+      :return => return_url,
+      :invoice => id,
+      :notify_url => notify_url
+    }
+    index = 1
+    order_items.group_by(&:variant_id).each do |variant_id, items|
+      values.merge!({
+        "amount_#{index}" => items.first.price,
+        "item_name_#{index}" => items.first.variant.product.name,
+        "item_number_#{index}" => items.first.id,
+        "quantity_#{index}" => items.size
+      })
+      index += 1
+    end
+    "https://www.sandbox.paypal.com/cgi-bin/webscr?"+values.map {|k,v| "#{k}=#{v}" }.join("&")
+  end
+
   private
 
   def any_order_item_needs_to_be_calculated?
