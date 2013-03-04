@@ -515,6 +515,31 @@ class Order < ActiveRecord::Base
       })
       index += 1
     end
+    values.merge!({
+      "amount_#{index}" => order_items.first.order.shipping_charges,
+      "item_name_#{index}" => "Shipping Charges",
+      "quantity_#{index}" => 1
+    })
+    values.merge!({
+      "amount_#{index+1}" => order_items.first.order.taxed_amount,
+      "item_name_#{index+1}" => "Tax",
+      "quantity_#{index+1}" => 1
+    })
+    values.merge!({
+      "amount_#{index+2}" => order_items.first.order.coupon_amount,
+      "item_name_#{index+2}" => "Coupon",
+      "quantity_#{index+2}" => 1
+    })
+    values.merge!({
+      "amount_#{index+3}" => order_items.first.order.deal_amount,
+      "item_name_#{index+3}" => "Promotion",
+      "quantity_#{index+3}" => 1
+    })
+    values.merge!({
+      "amount_#{index+4}" => order_items.first.order.amount_to_credit,
+      "item_name_#{index+4}" => "Credit",
+      "quantity_#{index+4}" => 1
+    })
     "https://www.sandbox.paypal.com/cgi-bin/webscr?"+values.map {|k,v| "#{k}=#{v}" }.join("&")
   end
 

@@ -84,9 +84,16 @@
             <td><em><%= number_to_currency @order.credited_total %></em></td>
           </tr>
         </tfoot>
-      </table>
+      </table><br />
 
-      <%= link_to "Checkout", @order.paypal_url(products_url, payment_notifications_url) %><br /><br />
+      <%= link_to image_tag("https://www.paypal.com/en_US/i/btn/btn_xpressCheckout.gif"), @order.paypal_url(products_url, payment_notifications_url) %>
+      <%= amazon_pay_form_tag do %>
+        <%= hidden_field_tag 'amount', @order.credited_total %>
+        <%= hidden_field_tag 'referenceId', @order.id %>
+        <%= hidden_field_tag 'description', @order.number %>
+        <%= image_submit_tag('http://g-ecx.images-amazon.com/images/G/01/asp/beige_small_paynow_withmsg_whitebg.gif') %>
+      <% end %><br />
+
     </div>
   </div>
 </div>

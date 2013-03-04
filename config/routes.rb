@@ -2,6 +2,7 @@ Hadean::Application.routes.draw do
 
   resources :payment_notifications, :only => [:create]
 
+  match 'confirm_payment_amazon' => 'amazon_payments#confirm'
 
   resources :user_sessions, :only => [:new, :create, :destroy]
 
