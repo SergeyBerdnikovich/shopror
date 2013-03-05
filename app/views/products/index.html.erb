@@ -92,7 +92,7 @@
 <!-- Pagination -->
     <div id="pagination">
       <%= will_paginate @products %>
-      <form action="http://localhost:3000/products" method="get" id="pagination_form">
+      <form action="/products" method="get" id="pagination_form">
         <a class="button_mini" href="javascript:document.getElementById('pagination_form').submit();">Ok</a>
         <label for="nb_item">items:</label>
         <select name="per" id="nb_item">
