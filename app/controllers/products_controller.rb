@@ -28,6 +28,11 @@ class ProductsController < ApplicationController
     @product = Product.active.find(params[:id])
     form_info
     @cart_item.variant_id = @product.active_variants.first.try(:id)
+
+    respond_to do |format|
+      format.html
+      format.js
+    end
   end
 
   private

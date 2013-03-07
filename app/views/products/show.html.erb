@@ -53,6 +53,7 @@
 <!-- product img-->
         <div id="image-block" class="bordercolor">
           <img src="<%= @product.featured_image(:original) %>" class="jqzoom" alt="<%= @product.featured_image(:original) %>" id="bigpic" width="304" height="304" />
+          <img src="<%= @product.featured_image(:original) %>" class="jqzoom" alt="<%= @product.featured_image(:original) %>" id="bigpic2" width="1" height="1" />
         </div>
 <!-- thumbnails -->
         <div id="views_block" >
@@ -96,7 +97,10 @@
             </div>
             <div class='add_to_cart_wrapper' id='product'>
               <% unless @product.active_variants.empty? %>
-                <a href='#' id='submit_add_to_cart' class='button'>Add to Cart</a>
+                <%= link_to "Add to Cart", product_path(@product.id, :quantity => @cart_item.quantity,
+                                                                     :variant_id => @cart_item.variant_id),
+                                                                     :remote => true,
+                                                                     :class => 'button' %>
               <% end %>
             </div>
           </div>

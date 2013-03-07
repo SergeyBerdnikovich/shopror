@@ -1851,3 +1851,10 @@ ul#order_address li#last {
 table.std.order th, table.std.order td {
   border-width: 1px;
 }
+
+#primary_block #image-block img#bigpic2 {
+  margin-top: -304px;
+}
+#primary_block #image-block img#bigpic {
+  position: absolute;
+}
