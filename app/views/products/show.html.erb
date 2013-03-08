@@ -92,7 +92,7 @@
                                         :html => { :id => 'new_cart_item' } do |f| %>
                 <%= f.hidden_field :variant_id %>
                 Quantity:
-                  <%= f.select :quantity, [1,2,3,4,5,6], {:include_blank => true}, {:class => 'one'} %>
+                <%= f.select :quantity, [1,2,3,4,5,6], {:include_blank => true}, {:class => 'one'} %>
               <% end %>
             </div>
             <div class='add_to_cart_wrapper' id='product'>

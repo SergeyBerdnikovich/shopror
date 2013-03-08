@@ -23,10 +23,10 @@
                       <fieldset>
                       <div class="first-row">
                         <div class="username" id="com-form-login-username">
-                          <%=form.email_field :email, :class=> "input-xlarge",:autocomplete => 'off', :autocapitalize => 'off', :value => 'Email' %>
+                          <%= form.email_field :email, :class=> "input-xlarge",:autocomplete => 'off', :autocapitalize => 'off', :placeholder => "Email" %>
                         </div>
                         <div class="password" id="com-form-login-password">
-                          <%= form.password_field :password, :class=> "input-xlarge", :autocomplete => 'off', :autocapitalize => 'off', :value => 'password' %>
+                          <%= form.password_field :password, :class=> "input-xlarge", :autocomplete => 'off', :autocapitalize => 'off', :placeholder => "********" %>
                         </div>
                         <div class="login" id="com-form-login-remember">
                           <%= form.submit "Log In", :class => 'button' %>

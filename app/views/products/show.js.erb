@@ -1,3 +1,10 @@
+$("img#bigpic2").animate({opacity: "0", height: "304", width: "304"}, 1)
+                .animate({opacity: "0.6"}, 1)
+                .animate({opacity: "0.4", left: "+=900", top: "-=195", height: "40", width: "40"}, 1200)
+                .animate({opacity: "0"}, "slow")
+                .animate({opacity: "0", left: "0", height: "304", width: "304"}, 1)
+                .animate({opacity: "0", top: "+=195"}, 1)
+                .animate({opacity: "0", height: "1", width: "1"}, 1)
 $.post(
   "/shopping/cart_items",
   {
@@ -9,16 +16,7 @@ $.post(
 
 function onAjaxSuccess(data)
 {
-  $("img#bigpic2").animate({opacity: "0", height: "304", width: "304"}, 1)
-                  .animate({opacity: "0.6"}, 'fast')
-                  .animate({opacity: "0.4", left: "+=900", top: "-=195", height: "40", width: "40"}, 1200)
-                  .animate({opacity: "0"}, "slow")
-                  .animate({opacity: "0", left: "0", height: "304", width: "304"}, 'fast')
-                  .animate({opacity: "0", top: "+=195"}, 'fast')
-                  .animate({opacity: "0", height: "1", width: "1"}, 'fast')
   setTimeout(function() {
     $("li#shopping_cart a").html(" ").append("<%= j render 'layouts/cart' %>");
-  }, 1500);
+  }, 900);
 }
-
-

@@ -1,1 +1,1 @@
-Cart: <%= session_cart.shopping_cart_items.size %>
+Cart: <%= session_cart.shopping_cart_items.map{ |item| item.quantity }.inject{ |sum,item| sum+item } %>

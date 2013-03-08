@@ -77,7 +77,7 @@
             </li>
             <li id="shopping_cart">
               <a href="<%= shopping_cart_items_path %>" title="Your Shopping Cart">
-                Cart: <%= session_cart.shopping_cart_items.size %>
+                Cart: <%= session_cart.shopping_cart_items.map{ |item| item.quantity }.inject{ |sum,item| sum+item } %>
               </a>
             </li>
           </ul>

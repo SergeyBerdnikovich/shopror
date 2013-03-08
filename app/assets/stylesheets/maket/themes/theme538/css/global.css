@@ -1868,3 +1868,17 @@ a#shipping_method img {
   width: 50px;
   height: 50px;
 }
+div#amazon {
+  margin: -40px 0 0 800px;
+}
+div.columns.clearfix td {
+  color: black;
+  border-color: #AAAAAA;
+}
+ul#order_address {
+  color: black;
+}
+ul#order_list li{
+  color: black;
+  border-color: #AAAAAA
+}
