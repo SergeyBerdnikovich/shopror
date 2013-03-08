@@ -1,83 +1,105 @@
-  <% if @shopping_address.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@shopping_address.errors.count, "error") %> prohibited this shipping address from being saved:</h2>
-
-      <ul>
-      <% @shopping_address.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-<div class='main-address seven' >
-    <div class="inline twelve ">
-      <div class="field six columns">
-         <%= f.label :first_name %><br />
-         <%= f.text_field :first_name, :class => '' %>
-      </div>
-
-      <div class="field six columns">
-        <%= f.label :last_name %><br />
-        <%= f.text_field :last_name, :class => '' %>
-      </div>
-    </div>
-    <div class='clear'></div>
-      <div class="twelve columns">
-        <div class="field">
-          <%= f.label :address1 %><br />
-          <%= f.text_field :address1 %><br/>
-
-          <%= f.label :address2 %><br />
-          <%= f.text_field :address2 %>
+<div class="mws-section">
+  <div class="mws-content">
+    <h1 class="vm-title">Add new address</h1>
+      <fieldset>
+        <div class="spacer">
+          <span class="section-step">Fill in those fields to create an address</span>
+          <div class="form-section">
+            <span class="grouped">
+              <span class="titles">
+                First Name
+              </span>
+              <span class="values">
+                <%= f.text_field :first_name %>
+              </span>
+            </span>
+            <span class="grouped">
+              <span class="titles">
+                Last Name
+              </span>
+              <span class="values">
+                <%= f.text_field :last_name %>
+              </span>
+            </span>
+            <span class="grouped">
+              <span class="titles">
+                Address 2
+              </span>
+              <span class="values">
+                <%= f.text_field :address1 %>
+              </span>
+            </span>
+            <span class="grouped">
+              <span class="titles">
+                Address 1
+              </span>
+              <span class="values">
+                <%= f.text_field :address2 %>
+              </span>
+            </span>
+            <span class="grouped">
+              <span class="titles">
+                City
+              </span>
+              <span class="values">
+                <%= f.text_field :city %>
+              </span>
+            </span>
+            <% if nil %>
+              <span class="grouped">
+                <span class="titles">
+                  State Name
+                </span>
+                <span class="values">
+                  <%= f.text_field :state_name %>
+                </span>
+              </span>
+            <% end %>
+            <% if Settings.require_state_in_address %>
+              <span class="grouped">
+                <span class="titles">
+                  State/Province
+                </span>
+                <span class="values">
+                  <%= f.select :state_id, @states, :include_blank => true %>
+                </span>
+              </span>
+            <% elsif countries.size == 1 %>
+              <span class="grouped">
+                <span class="titles">
+                  Country
+                </span>
+                <span class="values">
+                  <%= countries.first.name %>
+                  <%= f.hidden_field :country_id %>
+                </span>
+              </span>
+            <% else %>
+              <span class="grouped">
+                <span class="titles">
+                  Country
+                </span>
+                <span class="values">
+                  <%= f.select :country_id, select_countries, :include_blank => true %>
+                </span>
+              </span>
+            <% end %>
+            <span class="grouped">
+              <span class="titles">
+                Zip Code
+              </span>
+              <span class="values">
+                <%= f.text_field :zip_code %>
+              </span>
+            </span>
+          </div>
+          <div class="field twelve column" style='margin-bottom:10px;'>
+            <%= f.check_box :default, :class => 'columns' %>
+            <%= f.label :default, "Make this my default shipping method", :class => 'ten ', :style => 'margin-top:3px;' %>
+          </div>
+          <%= f.submit "Add Address", :class => 'button' %>
         </div>
-      </div>
-
-    <div class='clearfix'></div>
-      <div class=" twelve clearfix">
-        <div class="field five columns">
-          <%= f.label :city %><br />
-          <%= f.text_field :city %>
-        </div>
-
-      <% if nil %>
-        <div class="field four">
-          <%= f.label :state_name %><br />
-          <%= f.text_field :state_name %>
-        </div>
-      <% end %>
-      <% if Settings.require_state_in_address %>
-        <div class="field four columns">
-          <%= f.label    :state_id, "State/Province" %><br />
-          <%= f.select   :state_id, @states,
-                        :include_blank => true %>
-        </div>
-      <% elsif countries.size == 1 %>
-        <div class="field column">
-          <%= f.label :country_id, "Country" %><br />
-          <%= countries.first.name %>
-          <%= f.hidden_field   :country_id %>
-        </div>
-      <% else %>
-        <div class="field column">
-          <%= f.label    :country_id, "Country" %><br />
-          <%= f.select   :country_id, select_countries,
-                        :include_blank => true %>
-        </div>
-      <% end %>
-        <br /><br /><br />
-        <div class="field two columns">
-          <%= f.label :zip_code %><br />
-          <%= f.text_field :zip_code %>
-        </div>
-      </div>
-
+      </fieldset><br />
+  </div>
 </div>
-  <div class="field twelve column" style='margin-bottom:10px;'>
-    <%= f.check_box :default, :class => 'columns' %>
-    <%= f.label :default, "Make this my default shipping method", :class => 'ten ', :style => 'margin-top:3px;' %>
-  </div>
-
-  <div class="actions column">
-    <%= f.submit 'Submit', :class => 'button' %>
-  </div>
 <div class='clearfix'></div>

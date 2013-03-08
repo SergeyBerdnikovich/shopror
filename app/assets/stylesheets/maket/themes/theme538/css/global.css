@@ -1864,3 +1864,7 @@ table.std.order th, table.std.order td {
 .mws-section h1.vm-title, .mws-section h4.vm-title, .mws-section #ui-tabs ul#tabs {
   background-image: -moz-linear-gradient(center bottom , #EDEBEB -3.44%, #FBFBFB 96.56%);
 }
+a#shipping_method img {
+  width: 50px;
+  height: 50px;
+}
