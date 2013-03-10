@@ -1884,9 +1884,9 @@ ul#order_list li{
   color: black;
   border-color: #AAAAAA
 }
-#image-block img {
-  display: inline-block;
-}
+
 #primary_block #image-block img#bigpic2 {
-  margin-top: -304px;
+  margin-top: -354px;
+  position: absolute;
 }
+
