@@ -63,7 +63,7 @@ class Coupon < ActiveRecord::Base
   # Does the coupon meet the criteria to apply it.  (is the order price total over the coupon's minimum value)
   def qualified?(item_prices, order, at = nil)
     at ||= order.completed_at || Time.zone.now
-    item_prices.sum > minimum_value && eligible?(at)
+    item_prices.sum > minimum_value && eligible?(order, at)
   end
 
   def eligible?(order, at = nil)

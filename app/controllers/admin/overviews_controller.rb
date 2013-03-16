@@ -5,8 +5,8 @@ class Admin::OverviewsController < ApplicationController
   def index
     #  The index action should
     if u = User.first
-      redirect_to root_url and return if !current_user
-      redirect_to root_url unless current_user.admin?
+      redirect_to login_path and return if !current_user
+      redirect_to root_path unless current_user.admin?
 
     elsif Role.first
       ##  This means we don't have any users

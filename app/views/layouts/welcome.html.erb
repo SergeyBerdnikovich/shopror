@@ -63,6 +63,9 @@
             <li><a href="/products">products</a></li>
             <li><a href="#">delivery</a></li>
             <li><a href="#" >contact</a></li>
+            <% if current_user && current_user.admin? %>
+              <li><a href="/admin" >Admin Panel</a></li>
+            <% end %>
           </ul><!-- Block user information module HEADER -->
           <ul id="header_user">
             <li id="user_info">
