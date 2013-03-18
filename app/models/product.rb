@@ -205,6 +205,11 @@ class Product < ActiveRecord::Base
                 available_at_lt_filter(params[:available_at_lt])
   end
 
+  def parse_youtube
+    regex = /^(?:http:\/\/)?(?:www\.)?\w*\.\w*\/(?:watch\?v=)?((?:p\/)?[\w\-]+)/
+    self.youtube_url.match(regex)[1]
+  end
+
   private
 
     def self.available_at_lt_filter(available_at_lt)

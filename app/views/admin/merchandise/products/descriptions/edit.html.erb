@@ -8,6 +8,8 @@
     <%= f.text_area :description_markup, :id => "markItUp", :cols => "92", :rows => "15" %>
     <label>featured?</label>
     <%= f.check_box   :featured %><br />
+    <label>youtube_url</label>
+    <%= f.text_field :youtube_url %><br />
     <%= f.submit "Update", :class  => "button" %>
   <% end %>
 </div>
