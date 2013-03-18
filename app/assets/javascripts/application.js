@@ -4,3 +4,4 @@
 //= require_tree  ./jquery
 //= require_tree  ./layout
 //= require_tree  ./shopping
+//= require_tree  ./bootstrap

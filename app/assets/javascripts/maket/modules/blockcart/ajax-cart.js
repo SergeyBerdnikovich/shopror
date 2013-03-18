@@ -1,29 +1,3 @@
-/*
-* 2007-2012 PrestaShop
-*
-* NOTICE OF LICENSE
-*
-* This source file is subject to the Academic Free License (AFL 3.0)
-* that is bundled with this package in the file LICENSE.txt.
-* It is also available through the world-wide-web at this URL:
-* http://opensource.org/licenses/afl-3.0.php
-* If you did not receive a copy of the license and are unable to
-* obtain it through the world-wide-web, please send an email
-* to license@prestashop.com so we can send you a copy immediately.
-*
-* DISCLAIMER
-*
-* Do not edit or add to this file if you wish to upgrade PrestaShop to newer
-* versions in the future. If you wish to customize PrestaShop for your
-* needs please refer to http://www.prestashop.com for more information.
-*
-*  @author PrestaShop SA <contact@prestashop.com>
-*  @copyright  2007-2012 PrestaShop SA
-*  @version  Release: $Revision: 7009 $
-*  @license    http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
-*  International Registered Trademark & Property of PrestaShop SA
-*/
-
 // Retrocompatibility with 1.4
 if (typeof baseUri === "undefined" && typeof baseDir !== "undefined")
 	baseUri = baseDir;
@@ -373,7 +347,7 @@ var ajaxCart = {
 		else
 		{
 			$('#vouchers tbody').html('');
-		
+
 			for (i=0;i<jsonData.discounts.length;i++)
 			{
 				if (parseFloat(jsonData.discounts[i].price_float) > 0)
@@ -441,12 +415,12 @@ var ajaxCart = {
 					content += '<span class="quantity-formated"><span class="quantity">' + this.quantity + '</span>x</span>';
 					var name = (this.name.length > 12 ? this.name.substring(0, 10) + '...' : this.name);
 					content += '<a href="' + this.link + '" title="' + this.name + '">' + name + '</a>';
-					
+
 					if (parseFloat(this.price_float) > 0)
 						content += '<span class="remove_link"><a rel="nofollow" class="ajax_cart_block_remove_link" href="' + baseUri + '?controller=cart&amp;delete&amp;id_product=' + productId + '&amp;token=' + static_token + (this.hasAttributes ? '&amp;ipa=' + parseInt(this.idCombination) : '') + '"> </a></span>';
 					else
 						content += '<span class="remove_link"></span>';
-						
+
 					content += '<span class="price">' + (parseFloat(this.price_float) > 0 ? this.priceByLine : freeProductTranslation) + '</span>';
 					content += '</dt>';
 					if (this.hasAttributes)
@@ -590,7 +564,7 @@ var ajaxCart = {
 	//update general cart informations everywhere in the page
 	updateCartEverywhere : function(jsonData) {
 		$('.ajax_cart_total').text(jsonData.productTotal);
-		
+
 		if (parseFloat(jsonData.shippingCostFloat) > 0 || jsonData.nbTotalProducts < 1)
 			$('.ajax_cart_shipping_cost').text(jsonData.shippingCost);
 		else
@@ -600,7 +574,7 @@ var ajaxCart = {
 		$('.ajax_block_cart_total').text(jsonData.total);
 
 		this.nb_total_products = jsonData.nbTotalProducts;
-		
+
 		if (parseInt(jsonData.nbTotalProducts) > 0)
 		{
 			$('.ajax_cart_no_product').hide();
@@ -697,7 +671,7 @@ $(document).ready(function(){
 			}, 200);
 		}
 	);
-	
+
 	$('.delete_voucher').live('click', function() {
 		$.ajax({url:$(this).attr('href')});
 		$(this).parent().parent().remove();

@@ -1,30 +1,3 @@
-/*
-* 2007-2012 PrestaShop
-*
-* NOTICE OF LICENSE
-*
-* This source file is subject to the Academic Free License (AFL 3.0)
-* that is bundled with this package in the file LICENSE.txt.
-* It is also available through the world-wide-web at this URL:
-* http://opensource.org/licenses/afl-3.0.php
-* If you did not receive a copy of the license and are unable to
-* obtain it through the world-wide-web, please send an email
-* to license@prestashop.com so we can send you a copy immediately.
-*
-* DISCLAIMER
-*
-* Do not edit or add to this file if you wish to upgrade PrestaShop to newer
-* versions in the future. If you wish to customize PrestaShop for your
-* needs please refer to http://www.prestashop.com for more information.
-*
-*  @author PrestaShop SA <contact@prestashop.com>
-*  @copyright  2007-2012 PrestaShop SA
-*  @version  Release: $Revision: 7310 $
-*  @license    http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
-*  International Registered Trademark & Property of PrestaShop SA
-*/
-
-
 //global variables
 var combinations = new Array();
 var selectedCombination = new Array();
@@ -128,7 +101,7 @@ function findCombination(firstTime)
 
 			//get available_date for combination product
 			selectedCombination['available_date'] = combinations[combination]['available_date'];
-			
+
 			//update the display
 			updateDisplay();
 
@@ -158,7 +131,7 @@ function updateDisplay()
 
 		//hide the hook out of stock
 		$('#oosHook').hide();
-		
+
 		//hide availability date
 		$('#availability_date_label').hide();
 		$('#availability_date_value').hide();
@@ -234,7 +207,7 @@ function updateDisplay()
 		}
 		if(stock_management == 1)
 			$('#availability_statut:hidden').show();
-		
+
 		//display availability date
 		if (selectedCombination.length)
 		{
@@ -331,12 +304,12 @@ function updateDisplay()
 			if (product_specific_price['reduction_type'] == 'percentage')
 				$('#reduction_percent_display').html(product_specific_price['specific_price'].reduction_percent);
 		}
-		
+
 		if (product_specific_price['reduction_type'] != '' || selectedCombination['specific_price'].reduction_type != '')
 			$('#discount_reduced_price,#old_price').show();
 		else
 			$('#discount_reduced_price,#old_price').hide();
-		
+
 		if (product_specific_price['reduction_type'] == 'percentage' || selectedCombination['specific_price'].reduction_type == 'percentage')
 			$('#reduction_percent').show();
 		else
@@ -408,7 +381,7 @@ function updateDisplay()
 		else
 			var productPricePretaxed = productPrice;
 		$('#pretaxe_price_display').text(formatCurrency(productPricePretaxed, currencyFormat, currencySign, currencyBlank));
-		// Unit price 
+		// Unit price
 		productUnitPriceRatio = parseFloat(productUnitPriceRatio);
 		if (productUnitPriceRatio > 0 )
 		{
@@ -427,7 +400,7 @@ function displayImage(domAAroundImgThumb, no_animation)
 {
 	if (typeof(no_animation) == 'undefined')
 		no_animation = false;
-	
+
 	if (domAAroundImgThumb.attr('href'))
 	{
 		var newSrc = domAAroundImgThumb.attr('href').replace('thickbox','large');
@@ -574,12 +547,12 @@ $(document).ready(function()
 		'transitionIn'	: 'elastic',
 		'transitionOut'	: 'elastic'
 	});
-	
+
 	original_url = window.location+'';
 	first_url_check = true;
 	checkUrl();
 	initLocationChange();
-	
+
 });
 
 function saveCustomization()
@@ -598,10 +571,10 @@ function submitPublishProduct(url, redirect, token)
 	var id_product = $('#admin-action-product-id').val();
 
 	$.ajaxSetup({async: false});
-	$.post(url+'/index.php', { 
+	$.post(url+'/index.php', {
 		action:'publishProduct',
-		id_product: id_product, 
-		status: 1, 
+		id_product: id_product,
+		status: 1,
 		redirect: redirect,
 		ajax: 1,
 		tab: 'AdminProducts',

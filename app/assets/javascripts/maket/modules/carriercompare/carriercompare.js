@@ -1,42 +1,16 @@
-/*
-* 2007-2012 PrestaShop 
-*
-* NOTICE OF LICENSE
-*
-* This source file is subject to the Academic Free License (AFL 3.0)
-* that is bundled with this package in the file LICENSE.txt.
-* It is also available through the world-wide-web at this URL:
-* http://opensource.org/licenses/afl-3.0.php
-* If you did not receive a copy of the license and are unable to
-* obtain it through the world-wide-web, please send an email
-* to license@prestashop.com so we can send you a copy immediately.
-*
-* DISCLAIMER
-*
-* Do not edit or add to this file if you wish to upgrade PrestaShop to newer
-* versions in the future. If you wish to customize PrestaShop for your
-* needs please refer to http://www.prestashop.com for more information.
-*
-*  @author PrestaShop SA <contact@prestashop.com>
-*  @copyright  2007-2012 PrestaShop SA
-*  @version  Release: $Revision: 6844 $
-*  @license    http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
-*  International Registered Trademark & Property of PrestaShop SA
-*/
-
 var ajaxQueries = new Array();
 
 function resetAjaxQueries()
 {
 	for (i = 0; i < ajaxQueries.length; ++i)
 		ajaxQueries[i].abort();
-		
+
 	ajaxQueries = new Array();
 }
 
 function displayWaitingAjax(type, message)
 {
-	
+
 	$('#SE_AjaxDisplay').find('p').html(message);
 	$('#SE_AjaxDisplay').css('display', type);
 }
@@ -47,7 +21,7 @@ function updateStateByIdCountry()
 	$('#availableCarriers').slideUp('fast');
 	$('#states').slideUp('fast');
 	displayWaitingAjax('block', SE_RefreshStateTS);
-	
+
 	var query = $.ajax({
 		type: 'POST',
 		url: baseDir + 'modules/carriercompare/ajax.php',
@@ -76,7 +50,7 @@ function updateCarriersList()
 	$('#availableCarriers').slideUp('fast');
 	$('#noCarrier').slideUp('fast');
 	displayWaitingAjax('block', SE_RetrievingInfoTS);
-	
+
 	var query = $.ajax({
 		type: 'POST',
 		url: baseDir + 'modules/carriercompare/ajax.php',
@@ -98,7 +72,7 @@ function updateCarriersList()
 						'</td>'+
 						'<td class="carrier_infos">'+((json[carrier].delay != null) ? json[carrier].delay : '') +'</td>'+
 						'<td class="carrier_price">';
-					
+
 					if (json[carrier].price)
 					{
 						html += '<span class="price">'+(displayPrice == 1 ? formatCurrency(json[carrier].price_tax_exc, currencyFormat, currencySign, currencyBlank) : formatCurrency(json[carrier].price, currencyFormat, currencySign, currencyBlank))+'</span>';
@@ -127,7 +101,7 @@ function saveSelection()
 	$('#carriercompare_errors').slideUp('fast');
 	displayWaitingAjax('block', SE_RedirectTS);
 	$('#carriercompare_submit').attr('disabled', true);
-	
+
 	var query = $.ajax({
 		type: 'POST',
 		url: baseDir + 'modules/carriercompare/ajax.php',
@@ -160,7 +134,7 @@ function PS_SE_HandleEvent()
 			resetAjaxQueries();
 			updateStateByIdCountry();
 		});
-		
+
 		if (SE_RefreshMethod == 0)
 		{
 			$('#id_state,#zipcode').change(function() {
@@ -172,11 +146,11 @@ function PS_SE_HandleEvent()
 				updateCarriersList();
 			});
 		}
-		
+
 		$('#update_carriers_list').click(function() {
 			updateCarriersList();
 		});
-		
+
 		$('#carriercompare_submit').click(function() {
 			resetAjaxQueries();
 			saveSelection();

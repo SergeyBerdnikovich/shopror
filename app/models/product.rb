@@ -25,6 +25,7 @@
 class VariantRequiredError < StandardError; end
 
 class Product < ActiveRecord::Base
+  has_gritter_notices
   self.per_page = 6
 
   has_friendly_id :permalink, :use_slug => false

@@ -1,29 +1,3 @@
-/*
-* 2007-2012 PrestaShop
-*
-* NOTICE OF LICENSE
-*
-* This source file is subject to the Open Software License (OSL 3.0)
-* that is bundled with this package in the file LICENSE.txt.
-* It is also available through the world-wide-web at this URL:
-* http://opensource.org/licenses/osl-3.0.php
-* If you did not receive a copy of the license and are unable to
-* obtain it through the world-wide-web, please send an email
-* to license@prestashop.com so we can send you a copy immediately.
-*
-* DISCLAIMER
-*
-* Do not edit or add to this file if you wish to upgrade PrestaShop to newer
-* versions in the future. If you wish to customize PrestaShop for your
-* needs please refer to http://www.prestashop.com for more information.
-*
-*  @author PrestaShop SA <contact@prestashop.com>
-*  @copyright  2007-2012 PrestaShop SA
-*  @version  Release: $Revision: 7448 $
-*  @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
-*  International Registered Trademark & Property of PrestaShop SA
-*/
-
 function formatedNumberToFloat(price, currencyFormat, currencySign)
 {
 	price = price.replace(currencySign, '');
@@ -84,7 +58,7 @@ function ps_round(value, precision)
 		roundMode = 2;
 	if (typeof(precision) == 'undefined')
 		precision = 2;
-	
+
 	method = roundMode;
 	if (method == 0)
 		return ceilf(value, precision);
@@ -132,15 +106,6 @@ function toggleMultiple(tab)
             toggle(tab[i], tab[i].style.display == 'none');
 }
 
-/**
-* Show dynamicaly an element by changing the sytle "display" property
-* depending on the option selected in a select.
-*
-* @param string $select_id id of the select who controls the display
-* @param string $elem_id prefix id of the elements controlled by the select
-*   the real id must be : 'elem_id'+nb with nb the corresponding number in the
-*   select (starting with 0).
-*/
 function showElemFromSelect(select_id, elem_id)
 {
 	var select = document.getElementById(select_id);

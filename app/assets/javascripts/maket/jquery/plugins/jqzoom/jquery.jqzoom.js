@@ -1,14 +1,3 @@
-//**************************************************************
-// jQZoom allows you to realize a small magnifier window,close
-// to the image or images on your web page easily.
-//
-// jqZoom version 1.2
-// Author Doc. Ing. Renzi Marco(www.mind-projects.it)
-// Released on Dec 05 2007
-// i'm searching for a job,pick me up!!!
-// mail: renzi.mrc@gmail.com
-//**************************************************************
-
 (function($) {
 		$.fn.jqueryzoom = function(options) {
 			var settings = {

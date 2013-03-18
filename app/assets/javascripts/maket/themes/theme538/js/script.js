@@ -3,27 +3,6 @@ $(function(){
 $('#setCurrency').jqTransform({imgPath:'jqtransformplugin/img/'});
 });
 
-/*
-$(document).ready(function()
-{
-$('.mnf_sup_list li .right_side p a').each(function() {
-var h = $(this).html();
-var index = h.indexOf(' ');
-if(index == -1) {
-index = h.length;
-}
-$(this).html('<span class="firstWord">' + h.substring(0, index) + '</span>' + h.substring(index, h.length));
-});
-}); 
-*/
-
-
-
-
-
-
-
-
 	jQuery(document).ready(function(){
 		jQuery('#tmspecials').css({visibility:'visible',display:'block'});
 	// hide #back_top first
