@@ -25,6 +25,8 @@ class CartItem < ActiveRecord::Base
 
   before_save :inactivate_zero_quantity
 
+  validate :quantity_cannot_be_greater_than_quantity_available, :on => :update
+
   # Call this if you need to know the unit price of an item
   #
   # @param [none]
@@ -73,5 +75,11 @@ class CartItem < ActiveRecord::Base
 
     def inactivate_zero_quantity
       active = false if quantity == 0
+    end
+
+    def quantity_cannot_be_greater_than_quantity_available
+      if quantity > variant.quantity_available
+        errors.add :quantity, 'There is not enough stock to sell this item'
+      end
     end
 end

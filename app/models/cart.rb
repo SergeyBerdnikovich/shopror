@@ -164,7 +164,19 @@ class Cart < ActiveRecord::Base
                                     :quantity     => qty#,#:price      => variant.price
                                     ) if items.size < 1
     else
-      cart_item = add_cart_items(items, quantity_to_purchase, customer, cart_item_type_id, variant_id)
+      if variant.cart_items.last.active && variant.cart_items.last.quantity < variant.quantity_available
+        if quantity_to_purchase <= variant.quantity_available - variant.cart_items.last.quantity
+          cart_item = add_cart_items(items, quantity_to_purchase, customer, cart_item_type_id, variant_id)
+        else
+          cart_item = add_cart_items(items, (variant.quantity_available - variant.cart_items.last.quantity), customer, cart_item_type_id, variant_id)
+        end
+      else
+        if quantity_to_purchase <= variant.quantity_available
+          cart_item = add_cart_items(items, quantity_to_purchase, customer, cart_item_type_id, variant_id)
+        else
+          cart_item = add_cart_items(items, variant.quantity_available, customer, cart_item_type_id, variant_id)
+        end
+      end
     end
     cart_item
   end

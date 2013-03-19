@@ -9,7 +9,7 @@ en:
   reset_password_title: 'Confirm your identity to reset password'
   reset_password_text:  'Enter your email below and Click the Continue button.'
   something_went_wrong: 'Sorry something went wrong'
-  item_failed_update:   'Item failed to be updated.'
+  item_failed_update:   'Product failed to be updated. Maybe there is not enough stock to sell this product.'
   item_passed_update:   'Item was successfully updated.'
   could_not_process:    "Could not process"
   the_credit_card:      "the Credit Card."

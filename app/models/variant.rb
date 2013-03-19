@@ -24,7 +24,7 @@
 
 class Variant < ActiveRecord::Base
 
-
+  has_many  :cart_items
   has_many :variant_suppliers
   has_many :suppliers,         :through => :variant_suppliers
 
@@ -58,7 +58,7 @@ class Variant < ActiveRecord::Base
             :count_pending_from_supplier=, :to => :inventory, :allow_nil => false
 
   ADMIN_OUT_OF_STOCK_QTY  = 0
-  OUT_OF_STOCK_QTY        = 2
+  OUT_OF_STOCK_QTY        = 0
   LOW_STOCK_QTY           = 6
 
   # returns quantity available to purchase

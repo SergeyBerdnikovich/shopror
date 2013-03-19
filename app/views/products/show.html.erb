@@ -92,19 +92,18 @@
               </span>
             </span>
             <div class='quantity'>
-              <%= form_for  @cart_item, :url  => shopping_cart_items_path(@cart_item),
-                                        :html => { :id => 'new_cart_item' } do |f| %>
+              <%= form_for @cart_item, :url  => product_path(@product.id),
+                                       :remote => true,
+                                       :method => :get,
+                                       :html => { :id => 'new_cart_item' } do |f| %>
                 <%= f.hidden_field :variant_id %>
                 Quantity:
                 <%= f.select :quantity, [1,2,3,4,5,6], {:include_blank => true}, {:class => 'one'} %>
-              <% end %>
-            </div>
-            <div class='add_to_cart_wrapper' id='product'>
-              <% unless @product.active_variants.empty? %>
-                <%= link_to "Add to Cart", product_path(@product.id, :quantity => @cart_item.quantity,
-                                                                     :variant_id => @cart_item.variant_id),
-                                                                     :remote => true,
-                                                                     :class => 'button' %>
+                <div class='add_to_cart_wrapper' id='product'>
+                  <% unless @product.active_variants.empty? %>
+                    <%= f.submit "Add to Cart", :class => 'button' %>
+                  <% end %>
+                </div>
               <% end %>
             </div>
           </div>
