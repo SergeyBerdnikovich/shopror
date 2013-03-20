@@ -163,5 +163,7 @@ class ApplicationController < ActionController::Base
   end
   def initial_menu
     @product_types_for_menu = ProductType.where(:parent_id => nil)
+    @static_pages_for_top_menu = Page.where(:for_top_menu => true)
+    @static_pages_for_menu = Page.all
   end
 end

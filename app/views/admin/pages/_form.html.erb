@@ -1,0 +1,36 @@
+<%= form_for [:admin, @page] do |f| %>
+  <% if @page.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@page.errors.count, "error") %> prohibited this page from being saved:</h2>
+
+      <ul>
+      <% @page.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <script>
+    if ($('textarea').length > 0) {
+      var data = $('textarea');
+      $.each(data, function(i) {
+        CKEDITOR.replace(data[i].id);
+      });
+    }
+  </script>
+  <div class="field">
+    <%= f.label :title %><br />
+    <%= f.text_area :title %>
+  </div>
+  <div class="field">
+    <%= f.label :for_top_menu %><br />
+    <%= f.check_box :for_top_menu %>
+  </div>
+  <div class="field">
+    <%= f.label :content %><br />
+    <%= f.cktext_area :content %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

@@ -63,8 +63,9 @@
           <ul id="tmheaderlinks">
             <li><a href="/" class="active">home</a></li>
             <li><a href="/products">products</a></li>
-            <li><a href="#">delivery</a></li>
-            <li><a href="#" >contact</a></li>
+            <% @static_pages_for_top_menu.each do |static_page| %>
+              <li><a href="/pages/<%= static_page.id %>" ><%= static_page.title %></a></li>
+            <% end %>
             <% if current_user && current_user.admin? %>
               <li><a href="/admin" >Admin Panel</a></li>
             <% end %>
@@ -150,11 +151,9 @@
                 <div>
                   <h4>Information</h4>
                     <ul>
-                      <li><a href="index.php?controller=sitemap">Sitemap</a></li>
-                      <li><a href="index.php?id_cms=2&controller=cms&id_lang=1">Legal Notice</a></li>
-                      <li><a href="index.php?id_cms=3&controller=cms&id_lang=1">Terms and conditions</a></li>
-                      <li><a href="index.php?id_cms=4&controller=cms&id_lang=1">About us</a></li>
-                      <li><a href="index.php?controller=contact">Contact</a></li>
+                      <% @static_pages_for_menu.each do |static_page| %>
+                        <li><a href="/pages/<%= static_page.id %>" ><%= static_page.title %></a></li>
+                      <% end %>
                     </ul>
                 </div>
                 <div>

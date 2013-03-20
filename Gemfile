@@ -19,6 +19,7 @@ gem 'cancan', '~> 1.6.8'
 gem 'compass', '~> 0.12.0'
 gem 'compass-rails'
 #  gem 'dalli', '~> 1.0.2'
+gem "ckeditor"
 
 gem 'dynamic_form'
 gem "friendly_id", "~> 3.3"

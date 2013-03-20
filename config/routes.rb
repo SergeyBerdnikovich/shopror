@@ -1,10 +1,15 @@
 Hadean::Application.routes.draw do
 
+  mount Ckeditor::Engine => '/ckeditor'
+
+  match 'pages/:id' => 'pages#show_page'
+
   resources :payment_notifications, :only => [:create]
 
   match 'confirm_payment_amazon' => 'amazon_payments#confirm'
 
   resources :user_sessions, :only => [:new, :create, :destroy]
+  #match 'admin/pages/new'   => 'admin/pages#new'
 
   match 'admin'   => 'admin/overviews#index'
   match 'login'   => 'user_sessions#new'
@@ -60,6 +65,8 @@ Hadean::Application.routes.draw do
     resources :overviews, :only => [:index]
 
     match "help" => "help#index"
+
+    resources :pages
 
     namespace :rma do
       resources  :orders do
@@ -187,5 +194,4 @@ Hadean::Application.routes.draw do
       resources :invoices
     end
   end
-
 end
