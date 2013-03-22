@@ -85,15 +85,6 @@ Hadean::Application.configure do
 
   config.action_mailer.default_url_options = { :host => 'localhost:3000' }
 
-  config.action_mailer.delivery_method = :smtp
-  config.action_mailer.smtp_settings = {
-    :address              => "smtp.gmail.com",
-    :port                 => 587,
-    :user_name            => 'at0m4eg@gmail.com',
-    :password             => '****',
-    :domain               => "gmail.com",
-    :authentication       => 'plain',
-    :enable_starttls_auto => true  }
   # Disable delivery errors, bad email addresses will be ignored
   # config.action_mailer.raise_delivery_errors = false
 

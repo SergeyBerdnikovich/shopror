@@ -434,6 +434,6 @@ class User < ActiveRecord::Base
   end
 
   def send_a_greeting_message
-    UserMailer.welcome_email(self).deliver
+    UserMailer.welcome_email(self).deliver if Email.last
   end
 end
