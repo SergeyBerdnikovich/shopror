@@ -303,7 +303,7 @@ class User < ActiveRecord::Base
   # @param  [ none ]
   # @return [ none ]
   def deliver_activation_instructions!
-    Notifier.signup_notification(self).deliver
+    Notifier.delay.signup_notification(self)
   end
 
   # name and email string for the user
@@ -364,7 +364,7 @@ class User < ActiveRecord::Base
 
   def deliver_password_reset_instructions!
     self.reset_perishable_token!
-    Notifier.password_reset_instructions(self).deliver
+    Notifier.delay.password_reset_instructions(self)
   end
 
   def number_of_finished_orders
@@ -434,6 +434,6 @@ class User < ActiveRecord::Base
   end
 
   def send_a_greeting_message
-    UserMailer.welcome_email(self).deliver if Email.last
+    UserMailer.delay.welcome_email(self) if Email.last
   end
 end

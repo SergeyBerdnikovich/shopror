@@ -185,7 +185,7 @@ class Order < ActiveRecord::Base
       new_invoice = create_invoice_transaction(credit_card, charge_amount, args, credited_amount)
       if new_invoice.succeeded?
         remove_user_store_credits
-        Notifier.order_confirmation(@order, new_invoice).deliver rescue puts( 'do nothing...  dont blow up over an email')
+        Notifier.delay.order_confirmation(@order, new_invoice) rescue puts( 'do nothing...  dont blow up over an email')
       end
       new_invoice
     end
