@@ -67,6 +67,7 @@ Hadean::Application.routes.draw do
     match "help" => "help#index"
 
     resources :pages
+    resources :emails
 
     namespace :rma do
       resources  :orders do

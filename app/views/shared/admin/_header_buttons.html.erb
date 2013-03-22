@@ -56,7 +56,15 @@
     <li><%= link_to 'Shipments', admin_fulfillment_shipments_path %></li>
   </ul>
 </li>
-<li><%= link_to 'Static Pages', admin_pages_path %></li>
+<li class="has-flyout">
+  <%= link_to "More", "#" %>
+  <a href="#" class="flyout-toggle"><span></span></a>
+  <ul class="flyout">
+    <li><%= link_to 'Static Pages', admin_pages_path %></li>
+    <li><%= link_to 'Emails', admin_emails_path %></li>
+  </ul>
+</li>
+
 <!--<li class="has-flyout">
   <%= link_to "Help", admin_help_path %>
   <a href="#" class="flyout-toggle"><span></span></a>

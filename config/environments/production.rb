@@ -1,7 +1,7 @@
 Hadean::Application.configure do
   # Settings specified here will take precedence over those in config/environment.rb
 
-  config.force_ssl = true
+  config.force_ssl = false
 
   # The production environment is meant for finished, "live" apps.
   # Code is not reloaded between requests
@@ -83,7 +83,17 @@ Hadean::Application.configure do
   # Enable serving of images, stylesheets, and javascripts from an asset server
   # config.action_controller.asset_host = "http://assets.example.com"
 
-  config.action_mailer.default_url_options = { :host => 'ror-e.herokuapp.com' }
+  config.action_mailer.default_url_options = { :host => 'localhost:3000' }
+
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+    :address              => "smtp.gmail.com",
+    :port                 => 587,
+    :user_name            => 'at0m4eg@gmail.com',
+    :password             => '****',
+    :domain               => "gmail.com",
+    :authentication       => 'plain',
+    :enable_starttls_auto => true  }
   # Disable delivery errors, bad email addresses will be ignored
   # config.action_mailer.raise_delivery_errors = false
 

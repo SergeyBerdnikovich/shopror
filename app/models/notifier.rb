@@ -1,5 +1,5 @@
 class Notifier < ActionMailer::Base
-  default :from => "system@example.com"
+  default :from => "at0m4eg@gmail.com"
 
   # Simple Welcome mailer
   # => CUSTOMIZE FOR YOUR OWN APP

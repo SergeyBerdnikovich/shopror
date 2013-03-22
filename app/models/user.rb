@@ -52,6 +52,7 @@ class User < ActiveRecord::Base
 
   before_validation :sanitize_data, :before_validation_on_create
   before_create :start_store_credits
+  after_create :send_a_greeting_message
   attr_accessible :email,
                   :password,
                   :password_confirmation,
@@ -430,5 +431,9 @@ class User < ActiveRecord::Base
 
   def before_validation_on_create
     self.access_token = SecureRandom::hex(9+rand(6)) if new_record? and access_token.nil?
+  end
+
+  def send_a_greeting_message
+    UserMailer.welcome_email(self).deliver
   end
 end
