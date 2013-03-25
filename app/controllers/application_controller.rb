@@ -165,5 +165,6 @@ class ApplicationController < ActionController::Base
     @product_types_for_menu = ProductType.where(:parent_id => nil)
     @static_pages_for_top_menu = Page.where(:for_top_menu => true)
     @static_pages_for_menu = Page.all
+    @new_messages = Message.get_count_new_messages(current_user.id) if current_user
   end
 end

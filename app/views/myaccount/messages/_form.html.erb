@@ -1,0 +1,65 @@
+</div>
+</header>
+<div class="columns clearfix">
+  <div id="center_column" class="center_column2">
+<!-- Breadcrumb -->
+    <div class="breadcrumb bgcolor bordercolor">
+      <div class="breadcrumb_inner">
+        <a href="/" title="return to Home">Home</a>
+        <span class="navigation-pipe" >&gt;</span>
+        <a href="/myaccount/messages" title="return to Home">Messages</a>
+        <span class="navigation-pipe" >&gt;</span>
+        <span class="navigation_page" >New</span>
+      </div>
+    </div>
+<!-- /Breadcrumb -->
+    <h1>Send Message to Admin</h1><br />
+    <p>
+      <%= form_for [:myaccount, @message] do |f| %>
+        <% if @message.errors.any? %>
+          <div id="error_explanation">
+            <h2><%= pluralize(@message.errors.count, "error") %> prohibited this message from being saved:</h2>
+
+            <ul>
+            <% @message.errors.full_messages.each do |msg| %>
+              <li><%= msg %></li>
+            <% end %>
+            </ul>
+          </div>
+        <% end %>
+
+        <div class="field">
+          <%= f.label :text %><br />
+          <%= f.text_area :text %>
+        </div>
+        <div class="actions"><br />
+          <%= f.submit "Send Message", :class => 'button' %>
+        </div>
+      <% end %>
+    </p>
+  </div>
+  <aside>
+    <div id="right_column1" class="column"><!-- MODULE Block specials -->
+      <% @featured_products.each do |featured_product| %>
+        <div id="specials" class="block">
+          <h4><a href="<%= product_path(featured_product) %>" title="Specials">Specials</a></h4>
+          <div class="block_content">
+            <ul>
+              <li>
+                <a class="products_block_img bordercolor" href="<%= product_path(featured_product) %>">
+                  <img src="<%= featured_product.featured_image(:medium) %>" alt="" title="Christine Instyle camisole &amp; tap pant" width="180" />
+                </a>
+                <div>
+                  <h5><a class="product_link" href="<%= product_path(featured_product) %>" title="Christine Instyle camisole &amp; tap pant"><%= featured_product.name %></a></h5>
+                  <span class="pricecolor price-discount"><%= number_to_currency featured_product.price_range.last + 50 %></span>
+                  <span class="pricecolor price"><%= number_to_currency featured_product.price_range.last %></span>
+                </div>
+              </li>
+            </ul>
+            <a class="button_large" href="<%= product_path(featured_product) %>" title="View">View</a>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </aside>
+</div>

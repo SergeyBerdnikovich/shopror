@@ -68,6 +68,8 @@
             <% end %>
             <% if current_user && current_user.admin? %>
               <li><a href="/admin" >Admin Panel</a></li>
+            <% elsif current_user %>
+              <li><a href="/myaccount/messages" >Messages<%= "(#{@new_messages.size})" %></a></li>
             <% end %>
           </ul><!-- Block user information module HEADER -->
           <ul id="header_user">
@@ -174,6 +176,7 @@
                     <li><a href="/myaccount/overview">My personal info</a></li>
                     <li><a href="/myaccount/credit_cards">My credit cards</a></li>
                     <li><a href="/myaccount/store_credit">My store credit</a></li>
+                    <li><a href="/myaccount/messages">My messages</a></li>
                   </ul>
                 </div>
                 <p>&copy; 2013 Powered by <a href="#">PrestaShop</a>&trade;. All rights reserved</p>

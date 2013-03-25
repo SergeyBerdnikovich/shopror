@@ -1,0 +1,23 @@
+<h1>Listing messages</h1>
+
+<table>
+  <tr>
+    <th>Date</th>
+    <th>From user</th>
+    <th>Text</th>
+    <th>Is read</th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @messages.each do |message| %>
+  <tr>
+    <td><%= message.created_at.strftime("%Y-%m-%d %H:%M") %></td>
+    <td><%= message.from_user.name %></td>
+    <td><%= message.text %></td>
+    <td><%= message.is_read %></td>
+    <td><%= link_to 'Show', admin_message_path(message) %></td>
+    <td><%= link_to 'Destroy', admin_message_path(message), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>

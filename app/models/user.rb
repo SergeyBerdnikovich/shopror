@@ -66,6 +66,9 @@ class User < ActiveRecord::Base
 
   belongs_to :account
 
+  has_many :sent_messages, class_name: 'Message', foreign_key: 'from_user_id'
+  has_many :rcvd_messages, class_name: 'Message', foreign_key: 'to_user_id'
+
   has_one     :store_credit
   has_many    :orders
   has_many    :finished_orders,          :class_name => 'Order',

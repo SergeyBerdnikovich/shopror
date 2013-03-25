@@ -1,0 +1,9 @@
+<p id="notice"><%= notice %></p>
+
+<% @dialog_messages.each do |message| %>
+  <%= message.created_at.strftime("%m-%d %H:%M") %> <%= message.from_user.name %> > <%= message.text %><br />
+<% end %><br />
+
+<%= link_to 'Replay', new_admin_message_path(:user_id => @message.from_user.id) %><br />
+
+<%= link_to 'Back', admin_messages_path %>
