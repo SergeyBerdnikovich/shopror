@@ -16,9 +16,30 @@
 
   <div id="product_images" class='span-16'>
     <% @product.images.each do |image| %>
-      <div id='image_<%= image.id %>' class="variant_form left span-16 last">
+      <div id='image_<%= image.id %>' class="variant_form">
         <%= form.fields_for :images, image do |image_form|%>
-          <%= render :partial => 'image', :locals => {:image_form => image_form } %>
+          <fieldset>
+            <% if !image_form.object.new_record? %>
+              <%= image_tag image_form.object.photo.url(:small) %>
+            <% end %>
+            <div style='float:right;'>
+              <%= link_to 'remove', admin_image_path(image, :permalink => params[:id]), method: :delete, data: { confirm: 'Are you sure?' } if image %>
+            </div>
+            <label>Position</label>
+            <%= image_form.select       :position, [1,2,3,4,5,6] %>
+
+            <label>Caption</label>
+            <%= image_form.text_field   :caption %>
+
+            <label>Photo</label>
+            <%= image_form.file_field   :photo %>
+
+            <label>Link to image</label>
+            <%= image_form.text_field   :photo_from_link %>
+
+            <label>Image for slider?</label>
+            <%= image_form.check_box   :for_slider %>
+          </fieldset>
         <% end %>
       </div>
     <% end %>

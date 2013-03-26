@@ -79,8 +79,12 @@ class Admin::ImagesController < ApplicationController
     @image.destroy
 
     respond_to do |format|
-      format.html { redirect_to admin_images_url }
-      format.json { head :no_content }
+      if params[:permalink].present?
+        format.html { redirect_to edit_admin_merchandise_images_product_path(params[:permalink]) }
+      else
+        format.html { redirect_to admin_images_url }
+        format.json { head :no_content }
+      end
     end
   end
 end
