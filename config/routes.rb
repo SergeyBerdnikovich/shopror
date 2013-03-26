@@ -70,6 +70,7 @@ Hadean::Application.routes.draw do
     resources :pages
     resources :emails
     resources :messages
+    resources :images
 
     namespace :rma do
       resources  :orders do
