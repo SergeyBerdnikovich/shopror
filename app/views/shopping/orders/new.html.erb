@@ -1,0 +1,35 @@
+</div>
+</header>
+<div class="columns clearfix">
+  <div id='order-wrapper' class='twelve'>
+    <div class='seven columns'>
+<!-- Breadcrumb -->
+      <div class="breadcrumb bgcolor bordercolor">
+        <div class="breadcrumb_inner">
+          <a href="/" title="return to Home">Home</a>
+          <span class="navigation-pipe" >&gt;</span>
+          <a href="/shopping/orders" title="return to Home">Orders</a>
+          <span class="navigation-pipe" >&gt;</span>
+          <span class="navigation_page">New</span>
+        </div>
+      </div><br />
+<!-- /Breadcrumb -->
+      <%= form_tag( shopping_order_path(@order),
+                                        :method => :put,
+                                        #:as   => :order,
+                                        :id   => 'purchase_order') do  %>
+
+        <div class="field six large-6 column">
+          <%= label_tag 'Telephone Number' %><br />
+           <%= text_field_tag(:telephone_number, @order.info.telephone_number) %>
+        </div>
+        <div class="field six large-6 column">
+          <%= label_tag 'Payment Method' %><br />
+           <%= text_field_tag(:payment_method, @order.info.payment_method) %>
+        </div><br />
+
+        <%= submit_tag 'Complete Order', :class => 'button success' %>
+      <% end %><br />
+    </div>
+  </div>
+</div>

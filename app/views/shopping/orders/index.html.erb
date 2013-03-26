@@ -95,6 +95,9 @@
           <%= hidden_field_tag 'description', @order.number %>
           <%= image_submit_tag('http://g-ecx.images-amazon.com/images/G/01/asp/beige_small_paynow_withmsg_whitebg.gif') %>
         <% end %>
+      </div>
+      <div id='custom'>
+        <a href='<%= new_shopping_order_path %>' class='button'>Create Order</a>
       </div><br />
 
     </div>

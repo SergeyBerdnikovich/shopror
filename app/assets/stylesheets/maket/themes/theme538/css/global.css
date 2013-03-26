@@ -1872,6 +1872,9 @@ a#shipping_method img {
 div#amazon {
   margin: -40px 0 0 800px;
 }
+div#custom {
+  margin: -37px 0 0 400px;
+}
 div.columns.clearfix td {
   color: black;
   border-color: #AAAAAA;

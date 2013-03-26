@@ -26,41 +26,61 @@ class Shopping::OrdersController < Shopping::BaseController
     redirect_to shopping_orders_url
   end
 
+  def new
+    @order = find_or_create_order
+    @order.info ||= Info.new
+  end
   # POST /shopping/orders
   def update
     @order = find_or_create_order
-    @order.ip_address = request.remote_ip
+    if @order.ship_address_id
+      @order.ip_address = request.remote_ip
+      if @order.info.update_attributes(:telephone_number => params[:telephone_number],
+                                       :payment_method => params[:payment_method])
 
-    @credit_card ||= ActiveMerchant::Billing::CreditCard.new(cc_params)
+        @order.update_attribute(:completed_at, Time.now)
+        @order.update_attribute(:state, 'complete')
 
-    address = @order.bill_address.cc_params
+        @order.user.current_cart.shopping_cart_items = []
 
-    if @order.complete?
-      session_cart.mark_items_purchased(@order)
-      flash[:error] = I18n.t('the_order_purchased')
-      redirect_to myaccount_order_url(@order)
-    elsif @credit_card.valid?
-      if response = @order.create_invoice(@credit_card,
-                                          @order.credited_total,
-                                          {:email => @order.email, :billing_address=> address, :ip=> @order.ip_address },
-                                          @order.amount_to_credit)
-        if response.succeeded?
-          ##  MARK items as purchased
-          session_cart.mark_items_purchased(@order)
-          redirect_to( myaccount_order_path(@order) ) and return
-        else
-          flash[:alert] =  [I18n.t('could_not_process'), I18n.t('the_order')].join(' ')
-        end
-      else
-        flash[:alert] = [I18n.t('could_not_process'), I18n.t('the_credit_card')].join(' ')
+        redirect_to myaccount_orders_path
       end
-      form_info
-      render :action => 'index'
     else
       form_info
-      flash[:alert] = [I18n.t('credit_card'), I18n.t('is_not_valid')].join(' ')
+      flash[:alert] = "Address is empty!!!"
       render :action => 'index'
     end
+
+    #@credit_card ||= ActiveMerchant::Billing::CreditCard.new(cc_params)
+
+#    address = @order.bill_address.cc_params
+
+#    if @order.complete?
+#      session_cart.mark_items_purchased(@order)
+#      flash[:error] = I18n.t('the_order_purchased')
+#      redirect_to myaccount_order_url(@order)
+#    elsif @credit_card.valid?
+#      if response = @order.create_invoice(@credit_card,
+#                                          @order.credited_total,
+#                                          {:email => @order.email, :billing_address=> address, :ip=> @order.ip_address },
+#                                          @order.amount_to_credit)
+#        if response.succeeded?
+#          ##  MARK items as purchased
+#         session_cart.mark_items_purchased(@order)
+#          redirect_to( myaccount_order_path(@order) ) and return
+#       else
+#         flash[:alert] =  [I18n.t('could_not_process'), I18n.t('the_order')].join(' ')
+#       end
+#     else
+#       flash[:alert] = [I18n.t('could_not_process'), I18n.t('the_credit_card')].join(' ')
+#     end
+#      form_info
+#      render :action => 'index'
+#    else
+#      form_info
+#      flash[:alert] = [I18n.t('credit_card'), I18n.t('is_not_valid')].join(' ')
+#      render :action => 'index'
+#    end
   end
 
   private

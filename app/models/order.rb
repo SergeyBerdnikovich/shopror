@@ -58,6 +58,8 @@ class Order < ActiveRecord::Base
   has_many   :return_authorizations
   has_many   :comments, :as => :commentable
 
+  has_one :info
+
   belongs_to :user
   belongs_to :coupon
   belongs_to   :ship_address, :class_name => 'Address'
