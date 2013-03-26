@@ -32,7 +32,10 @@ class AmazonPaymentsController < ApplicationController
     if @payment.save && params[:operation]
       order = Order.find(params[:referenceId])
       order.update_attributes(:completed_at => Time.now, :state => 'paid')
-      order.user.current_cart.shopping_cart_items = []
+      order.user.store_credit.remove_credit(order.amount_to_credit) if order.amount_to_credit
+      order.user.current_cart.shopping_cart_items.each do |cart_item|
+        cart_item.inactivate!
+      end
 
       redirect_to(myaccount_orders_path, :notice => 'Payment was successfully created.')
     else
