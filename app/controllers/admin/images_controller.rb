@@ -4,7 +4,7 @@ class Admin::ImagesController < ApplicationController
   # GET /images
   # GET /images.json
   def index
-    @images = Image.where("for_slider = ?", 't')
+    @images = Image.where(:for_slider => true)
 
     respond_to do |format|
       format.html # index.html.erb
@@ -43,7 +43,7 @@ class Admin::ImagesController < ApplicationController
   # POST /images.json
   def create
     @image = Image.new(params[:image])
-    @image.for_slider = 'true'
+    @image.for_slider = true
 
     respond_to do |format|
       if @image.save
