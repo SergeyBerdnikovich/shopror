@@ -32,7 +32,7 @@ Hadean::Application.routes.draw do
   end
 
   namespace :myaccount do
-    resources :messages, :only => [:index, :new, :create]
+    resources :messages, :only => [:index, :new, :create, :show]
     resources :orders, :only => [:index, :show]
     resources :addresses
     resources :credit_cards

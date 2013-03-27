@@ -28,9 +28,20 @@
           </div>
         <% end %>
 
+        <%= f.fields_for :ticket do |ticket_form| -%>
+            <%= ticket_form.label :title, "Ticket Name" %><br />
+            <%= ticket_form.text_field :title %>
+
+            <%= ticket_form.hidden_field :is_closed %>
+        <% end %>
+
         <div class="field">
           <%= f.label :text %><br />
           <%= f.text_area :text %>
+
+          <%= f.hidden_field :from_user_id %>
+          <%= f.hidden_field :to_user_id %>
+          <%= f.hidden_field :is_read %>
         </div>
         <div class="actions"><br />
           <%= f.submit "Send Message", :class => 'button' %>

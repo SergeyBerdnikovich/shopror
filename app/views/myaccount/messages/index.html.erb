@@ -14,11 +14,11 @@
     <h1>Messages</h1><br />
 
     <% @messages.each do |message| %>
-      <%= message.from_user.name %> > <%= message.text %><br />
+      Ticket title: <%= Ticket.find(message[0]).title %> <%= link_to 'Show', myaccount_message_path(message[1][0].id, :ticket_id => message[0]) %><br />
     <% end %>
 
     <br />
-    <%= link_to 'Send New Message', new_myaccount_message_path %>
+    <%= link_to 'Creat New Ticket', new_myaccount_message_path %>
   </div>
   <aside>
     <div id="right_column1" class="column"><!-- MODULE Block specials -->

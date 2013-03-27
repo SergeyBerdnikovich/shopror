@@ -1,0 +1,57 @@
+</div>
+</header>
+<div class="columns clearfix">
+  <div id="center_column" class="center_column2">
+<!-- Breadcrumb -->
+    <div class="breadcrumb bgcolor bordercolor">
+      <div class="breadcrumb_inner">
+        <a href="/" title="return to Home">Home</a>
+        <span class="navigation-pipe" >&gt;</span>
+        <a href="/myaccount/messages" title="return to Home">Messages</a>
+        <span class="navigation-pipe" >&gt;</span>
+        <span class="navigation-page" >Show</span>
+
+      </div>
+    </div>
+<!-- /Breadcrumb -->
+    <h1>Messages</h1><br />
+
+    <% @messages.each do |message| %>
+      <strong><%= message.from_user.name %></strong> > <%= message.text %><br />
+    <% end %><br />
+
+    <p>
+      <%= form_for [:myaccount, @message] do |f| %>
+        <% if @message.errors.any? %>
+          <div id="error_explanation">
+            <h2><%= pluralize(@message.errors.count, "error") %> prohibited this message from being saved:</h2>
+
+            <ul>
+            <% @message.errors.full_messages.each do |msg| %>
+              <li><%= msg %></li>
+            <% end %>
+            </ul>
+          </div>
+        <% end %>
+
+        <div class="field">
+          <%= f.hidden_field :from_user_id %>
+          <%= f.hidden_field :to_user_id %>
+          <%= f.hidden_field :is_read %>
+          <%= f.hidden_field :ticket_id %>
+        </div>
+
+        <div class="field">
+          <%= f.label :text %><br />
+          <%= f.text_area :text %>
+        </div>
+        <div class="actions"><br />
+          <%= f.submit "Send Message", :class => 'button' %>
+        </div>
+      <% end %>
+    </p><br />
+
+    <%= link_to "Back", myaccount_messages_path %>
+
+  </div>
+</div>
