@@ -3,3 +3,13 @@ div#product_images div.variant_form {
   width: 300px;
   display:inline-block;
 }
+
+#admin-product-descriptions div#article-sidebar div#markItUpMarkItUp {
+  width: 390px;
+}
+#admin-product-descriptions div#article-sidebar div#markItUpMarkItUp textarea#markItUp {
+  width: 369px;
+}
+div#create_image_button {
+  display: none;
+}

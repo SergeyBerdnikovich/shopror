@@ -122,3 +122,25 @@
   </div>
 
 </fieldset>
+
+<fieldset id="admin-product-descriptions" class='seven column last'>
+  <legend>Description</legend>
+  <div id="article-sidebar" class="sidebar">
+      <%= form.label :name %>
+      <%= form.text_field :name %>
+      <%= form.text_area :description_markup, :id => "markItUp", :cols => "52", :rows => "15" %>
+  </div>
+
+  <% content_for :head do %>
+    <%= stylesheet_link_tag "markitup/skins/markitup/style" %>
+    <%= stylesheet_link_tag "markitup/sets/default/style" %>
+    <%= javascript_include_tag "markitup/jquery.markitup" %>
+    <%= javascript_include_tag "markitup/sets/default/set" %>
+  <% end %>
+
+  <script type="text/javascript" >
+     $(document).ready(function() {
+        $("#markItUp").markItUp(mySettings);
+     });
+  </script>
+</fieldset>
