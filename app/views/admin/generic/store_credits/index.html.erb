@@ -1,0 +1,23 @@
+<h1>Listing Store Credits</h1>
+
+<table>
+  <tr>
+    <th>Amount</th>
+    <th>User</th>
+    <td>Created at</td>
+    <td>Updated at</td>
+    <th></th>
+    <th></th>
+  </tr>
+<% @store_credits.each do |store_credit| %>
+  <tr>
+    <td><%= store_credit.amount %></td>
+    <td><%= store_credit.user.name if store_credit.user %></td>
+    <td><%= store_credit.created_at %></td>
+    <td><%= store_credit.updated_at %></td>
+
+    <td><%= link_to 'Show', admin_generic_store_credit_path(store_credit) %></td>
+    <td><%= link_to 'Edit', edit_admin_generic_store_credit_path(store_credit) %></td>
+  </tr>
+<% end %>
+</table>

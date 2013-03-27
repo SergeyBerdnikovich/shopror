@@ -1,0 +1,22 @@
+<%= form_for [:admin, :generic, @store_credit] do |f| %>
+  <% if @store_credit.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@store_credit.errors.count, "error") %> prohibited this store_credit from being saved:</h2>
+
+      <ul>
+      <% @store_credit.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :amount %><br />
+    <%= f.text_field :amount %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

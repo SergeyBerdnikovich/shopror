@@ -143,6 +143,7 @@ Hadean::Application.routes.draw do
       resources :coupons
       resources :deals
       resources :sales
+      resources  :store_credits, :inly => [:index, :show, :update, :edit]
     end
     namespace :inventory do
       resources :suppliers

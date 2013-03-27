@@ -18,7 +18,7 @@ class Admin::MessagesController < ApplicationController
     @message = Message.find(params[:id])
     @dialog_messages = Message.get_dialog_messages(@message.from_user.id, current_user.id)
     Message.get_rcvd_messages(current_user.id).each do |message|
-      message.update_attribute(:is_read, 't')
+      message.update_attribute(:is_read, true)
     end
 
     respond_to do |format|
@@ -43,7 +43,7 @@ class Admin::MessagesController < ApplicationController
   def create
     @message = Message.new(params[:message])
     @message.from_user_id = current_user.id
-    @message.is_read = :false
+    @message.is_read = false
 
     respond_to do |format|
       if @message.save
@@ -63,7 +63,7 @@ class Admin::MessagesController < ApplicationController
     @message.destroy
 
     respond_to do |format|
-      format.html { redirect_to messages_url }
+      format.html { redirect_to admin_messages_url }
       format.json { head :no_content }
     end
   end

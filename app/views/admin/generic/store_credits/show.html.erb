@@ -1,0 +1,10 @@
+<p id="notice"><%= notice %></p>
+
+<p>Amount: <%= @store_credit.amount %></p>
+<p>User: <%= @store_credit.user.name if @store_credit.user %></p>
+<p>Created at: <%= @store_credit.created_at %></p>
+<p>Updated at: <%= @store_credit.updated_at %></p>
+
+
+<%= link_to 'Edit', edit_admin_generic_store_credit_path(@store_credit) %> |
+<%= link_to 'Back', admin_generic_store_credits_path %>
