@@ -7,7 +7,7 @@
       <div class="breadcrumb_inner">
         <a href="/" title="return to Home">Home</a>
         <span class="navigation-pipe" >&gt;</span>
-        <a href="/myaccount/messages" title="return to Home">Messages</a>
+        <a href="/myaccount/messages" title="return to Messages">Messages</a>
         <span class="navigation-pipe" >&gt;</span>
         <span class="navigation-page" >Show</span>
 
@@ -43,7 +43,7 @@
 
         <div class="field">
           <%= f.label :text %><br />
-          <%= f.text_area :text %>
+          <%= f.text_area :text%>
         </div>
         <div class="actions"><br />
           <%= f.submit "Send Message", :class => 'button' %>
@@ -51,7 +51,7 @@
       <% end %>
     </p><br />
 
-    <%= link_to "Back", myaccount_messages_path %>
+    <%= link_to "Back", myaccount_messages_path, :class => 'button' %>
 
   </div>
 </div>

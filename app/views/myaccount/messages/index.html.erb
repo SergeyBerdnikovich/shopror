@@ -11,14 +11,27 @@
       </div>
     </div>
 <!-- /Breadcrumb -->
-    <h1>Messages</h1><br />
+    <h1>Tickets</h1><br />
+    <table>
+      <tr>
+        <td>Id</td>
+        <td>Title</td>
+        <td>Created at</td>
+        <td></td>
+      </tr>
 
-    <% @messages.each do |message| %>
-      Ticket title: <%= Ticket.find(message[0]).title %> <%= link_to 'Show', myaccount_message_path(message[1][0].id, :ticket_id => message[0]) %><br />
-    <% end %>
+      <% @messages.each do |message| %>
+        <tr>
+          <td><%= message[0] %></td>
+          <td><%= Ticket.find(message[0]).title %></td>
+          <td><%= Ticket.find(message[0]).created_at.strftime("%Y-%m-%d %H:%M") %></td>
+          <td><%= link_to 'Show', myaccount_message_path(message[1][0].id, :ticket_id => message[0]), :class => 'button' %></td>
+        </tr>
+      <% end %>
+    </table>
 
     <br />
-    <%= link_to 'Creat New Ticket', new_myaccount_message_path %>
+    <%= link_to 'Create New Ticket', new_myaccount_message_path, :class => 'button' %>
   </div>
   <aside>
     <div id="right_column1" class="column"><!-- MODULE Block specials -->

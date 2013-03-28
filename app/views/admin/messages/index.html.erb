@@ -1,23 +1,21 @@
-<h1>Listing messages</h1>
+<h1>Listing teckets</h1>
 
 <table>
   <tr>
-    <th>Date</th>
-    <th>From user</th>
-    <th>Text</th>
-    <th>Is read</th>
-    <th></th>
-    <th></th>
+    <td>Id</td>
+    <td>From user</td>
+    <td>Title</td>
+    <td>Created at</td>
+    <td></td>
   </tr>
 
-<% @messages.each do |message| %>
-  <tr>
-    <td><%= message.created_at.strftime("%Y-%m-%d %H:%M") %></td>
-    <td><%= message.from_user.name %></td>
-    <td><%= message.text %></td>
-    <td><%= message.is_read %></td>
-    <td><%= link_to 'Show', admin_message_path(message) %></td>
-    <td><%= link_to 'Destroy', admin_message_path(message), method: :delete, data: { confirm: 'Are you sure?' } %></td>
-  </tr>
-<% end %>
+  <% @messages.each do |message| %>
+    <tr>
+      <td><%= message[0] %></td>
+      <td><%= Ticket.find(message[0]).messages.first.from_user.name %></td>
+      <td><%= Ticket.find(message[0]).title %></td>
+      <td><%= Ticket.find(message[0]).created_at.strftime("%Y-%m-%d %H:%M") %></td>
+      <td><%= link_to 'Show', admin_message_path(message[1][0].id, :ticket_id => message[0]), :class => 'button' %></td>
+    </tr>
+  <% end %>
 </table>

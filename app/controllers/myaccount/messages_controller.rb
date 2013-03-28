@@ -3,14 +3,7 @@ class Myaccount::MessagesController < Myaccount::BaseController
   # GET /messages.json
   def index
     @featured_products = Product.limit(2).active.where(:featured => true)
-
-
     @messages = Message.where(:from_user_id => current_user.id).group_by(&:ticket_id)
-
-    #@messages = Message.get_dialog_messages(current_user.id, @user_admin.id)
-    #Message.get_rcvd_messages(current_user.id).each do |message|
-    #  message.update_attribute(:is_read, 't')
-    #end
 
     respond_to do |format|
       format.html # index.html.erb
@@ -25,6 +18,9 @@ class Myaccount::MessagesController < Myaccount::BaseController
                            :from_user_id => current_user.id,
                            :to_user_id => @user_admin.id,
                            :is_read => false)
+    Message.get_rcvd_messages(current_user.id, params[:ticket_id]).each do |message|
+      message.update_attribute(:is_read, true)
+    end
 
     respond_to do |format|
       format.html # show.html.erb
@@ -52,9 +48,6 @@ class Myaccount::MessagesController < Myaccount::BaseController
   # POST /messages.json
   def create
     @message = Message.new(params[:message])
-    #@message.from_user_id = current_user.id
-    #@message.to_user_id = Role.find_by_name('super_administrator').users.first.id
-    #@message.is_read = :false
 
     respond_to do |format|
       if @message.save
