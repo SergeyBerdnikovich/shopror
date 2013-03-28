@@ -41,7 +41,7 @@ class Admin::Merchandise::ProductsController < Admin::BaseController
   end
 
   def edit
-    @product        = Product.includes(:properties,:product_properties, {:prototype => :properties}).find(params[:id])
+    @product = Product.includes(:properties,:product_properties, {:prototype => :properties}).find(params[:id])
     form_info
   end
 
@@ -49,6 +49,9 @@ class Admin::Merchandise::ProductsController < Admin::BaseController
     @product = Product.find(params[:id])
 
     if @product.update_attributes(params[:product])
+      @product.variants.each_with_index do |variant, i|
+        variant.inventory.update_attributes(params[:product][:variants_attributes]["#{i}"][:inventory_attributes])
+      end
       redirect_to admin_merchandise_product_url(@product)
     else
       form_info

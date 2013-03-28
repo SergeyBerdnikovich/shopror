@@ -31,6 +31,8 @@ class Product < ActiveRecord::Base
 
   serialize :product_keywords, Array
 
+  #attr_accessible :variants_attributes, :name, :permalink, :set_keywords, :meta_keywords, :meta_description, :featured, :youtube_url, :product_type_id, :shipping_category_id, :brand_id, :prototype_id, :product_properties_attributes, :description_markup
+
   attr_accessor :available_shipping_rates # these the the shipping rates per the shipping address on the order
 
   belongs_to :brand

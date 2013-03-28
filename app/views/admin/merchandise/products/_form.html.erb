@@ -11,6 +11,8 @@
 <% end %>
 
   <%= error_messages_for 'product' %>
+
+
 <fieldset id="admin-product-general-info" class='four column' style='margin-right:25px'>
   <legend>General Info</legend>
 <div class='clear'></div>
@@ -90,9 +92,6 @@
   </div>
   <%#= render :partial => 'admin/merchandise/products/shipping_rates_form'  %>
 </fieldset>
-
-
-
 <fieldset id="admin-product-properties" class='seven column last'>
   <legend>Properties</legend>
 
@@ -123,6 +122,21 @@
 
 </fieldset>
 
+<fieldset id="admin-product-inventory" class='seven column last'>
+  <legend>Inventory</legend>
+  <%= form.fields_for :variants do |variant_form| %>
+    <% variant_form.fields_for :inventory do |inventory_form| %>
+        <%= inventory_form.label :count_on_hand %>
+        <%= inventory_form.text_field :count_on_hand %>
+        <%= inventory_form.label :count_pending_to_customer %>
+        <%= inventory_form.text_field :count_pending_to_customer %>
+        <%= inventory_form.label :count_pending_from_supplier %>
+        <%= inventory_form.text_field :count_pending_from_supplier %>
+    <% end %>
+  <% end %>
+</fieldset>
+
+<div id='admin-product-descriptions'>
 <fieldset id="admin-product-descriptions" class='seven column last'>
   <legend>Description</legend>
   <div id="article-sidebar" class="sidebar">
@@ -144,3 +158,8 @@
      });
   </script>
 </fieldset>
+</div>
+
+
+
+

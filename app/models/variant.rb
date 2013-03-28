@@ -49,6 +49,7 @@ class Variant < ActiveRecord::Base
   validates :sku,         :presence => true,       :length => { :maximum => 255 }
 
   accepts_nested_attributes_for :variant_properties#, :inventory
+  accepts_nested_attributes_for :inventory
 
   delegate  :count_on_hand,
             :count_pending_to_customer,
