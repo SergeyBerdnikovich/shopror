@@ -47,8 +47,8 @@ class Shopping::OrdersController < Shopping::BaseController
       end
     else
       form_info
-      flash[:alert] = "Address is empty!!!"
-      render :action => 'index'
+      flash[:alert] = "Please specify shipping address"
+      redirect_to shopping_addresses_path
     end
 
     #@credit_card ||= ActiveMerchant::Billing::CreditCard.new(cc_params)
