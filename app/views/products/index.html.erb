@@ -34,7 +34,7 @@
               <a class="product_link" href="<%= product_path(product.id) %>" title="<%= product.name %>"><%= product.name %></a>
             </h3>
             <p class="product_desc">
-              <a class="product_descr" href="<%= product_path(product.id) %>" title="<%= product.description %>" ><%= product.description %>
+              <a class="product_descr" href="<%= product_path(product.id) %>" title="<%= product.description %>" ><%= product.description.gsub!(/<[^<>]*?>/mi, "") %>
               </a>
             </p>
           </div>
