@@ -1,0 +1,44 @@
+<script type="text/javascript" src="/prestashop_42486/themes/theme538/js/products-comparison.js"></script>
+<script type="text/javascript" src="/assets/shopping/cart.js"></script>
+</div>
+</header>
+  <div class="columns clearfix">
+    <div id="center_column" class="center_column">
+<!-- Breadcrumb -->
+      <div class="breadcrumb bgcolor bordercolor">
+        <div class="breadcrumb_inner">
+        <a href="/" title="return to Home">Home</a>
+        <span class="navigation-pipe" >&gt;</span>
+        <span class="navigation_page">Brands</span>
+      </div>
+    </div>
+<!-- /Breadcrumb -->
+    <h1>Brands</h1>
+    <% @brands.each do |brand| %>
+      <h4><%= brand.name %></h4>
+      <ul id="product_list" class="bordercolor grid">
+        <% brand.products.each do |product| %>
+          <li class="ajax_block_product bordercolor" id='brands'>
+            <a href="<%= product_path(product.id) %>" class="product_img_link" title="<%= product.name %>">
+              <img src="<%= product.featured_image(:medium) %>" width="182" height="188" alt="" />
+            </a>
+            <div class="center_block">
+              <h3>
+                <a class="product_link" href="<%= product_path(product.id) %>" title="<%= product.name %>"><%= product.name %></a>
+              </h3>
+              <p class="product_desc">
+                <a class="product_descr" href="<%= product_path(product.id) %>" title="<%= product.description %>" ><%= product.description %>
+                </a>
+              </p>
+            </div>
+            <div class="right_block bordercolor">
+              <span class="price"><%= number_to_currency product.price_range.last %></span>
+              <br />
+              <a class="button" href="<%= product_path(product.id) %>" title="View">View</a>
+            </div>
+          </li>
+        <% end %>
+      </ul>
+    <% end %>
+  </div>
+</div>

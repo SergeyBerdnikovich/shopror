@@ -1901,3 +1901,7 @@ ul#order_list li{
     margin: 0px 0 23px 20px;
     width: 220px;
 }
+
+li.ajax_block_product.bordercolor#brands {
+  width: 180px;
+}

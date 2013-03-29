@@ -2,6 +2,9 @@ Hadean::Application.routes.draw do
 
   mount Ckeditor::Engine => '/ckeditor'
 
+  match 'pages/featured_products' => 'pages#featured_products'
+  match 'pages/brands' => 'pages#brands'
+  match 'pages/new_products' => 'pages#new_products'
   match 'pages/:id' => 'pages#show_page'
 
   resources :payment_notifications, :only => [:create]
