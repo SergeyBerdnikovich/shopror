@@ -209,7 +209,7 @@ class Product < ActiveRecord::Base
 
   def parse_youtube
     regex = /^(?:http:\/\/)?(?:www\.)?\w*\.\w*\/(?:watch\?v=)?((?:p\/)?[\w\-]+)/
-    self.youtube_url.match(regex)[1]
+    self.youtube_url.match(regex) ? self.youtube_url.match(regex)[1] : nil
   end
 
   private

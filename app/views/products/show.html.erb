@@ -147,7 +147,7 @@
       <!-- full description -->
     <div id="idTab1">
       <div>
-        <% if @product.youtube_url %>
+        <% if @product.youtube_url && @product.parse_youtube %>
           <iframe width="360" height="215" src="http://www.youtube.com/embed/<%= @product.parse_youtube %>" frameborder="0" allowfullscreen></iframe>
         <% end %>
         <%== @product.description %>
