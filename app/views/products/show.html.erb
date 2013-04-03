@@ -130,7 +130,29 @@
 <!-- <![endif]-->
         <div class="clearblock"></div>
     </div>
-        <!-- hidden datas -->
+    <div id='your_product' class='panel'><br />
+      <% @product.active_variants.each_with_index do |variant, i| %>
+        <div id='variant_<%= variant.id %>'
+             class='button variant_select secondary <%= 'selected_variant' if i == 0 %>'
+             data-variant_id='<%= variant.id %>'
+             style='float:left'>
+          <a href='#' class='button'>
+            <%= variant.product_name %>
+          </a>
+        </div>
+      <% end %><br /><br />
+        <div class='properties_inner_wrapper clearfix' >
+          <% @product.active_variants.each_with_index do |var, i| %>
+            <div id='variant_properties_<%= var.id %>' class='variant_properties <%= 'selected' if i == 0 %>'>
+              <ul>
+                <% var.variant_properties.each do |prop| %>
+                  <li><label><%= prop.property_name %>:</label> <%= prop.description %></li>
+                <% end %>
+              </ul>
+            </div>
+          <% end %>
+        </div>
+    </div>
   </div>
 </div>
 <!-- description and features -->
@@ -156,7 +178,7 @@
         <!-- product's features -->
     <ul id="idTab2" class="bullet">
       <% @product.active_variants.each_with_index do |var, i| %>
-        <div id='variant_properties_<%= var.id %>' class='variant_properties <%= 'selected' if i == 0 %>'>
+        <div id='variant_properties2_<%= var.id %>' class='variant_properties2 <%= 'selected' if i == 0 %>'>
           <ul>
             <% var.variant_properties.each do |prop| %>
               <li><label><%= prop.property_name %>:</label>  <%= prop.description %></li>
@@ -169,5 +191,27 @@
 </div>
 </div>
 </div>
+    <script>
+    $('.variant_select').click( function() {
+
+          $('.variant_properties').each( function(index, obj) {
+            $(obj).removeClass('selected');
+          });
+          $('.variant_properties2').each( function(index, obj) {
+            $(obj).removeClass('selected');
+          });
+
+          var propId = '#variant_properties_' + $(this).data("variant_id");
+        $( propId ).addClass('selected');
+          var propId = '#variant_properties2_' + $(this).data("variant_id");
+        $( propId ).addClass('selected');
+
+          $('#cart_item_variant_id').val($(this).data("variant_id"));
+          $(".variant_select").removeClass('selected_variant');
+          $(this).addClass('selected_variant');
+          //jQuery('#submit_add_to_cart').removeClass('add-to-cart').addClass('ready-to-add-to-cart');
+        }
+      );
+    </script>
 </body>
 </html>

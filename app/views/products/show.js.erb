@@ -5,10 +5,14 @@ $("img#bigpic2").animate({opacity: "0", height: "304", width: "304"}, 1)
                 .animate({opacity: "0"}, "slow")
                 .animate({opacity: "0", left: "0", top: "-=105", height: "1", width: "1"}, 1)
 
+var var_id = $('div[class*="selected_variant"]').attr("id")
+var patt= /^(variant_)([\d]+)/
+var result_variant_id = patt.exec(var_id)[2];
+
 $.ajax({type: "POST",
         url: "/shopping/cart_items", //sumbits it to the given url of the form
         data: { cart_item: { quantity:   "<%= params[:cart_item][:quantity] %>",
-                             variant_id: "<%= params[:cart_item][:variant_id] %>" }
+                             variant_id: result_variant_id }
               },
         dataType: "HTML"
 }).success(function(data){
