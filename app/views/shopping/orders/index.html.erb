@@ -98,8 +98,21 @@
       </div>
       <div id='custom'>
         <a href='<%= new_shopping_order_path %>' class='button'>Create Order</a>
+      </div>
+      <div id='internationalcheckout'>
+        <a href='#'><img src='/assets/maket/internationalcheckout.jpg' width='150px;'></a>
+        <form name="icForm" id="icForm" method="post" action="https://www.internationalcheckout.com/cart.php">
+          <input type="hidden" name="ItemDescription1" value="dvporg orders">
+          <input type="hidden" name="ItemQuantity1" value="1">
+          <input type="hidden" name="ItemPrice1" value="<%= @order.credited_total %>">
+          <input type="hidden" name="p" value="theladyem">
+        </form>
+        <script>
+        $("#internationalcheckout a").click(function() {
+          document.getElementById('icForm').submit();
+        });
+        </script>
       </div><br />
-
     </div>
   </div>
 </div>

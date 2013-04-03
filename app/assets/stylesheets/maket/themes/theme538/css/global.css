@@ -1873,8 +1873,12 @@ div#amazon {
   margin: -40px 0 0 800px;
 }
 div#custom {
-  margin: -37px 0 0 400px;
+  margin: -37px 0 0 500px;
 }
+div#internationalcheckout {
+  margin: -30px 0 0 300px;
+}
+
 div.columns.clearfix td {
   color: black;
   border-color: #AAAAAA;
