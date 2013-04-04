@@ -1972,3 +1972,8 @@ div.button.variant_select.secondary {
 a#product_name {
   padding: 0 15px;
 }
+
+img.logo {
+  margin-top: -20px;
+  margin-left: 20px;
+}
