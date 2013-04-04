@@ -57,6 +57,8 @@
           <th>Price</th>
           <th>Cost</th>
           <th>Brand</th>
+          <th>Activate?</th>
+          <th></th>
           <th></th>
         </tr>
       </thead>
@@ -66,7 +68,13 @@
           <td><%= variant.price %></td>
           <td><%= variant.cost %></td>
           <td><%= variant.brand.try(:name) %></td>
-          <td><%= link_to '2', admin_merchandise_product_variant_path(@product, variant) %></td>
+          <td><%= variant.deleted_at ? 'false' : 'true' %></td>
+          <td><%= link_to 'show', admin_merchandise_product_variant_path(@product, variant) %></td>
+          <% if variant.active? %>
+            <td><%= link_to "Inactivate", admin_merchandise_product_variant_path(@product, variant), :method => :delete %></td>
+          <% else %>
+            <td><%= link_to "Activate", admin_merchandise_product_variant_path(@product, variant, :activate_variant => true), :method => :delete %></td>
+          <% end %>
         </tr >
       <% end %>
     </table>

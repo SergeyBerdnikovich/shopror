@@ -34,24 +34,30 @@
 
 <div id="admin_variants_page_wrapper">
   <div id="admin_variants_grid_wrapper" class='pretty_table'>
-
-
-      <table>
-        <thead>
+    <table>
+      <thead>
         <tr>
-              <th><%= "product_name" %></th>
-                  <th><%= sortable "sku" %></th>
-                   <th><%= "price" %></th>
+          <th><%= "product_name" %></th>
+          <th><%= sortable "sku" %></th>
+          <th><%= "price" %></th>
+          <th><%= "Activate?" %></th>
+          <th></th>
         </tr>
-        </thead>
-        <% @variants.each do |variant| %>
-          <tr>
-            <td><%= link_to variant.product_name, edit_admin_merchandise_product_variant_path(@product, variant) %></td>
-            <td><%= variant.sku %></td>
-            <td><%= variant.price %></td>
-          </tr>
-        <% end %>
-      </table>
+      </thead>
+      <% @variants.each do |variant| %>
+        <tr>
+          <td><%= link_to variant.product_name, edit_admin_merchandise_product_variant_path(@product, variant) %></td>
+          <td><%= link_to variant.sku, admin_merchandise_product_variant_path(@product, variant) %></td>
+          <td><%= variant.price %></td>
+          <td><%= variant.deleted_at ? 'false' : 'true' %></td>
+          <% if variant.active? %>
+            <td><%= link_to "Inactivate", admin_merchandise_product_variant_path(@product, variant), :method => :delete %></td>
+          <% else %>
+            <td><%= link_to "Activate", admin_merchandise_product_variant_path(@product, variant, :activate_variant => true), :method => :delete %></td>
+          <% end %>
+        </tr>
+      <% end %>
+    </table>
 
     <%= will_paginate @variants %>
 

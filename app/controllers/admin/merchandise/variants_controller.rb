@@ -52,7 +52,11 @@ class Admin::Merchandise::VariantsController < Admin::BaseController
 
   def destroy
     @variant = Variant.find(params[:id])
-    @variant.deleted_at = Time.zone.now
+    if params[:activate_variant].blank?
+      @variant.deleted_at = Time.zone.now
+    else
+      @variant.deleted_at = nil
+    end
     @variant.save
 
     redirect_to admin_merchandise_product_variants_url(@variant.product)
