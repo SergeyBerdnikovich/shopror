@@ -102,9 +102,18 @@
       <div id='internationalcheckout'>
         <a href='#'><img src='/assets/maket/internationalcheckout.jpg' width='150px;'></a>
         <form name="icForm" id="icForm" method="post" action="https://www.internationalcheckout.com/cart.php">
-          <input type="hidden" name="ItemDescription1" value="dvporg orders">
-          <input type="hidden" name="ItemQuantity1" value="1">
-          <input type="hidden" name="ItemPrice1" value="<%= @order.credited_total %>">
+
+          <% @order.order_items.group_by(&:variant_id).each_with_index do |items, i| %>
+            <input type="hidden" name="ItemDescription<%= i+1 %>" value="<%= items[1].first.variant.product.name %>">
+            <input type="hidden" name="ItemQuantity<%= i+1 %>" value="<%= items[1].size %>">
+            <input type="hidden" name="ItemPrice<%= i+1 %>" value="<%= items[1].first.price %>">
+            <input type="hidden" name="ItemImage<%= i+1 %>" value="<%= items[1].first.variant.product.featured_image(:original) %>">
+            <input type="hidden" name="ImgHeight<%= i+1 %>" value="100">
+            <input type="hidden" name="ImgWidth<%= i+1 %>" value="100">
+            <input type="hidden" name="ItemSKU<%= i+1 %>" value="<%= items[1].first.variant.sku %>">
+          <% end %>
+
+          <input type="hidden" name="Discount" value="<%= @order.amount_to_credit %>">
           <input type="hidden" name="p" value="theladyem">
         </form>
         <script>
