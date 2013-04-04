@@ -1916,11 +1916,17 @@ div.variant_properties {
 div.variant_properties2 {
   display: none;
 }
+h1.price {
+  display: none;
+}
 
 div.variant_properties.selected {
   display: block;
 }
 div.variant_properties2.selected {
+  display: block;
+}
+h1.price.selected {
   display: block;
 }
 

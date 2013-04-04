@@ -88,7 +88,9 @@
           <div class="price bordercolor" >
             <span class="our_price_display bordercolor">
               <span id="our_price_display" class="pricecolor">
-                <h1><%= number_to_currency @product.active_variants.first.price %></h1>
+                <% @product.active_variants.each_with_index do |variant, i| %>
+                  <h1 class='price <%= 'selected' if i == 0 %>' id='variant_price_<%= variant.id %>'><%= number_to_currency variant.price %></h1>
+                <% end %>
               </span>
             </span>
             <div class='quantity'>
@@ -201,10 +203,15 @@
           $('.variant_properties2').each( function(index, obj) {
             $(obj).removeClass('selected');
           });
+          $('h1.price').each( function(index, obj) {
+            $(obj).removeClass('selected');
+          });
 
           var propId = '#variant_properties_' + $(this).data("variant_id");
         $( propId ).addClass('selected');
           var propId = '#variant_properties2_' + $(this).data("variant_id");
+        $( propId ).addClass('selected');
+          var propId = 'h1#variant_price_' + $(this).data("variant_id");
         $( propId ).addClass('selected');
 
           $('#cart_item_variant_id').val($(this).data("variant_id"));
