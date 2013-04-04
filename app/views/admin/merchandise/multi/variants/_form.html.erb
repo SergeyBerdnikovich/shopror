@@ -4,7 +4,7 @@
       <table class='span-6 ar-sidebar' style='width:270px;' >
         <tr>
           <td></td>
-          <td style='float:right;'> <%= link_to 'remove', '#remove' %> </td>
+          <td style='float:right;'>
         </tr>
         <tr>
           <td>SKU   </td><td> <%= ff.text_field :sku, :class => 'span-3' %> </td>
@@ -50,7 +50,7 @@
       <table class='span-6 ar-sidebar' style='width:240px;'>
         <thead>
           <tr>
-            <th colspan=2> <%= variant.sku %>  </th>
+            <th colspan=2> <%= variant.sku %> <%= link_to "Delete", admin_merchandise_product_variant_path(@product, variant, :activate_variant => 'delete'), :method => :delete %> </th>
           </tr>
         </thead>
         <tr>

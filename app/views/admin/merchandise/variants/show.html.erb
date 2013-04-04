@@ -66,6 +66,6 @@
               :class => 'button red-button', :method => :delete, :data => {:confirm => "Are you sure?"} %>
 <% else %>
   <%= link_to 'Activate Variant',
-              admin_merchandise_product_variant_path(@product, @variant, :activate_variant => true),
+              admin_merchandise_product_variant_path(@product, @variant, :activate_variant => 'activate'),
               :class => 'button red-button', :method => :delete, :data => {:confirm => "Are you sure?"} %>
 <% end %>

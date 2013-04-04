@@ -73,7 +73,7 @@
           <% if variant.active? %>
             <td><%= link_to "Inactivate", admin_merchandise_product_variant_path(@product, variant), :method => :delete %></td>
           <% else %>
-            <td><%= link_to "Activate", admin_merchandise_product_variant_path(@product, variant, :activate_variant => true), :method => :delete %></td>
+            <td><%= link_to "Activate", admin_merchandise_product_variant_path(@product, variant, :activate_variant => 'activate'), :method => :delete %></td>
           <% end %>
         </tr >
       <% end %>
