@@ -1910,11 +1910,6 @@ li.ajax_block_product.bordercolor#brands {
   width: 180px;
 }
 
-div.button.variant_select.secondary {
-  width: 70px;
-  margin: 0 0 0 0;
-}
-
 div.variant_properties {
   display: none;
 }
@@ -1931,6 +1926,7 @@ div.variant_properties2.selected {
 
 div.button.variant_select.secondary a {
   background: #aaa;
+
 }
 div.button.variant_select.secondary a:hover {
   background: #ad013d;
@@ -1941,4 +1937,18 @@ div.button.variant_select.secondary.selected_variant a {
 }
 div.button.variant_select.secondary.selected_variant a:hover {
   background: #ad013d;
+}
+
+.clear {
+  content:".";
+  display:block;
+  height:0;
+  clear:both;
+  visibility:hidden
+}
+* html .clear { zoom:1; }
+
+div.button.variant_select.secondary {
+  padding-right: 3px;
+  padding-bottom: 3px;
 }
