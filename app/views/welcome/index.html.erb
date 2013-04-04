@@ -36,10 +36,16 @@
           <% @featured_products.each_with_index do |product, i| %>
             <li>
               <a class="product_image" href="<%= product_path(product.id) %>" title="<%= product.name %>">
-                <img src="<%= product.featured_image(:medium) %>" alt="<%= product.name %>" width="240" height="220"/>
+                <div id="image-block" class="bordercolor" style="display: table; #position: relative; text-align:center; width: 235px; height: 235px;">
+                  <div style=" #position: absolute; #top: 50%; display: table-cell; vertical-align: middle; ">
+                    <div style=" #position: relative; #top: -50%; #left: -50%">
+                      <img src="<%= product.featured_image(:original) %>" alt="<%= product.name %>" id='welcome_img'/>
+                    </div>
+                  </div>
+                </div>
               </a>
-              <h5><a href="<%= product_path(product.id) %>" title="<%= product.name %>"><%= product.name %></a></h5>
-              <div>
+              <h5><a href="<%= product_path(product.id) %>" title="<%= product.name %>" id='product_name'><%= product.name %></a></h5>
+              <div id='price_view'>
                 <span class="price"><%= number_to_currency product.price_range.last %></span>
                 <a href="<%= product_path(product.id) %>" title="View">View</a>
               </div>
@@ -55,10 +61,16 @@
           <% @latest_products.each_with_index do |product, i| %>
             <li>
               <a class="product_image" href="<%= product_path(product.id) %>" title="<%= product.name %>">
-                <img src="<%= product.featured_image(:medium) %>" alt="<%= product.name %>" width="240" height="220"/>
+                <div id="image-block" class="bordercolor" style="display: table; #position: relative; text-align:center; width: 235px; height: 235px;">
+                  <div style=" #position: absolute; #top: 50%; display: table-cell; vertical-align: middle; ">
+                    <div style=" #position: relative; #top: -50%; #left: -50%">
+                      <img src="<%= product.featured_image(:original) %>" alt="<%= product.name %>" id='welcome_img'/>
+                    </div>
+                  </div>
+                </div>
               </a>
-              <h5><a href="<%= product_path(product.id) %>" title="<%= product.name %>"><%= product.name %></a></h5>
-              <div>
+              <h5><a href="<%= product_path(product.id) %>" title="<%= product.name %>" id='product_name'><%= product.name %></a></h5>
+              <div id='price_view'>
                 <span class="price"><%= number_to_currency product.price_range.last %></span>
                 <a href="<%= product_path(product.id) %>" title="View">View</a>
               </div>

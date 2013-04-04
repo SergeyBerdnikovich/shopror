@@ -736,16 +736,16 @@ a.tag_level3 {font-size:17px;font-weight:bold;}
 #featured_products {}
 
 #featured_products ul {padding:4px 0 0 0;}
-#featured_products ul li {width:238px;height:350px;float:left;margin:20px 20px 0 0;padding:0 30px;background:#fff;border:1px solid #dadada;}
+#featured_products ul li {width:238px;height:350px;float:left;margin:20px 20px 0 0;background:#fff;border:1px solid #dadada;}
 #featured_products ul li.feat-3 {margin:20px 0 0 0;}
 
-#featured_products ul li a.product_image {display:block;margin:23px 0 0 0;}
+#featured_products ul li a.product_image {display:block;}
 
 #featured_products ul li h5 {height:31px;padding:23px 0 0 0;line-height:16px;}
 #featured_products ul li h5 a {font:13px "Droid Sans";color:#929292;text-decoration:none;}
 #featured_products ul li h5 a:hover {color:#000;}
 
-#featured_products ul li div {padding:13px 0 0 0;}
+
 
 #featured_products ul li span.price {display:block;float:left;padding:1px 0 0 0;font:normal 23px "Cambo";}
 #featured_products ul li div a {height:27px;display:block;float:right;padding:0 9px;background:#000;font:18px/25px "Cambo";color:#fff;text-decoration:none;text-transform:lowercase;
@@ -922,7 +922,7 @@ footer {width:940px;height:222px;clear:both;margin:0 auto;border-top:1px solid #
 
 /* grid view */
 .grid {padding:10px 0 0 0;overflow:hidden; list-style:none;}
-.grid li {width:185px;float:left;margin:10px 10px 0 0;padding:20px;background:#fff;border-width:1px;border-style:solid;}
+.grid li {width:185px;float:left;margin:10px 10px 0 0;background:#fff;border-width:1px;border-style:solid;}
 .grid li.product_list-3 {width:184px;margin:10px 0 0 0;}
 
 .grid li a.product_img_link {display:block;text-align:center;}
@@ -1791,15 +1791,15 @@ p.error404 img {margin:0 10px 0 0;}
 .two.columns input {
   margin-top: -40px;
 }
-#image_for_cart img {
-  width: 155px;
-  height: 155px;
-}
-#image_for_cart {
-  width: 110px;
+img#image_for_cart {
+  max-width: 190px;
+  max-height: 190px;
 }
 div#cart li {
-  width: 160px;
+  width: 190px;
+}
+div#cart_item2 {
+  padding: 0 10px;
 }
 
 #cart_quantity {
@@ -1856,9 +1856,20 @@ table.std.order th, table.std.order td {
   border-width: 1px;
 }
 
-#primary_block #image-block img#bigpic {
-  position: absolute;
+img#welcome_img {
+  position: relative;
+  max-height: 238px;
+  max-width: 238px;
 }
+img#products_img {
+  position: relative;
+  max-height: 185px;
+  max-width: 185px;
+}
+div#price_view {
+  padding: 0 15px;
+}
+
 .account_input {
   width: 300px;
 }
@@ -1957,4 +1968,7 @@ div.button.variant_select.secondary.selected_variant a:hover {
 div.button.variant_select.secondary {
   padding-right: 3px;
   padding-bottom: 3px;
+}
+a#product_name {
+  padding: 0 15px;
 }

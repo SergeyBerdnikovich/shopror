@@ -27,9 +27,15 @@
       <% @products.each do |product| %>
         <li class="ajax_block_product bordercolor">
           <a href="<%= product_path(product.id) %>" class="product_img_link" title="<%= product.name %>">
-            <img src="<%= product.featured_image(:medium) %>" width="188" height="188" alt="" />
+            <div id="image-block" class="bordercolor" style="display: table; #position: relative; text-align:center; width: 185px; height: 185px;">
+              <div style=" #position: absolute; #top: 50%; display: table-cell; vertical-align: middle; ">
+                <div style=" #position: relative; #top: -50%; #left: -50%">
+                  <img src="<%= product.featured_image(:original) %>" alt="<%= product.name %>" id='products_img'/>
+                </div>
+              </div>
+            </div>
           </a>
-          <div class="center_block">
+          <div class="center_block" id='price_view'>
             <h3>
               <a class="product_link" href="<%= product_path(product.id) %>" title="<%= product.name %>"><%= product.name %></a>
             </h3>
@@ -38,7 +44,7 @@
               </a>
             </p>
           </div>
-          <div class="right_block bordercolor">
+          <div class="right_block bordercolor" id='price_view'>
             <span class="price"><%= number_to_currency product.price_range.last %></span>
             <br />
             <a class="button" href="<%= product_path(product.id) %>" title="View">View</a>
