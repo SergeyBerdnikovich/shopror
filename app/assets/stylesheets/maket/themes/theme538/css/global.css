@@ -1977,3 +1977,7 @@ img.logo {
   margin-top: -20px;
   margin-left: 20px;
 }
+h3#image_not_found {
+  position: absolute;
+  margin: -90px 0 0 70px;
+}

@@ -53,7 +53,7 @@
 <!-- product img-->
         <div id="image-block" class="bordercolor" style="display: table; #position: relative; border: 1px dashed red; color: red; text-align:center">
           <div style=" #position: absolute; #top: 50%; display: table-cell; vertical-align: middle; ">
-            <div style=" #position: relative; #top: -50%; #left: -50%">
+            <div style=" #position: relative; #top: -50%; #left: -50%" id='image_center'>
               <img src="<%= @product.featured_image(:original) %>" class="jqzoom" alt="<%= @product.featured_image(:original) %>" id="bigpic2" width="1" height="1" />
               <img src="<%= @product.featured_image(:original) %>" class="jqzoom" alt="<%= @product.featured_image(:original) %>" id="bigpic" />
             </div>
@@ -194,32 +194,50 @@
 </div>
 </div>
 </div>
-    <script>
-    $('.variant_select').click( function() {
+<% @images = Image.where(Image.arel_table[:variant_id].not_eq(nil)).map {|image| [image.photo.url(:original), image.variant_id]} %>
 
-          $('.variant_properties').each( function(index, obj) {
-            $(obj).removeClass('selected');
-          });
-          $('.variant_properties2').each( function(index, obj) {
-            $(obj).removeClass('selected');
-          });
-          $('h1.price').each( function(index, obj) {
-            $(obj).removeClass('selected');
-          });
+<script>
+  $('.variant_select').click( function() {
 
-          var propId = '#variant_properties_' + $(this).data("variant_id");
-        $( propId ).addClass('selected');
-          var propId = '#variant_properties2_' + $(this).data("variant_id");
-        $( propId ).addClass('selected');
-          var propId = 'h1#variant_price_' + $(this).data("variant_id");
-        $( propId ).addClass('selected');
+    $('.variant_properties').each( function(index, obj) {
+      $(obj).removeClass('selected');
+    });
+    $('.variant_properties2').each( function(index, obj) {
+      $(obj).removeClass('selected');
+    });
+    $('h1.price').each( function(index, obj) {
+      $(obj).removeClass('selected');
+    });
 
-          $('#cart_item_variant_id').val($(this).data("variant_id"));
-          $(".variant_select").removeClass('selected_variant');
-          $(this).addClass('selected_variant');
-          //jQuery('#submit_add_to_cart').removeClass('add-to-cart').addClass('ready-to-add-to-cart');
-        }
-      );
-    </script>
+    var propId = '#variant_properties_' + $(this).data("variant_id");
+    $( propId ).addClass('selected');
+    var propId = '#variant_properties2_' + $(this).data("variant_id");
+    $( propId ).addClass('selected');
+    var propId = 'h1#variant_price_' + $(this).data("variant_id");
+    $( propId ).addClass('selected');
+
+    var variant_id = $(this).data("variant_id");
+    var js_array = <%= @images.to_json.html_safe %>;
+    var variant_find = false
+
+    for (var i in js_array) {
+      if (js_array[i][1] == $(this).data("variant_id")) {
+        $('img.jqzoom').attr('src', js_array[i][0]);
+        $('img.jqzoom').attr('alt', js_array[i][0]);
+        variant_find = true
+      }
+    }
+    if (variant_find == false){
+      $('div#image_center').append("<h3 id='image_not_found'>No Image for this color</h3>");
+      $('div#image_center h3').animate({opacity: "0"}, 3800)
+                              .animate({opacity: "0", height: "1", width: "1"}, 1);
+    }
+
+    $('#cart_item_variant_id').val($(this).data("variant_id"));
+    $(".variant_select").removeClass('selected_variant');
+    $(this).addClass('selected_variant');
+      //jQuery('#submit_add_to_cart').removeClass('add-to-cart').addClass('ready-to-add-to-cart');
+  });
+</script>
 </body>
 </html>

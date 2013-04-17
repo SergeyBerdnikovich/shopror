@@ -37,7 +37,7 @@ gem 'prawn', '~> 0.12.0'
 
 gem "rails3-generators", :git => "https://github.com/neocoin/rails3-generators.git"
 gem "rails_config"
-gem 'rmagick',    :require => 'RMagick'
+gem 'rmagick', '2.13.2', :git=>'http://github.com/rmagick/rmagick.git'
 
 gem 'rake', '~> 0.9.2'
 gem 'state_machine', '~> 1.1.2'
@@ -92,6 +92,6 @@ group :test do
   end
   gem "autotest-growl"
   #gem "redgreen"
-  gem "ZenTest", '4.6.2'
+  gem "ZenTest"
 
 end
