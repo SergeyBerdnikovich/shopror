@@ -126,6 +126,8 @@
   <legend>Inventory</legend>
   <%= form.fields_for :variants do |variant_form| %>
     <% variant_form.fields_for :inventory do |inventory_form| %>
+        <%= inventory_form.object.variant.sku %> -
+        <%= inventory_form.object.variant.name %>
         <%= inventory_form.label :count_on_hand %>
         <%= inventory_form.text_field :count_on_hand %>
         <%= inventory_form.label :count_pending_to_customer %>
