@@ -20,3 +20,40 @@ textarea#message_text {
 fieldset#admin-product-descriptions {
   margin-right: 240px;
 }
+
+.grid {
+  padding: 10px 0 0 0;
+  overflow: hidden;
+  list-style: none;
+}
+
+.grid li {
+  width: 185px;
+  min-height: 250px;
+  float: left;
+  margin: 10px 10px 0 0;
+  background: #fff;
+  border-width: 1px;
+  border-style: solid;
+  border-color: #ddd !important;
+}
+
+#use_button {
+  text-align: center;
+}
+
+#new_varian_image {
+  width: 300px;
+}
+
+#new_variant_image_title {
+  margin: 10px 0 0 0;
+  padding: 10px 20px;
+  background: #4d4d4d;;
+  font: normal 20px "Cambo";
+  color: #fff;
+}
+
+#new_variant_image_form {
+  margin-top: 30px;
+}

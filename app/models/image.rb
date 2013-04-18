@@ -21,6 +21,7 @@ require 'paperclip'
 
 class Image < ActiveRecord::Base
   belongs_to :imageable, :polymorphic => true
+  belongs_to :variant
 
   has_attached_file :photo, PAPERCLIP_STORAGE_OPTS ##  this constant is in /config/environments/*.rb
 
@@ -32,7 +33,7 @@ class Image < ActiveRecord::Base
   validate :validate_photo
 
   attr_accessor :photo_link
-  attr_accessible :for_slider, :position, :caption, :photo, :photo_from_link
+  attr_accessible :for_slider, :position, :caption, :photo, :photo_from_link, :imageable_id, :imageable_type, :variant_id
 
   default_scope :order => 'position'
 

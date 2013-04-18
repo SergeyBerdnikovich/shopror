@@ -37,6 +37,7 @@ class Variant < ActiveRecord::Base
   belongs_to :product
   belongs_to :brand
   belongs_to :inventory
+  has_one :image
 
   before_validation :create_inventory, :on => :create
 
@@ -50,6 +51,9 @@ class Variant < ActiveRecord::Base
 
   accepts_nested_attributes_for :variant_properties#, :inventory
   accepts_nested_attributes_for :inventory
+  accepts_nested_attributes_for :image
+
+  attr_accessible :image_attributes, :product_id, :sku, :price, :cost, :name, :brand_id, :inactivate, :variant_properties_attributes
 
   delegate  :count_on_hand,
             :count_pending_to_customer,

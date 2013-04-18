@@ -43,7 +43,6 @@ class Admin::ImagesController < ApplicationController
   # POST /images.json
   def create
     @image = Image.new(params[:image])
-    @image.for_slider = true
 
     respond_to do |format|
       if @image.save
@@ -70,6 +69,20 @@ class Admin::ImagesController < ApplicationController
         format.json { render json: @image.errors, status: :unprocessable_entity }
       end
     end
+  end
+
+  def create_with_variant
+    @image = Image.create!(params[:image])
+
+    redirect_to edit_admin_merchandise_multi_product_variant_path(@image.imageable_id)
+  end
+
+  def update_with_variant
+    @image = Image.find(params[:id])
+
+    @image.update_attribute(:variant_id, params[:variant_id])
+
+    redirect_to edit_admin_merchandise_multi_product_variant_path(params[:product_id])
   end
 
   # DELETE /images/1

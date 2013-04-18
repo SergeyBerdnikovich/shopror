@@ -73,6 +73,9 @@ Hadean::Application.routes.draw do
     resources :pages
     resources :emails
     resources :messages
+
+    match 'images/update_with_variant/' => 'images#update_with_variant'
+    match 'images/create_with_variant/' => 'images#create_with_variant'
     resources :images
 
     namespace :rma do
@@ -185,6 +188,8 @@ Hadean::Application.routes.draw do
       namespace :multi do
         resources :products do
           resource :variant,      :only => [:edit, :update]
+          match 'variants/create' => 'variants#create'
+          match 'variants/variant_image' => 'variants#variant_image'
         end
       end
       resources :products do

@@ -9,7 +9,8 @@
   </div>
   <div class='clearfix'></div>
   <div class=" generic_submit_button">
-    <%= link_to("New Variant", "javascript:void(0);", :class => "add_variant_child button", "data-association" => :variants) %>
+    <%#= link_to("New Variant", "javascript:void(0);", :class => "add_variant_child button", "data-association" => :variants) %>
+    <%= link_to("New Variant", admin_merchandise_multi_product_variants_create_path, :class => "button") %>
     <%= submit_tag "Update",
                     :class  => "button",
                     :id     => "update_product_button" %>
