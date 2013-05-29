@@ -1,0 +1,43 @@
+<div id='menu'>
+  <a href="<%= edit_admin_merchandise_simple_product_path(@product) %>"><p>General</p></a>
+  <a href="<%= description_form_admin_merchandise_simple_product_path(@product) %>"><p>Description</p></a>
+  <a href="<%= images_form_admin_merchandise_simple_product_path(@product) %>"><p>Images</p></a>
+  <a href="<%= property_form_admin_merchandise_simple_product_path(@product) %>"><p>Properties</p></a>
+  <a href="<%= variant_form_admin_merchandise_simple_product_path(@product) %>"><p>Variants</p></a>
+  <a href="<%= inventory_admin_merchandise_simple_product_path(@product) %>"><p>Inventory</p></a>
+</div>
+<div id='form'>
+  <%= form_for @product, :url => description_admin_merchandise_simple_product_path(:id => @product.id), :method => :put do |f| %>
+    <table>
+      <tr>
+        <td><%= f.label :name %></td>
+        <td><%= f.text_field :name %></td>
+      </tr>
+      <tr>
+        <td><%= f.label :description_markup %></td>
+        <td><%= f.text_area :description_markup, :id => "markItUp", :size => '50x5' %></td>
+      </tr>
+      <tr>
+        <td><%= f.label :featured %></td>
+        <td><%= f.check_box :featured %></td>
+      </tr>
+      <tr>
+        <td><%= f.label :youtube_url %></td>
+        <td><%= f.text_field :youtube_url %></td>
+      </tr>
+    </table>
+    <p><%= f.submit 'Update Description'%></p>
+  <% end %>
+</div>
+<% content_for :head do %>
+  <%= stylesheet_link_tag "markitup/skins/markitup/style" %>
+  <%= stylesheet_link_tag "markitup/sets/default/style" %>
+  <%= javascript_include_tag "markitup/jquery.markitup" %>
+  <%= javascript_include_tag "markitup/sets/default/set" %>
+<% end %>
+
+<script type="text/javascript" >
+   $(document).ready(function() {
+      $("#markItUp").markItUp(mySettings);
+   });
+</script>

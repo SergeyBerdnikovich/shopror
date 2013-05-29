@@ -1,0 +1,21 @@
+<div id="admin-product-properties" class=' <%= product_property_form.object.new_record? ? 'new_fields' : 'fields' %>'>
+  <table style='width:770px;'>
+    <div class='field six'>
+      <tr>
+        <td><%= remove_child_link('remove', product_property_form) %></td>
+        <td>Property:</td>
+        <td><%= product_property_form.select       :property_id, all_properties %></td>
+        <td>Description:</td>
+        <td><%= product_property_form.text_field   :description %></td>
+      </tr>
+      <tr>
+        <td></td>
+        <td>Position:</td>
+        <td><%= product_property_form.number_field  :position, {:step => 1} %></td>
+      </tr>
+    </div>
+    <% if product_property_form.object.new_record? %>
+      <hr/>
+    <% end %>
+  </table>
+</div>

@@ -64,6 +64,9 @@ class Admin::Merchandise::VariantsController < Admin::BaseController
     elsif params[:activate_variant] == 'delete'
       @variant.destroy
       redirect_to edit_admin_merchandise_multi_product_variant_path(product)
+    elsif params[:activate_variant] == 'simple_delete'
+      @variant.destroy
+      redirect_to variant_form_admin_merchandise_simple_product_path(product)
     end
   end
 

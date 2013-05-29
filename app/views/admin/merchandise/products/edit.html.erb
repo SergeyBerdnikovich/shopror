@@ -19,3 +19,12 @@
     <% end %>
   </div>
 <%# end %>
+<div id='price_for_all'>
+  <%= form_tag price_for_all_admin_merchandise_product_path do %>
+    <p>
+      <%= label_tag :price_for_all %></br>
+      <%= number_field_tag :price_for_all, nil, :min => 0 %>
+      <%= submit_tag 'Set' %>
+    </p>
+  <% end %>
+</div>

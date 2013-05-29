@@ -9,7 +9,7 @@
         </div>
       </div>
       <div class="right_block bordercolor" id='use_button'>
-        <%= link_to 'Use', admin_images_update_with_variant_path(:id => image.id,
+        <%= link_to 'Use', admin_images_update_with_simple_variant_path(:id => image.id,
                                                                  :variant_id => params[:variant_id],
                                                                  :product_id => @product.id),
                                                                  :class => 'button' %>
@@ -21,7 +21,7 @@
 <div id='new_varian_image'>
   <span id='new_variant_image_title'>New Image</span><br />
   <div id='new_variant_image_form'>
-    <%= form_for(@image, url: admin_images_create_with_variant_path) do |form| %>
+    <%= form_for(@image, url: admin_images_create_with_simple_variant_path) do |form| %>
       <%= form.label :caption %>
       <%= form.text_field :caption %>
       <%= form.hidden_field :imageable_id %>

@@ -76,6 +76,8 @@ Hadean::Application.routes.draw do
 
     match 'images/update_with_variant/' => 'images#update_with_variant'
     match 'images/create_with_variant/' => 'images#create_with_variant'
+    match 'images/update_with_simple_variant/' => 'images#update_with_simple_variant'
+    match 'images/create_with_simple_variant/' => 'images#create_with_simple_variant'
     resources :images
 
     namespace :rma do
@@ -192,10 +194,27 @@ Hadean::Application.routes.draw do
           match 'variants/variant_image' => 'variants#variant_image'
         end
       end
+      resources :simple_products, :only => [:new, :edit, :create, :update] do
+        member do
+          get :description_form
+          put :description
+          get :property_form
+          put :property
+          get :variant_form
+          put :variant
+          post :create_variant
+          get :variant_image
+          get :inventory
+          get :images_form
+          delete :destroy_image
+          put :price_for_all
+        end
+      end
       resources :products do
         member do
           get :add_properties
           put :activate
+          post :price_for_all
         end
         resources :variants
       end

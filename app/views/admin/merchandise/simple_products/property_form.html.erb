@@ -1,0 +1,45 @@
+<div id='menu'>
+  <a href="<%= edit_admin_merchandise_simple_product_path(@product) %>"><p>General</p></a>
+  <a href="<%= description_form_admin_merchandise_simple_product_path(@product) %>"><p>Description</p></a>
+  <a href="<%= images_form_admin_merchandise_simple_product_path(@product) %>"><p>Images</p></a>
+  <a href="<%= property_form_admin_merchandise_simple_product_path(@product) %>"><p>Properties</p></a>
+  <a href="<%= variant_form_admin_merchandise_simple_product_path(@product) %>"><p>Variants</p></a>
+  <a href="<%= inventory_admin_merchandise_simple_product_path(@product) %>"><p>Inventory</p></a>
+</div>
+<div id='form'>
+  <%= form_for @product, :url => property_admin_merchandise_simple_product_path(:id => @product.id) do |f| %>
+    <% if @product.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(@product.errors.count, "error") %> prohibited this purchase_order from being saved:</h2>
+        <ul>
+          <% @product.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <div id="product_properties" class='span-14' style='float:left'>
+      <!-- <table> -->
+        <% @product.product_properties.each do |product_property| %>
+          <div id='product_property_<%= product_property.id %>' class="variant_form left six last">
+            <%= f.fields_for :product_properties, product_property do |product_property_form|%>
+              <%= render :partial => 'product_property', :locals => {:product_property_form => product_property_form } %>
+            <% end %>
+          </div>
+        <% end %>
+      <!-- </table> -->
+    </div>
+
+    <div class='span-14' style='margin-top:20px;'>
+      <%= add_child_button "New Property", :product_properties %>
+      <%= new_child_fields_template f, :product_properties, :form_builder_local => :product_property_form %>
+    </div>
+    <div class=" generic_submit_button">
+      <%= f.submit "Update",
+                      :class  => "button",
+                      :id     => "update_product_properties_button" %>
+      <%= link_to "Back to Product", admin_merchandise_product_path(@product), :class => 'button' %>
+    </div>
+  <% end %>
+</div>

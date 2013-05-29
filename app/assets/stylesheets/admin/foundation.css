@@ -69,3 +69,31 @@ fieldset#admin-product-descriptions {
 .variant_form {
   margin: 0 3px 0 3px;
 }
+
+/*Simple Products*/
+#menu {
+  float: left;
+  width: 200px;
+}
+#menu p {
+  padding: 5px;
+  margin: 0;
+  width: 200px;
+  border: 1px solid black;
+}
+#menu p:hover {
+  background-color: green;
+}
+
+#form {
+  margin-left: 220px;
+  padding: 10px;
+  width: 780px;
+}
+
+#form .markItUp {
+  width: 600px;
+}
+#form #markItUp {
+  width: 580px;
+}

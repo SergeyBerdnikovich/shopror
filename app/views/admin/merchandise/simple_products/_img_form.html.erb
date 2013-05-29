@@ -25,7 +25,7 @@
               <%= image_tag image_form.object.photo.url(:small) %>
             <% end %>
             <div style='float:right;'>
-              <%= link_to 'remove', admin_image_path(image, :permalink => params[:id]), method: :delete, data: { confirm: 'Are you sure?' } if image %>
+              <%= link_to 'remove', destroy_image_admin_merchandise_simple_product_path(image, :permalink => params[:id]), method: :delete, data: { confirm: 'Are you sure?' } if image %>
             </div>
             <label>Position</label>
             <%= image_form.select       :position, [1,2,3,4,5,6] %>

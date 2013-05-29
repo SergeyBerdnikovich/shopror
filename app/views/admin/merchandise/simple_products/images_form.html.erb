@@ -1,0 +1,21 @@
+<div id='menu'>
+  <a href="<%= edit_admin_merchandise_simple_product_path(@product) %>"><p>General</p></a>
+  <a href="<%= description_form_admin_merchandise_simple_product_path(@product) %>"><p>Description</p></a>
+  <a href="<%= images_form_admin_merchandise_simple_product_path(@product) %>"><p>Images</p></a>
+  <a href="<%= property_form_admin_merchandise_simple_product_path(@product) %>"><p>Properties</p></a>
+  <a href="<%= variant_form_admin_merchandise_simple_product_path(@product) %>"><p>Variants</p></a>
+  <a href="<%= inventory_admin_merchandise_simple_product_path(@product) %>"><p>Inventory</p></a>
+</div>
+<div id='form'>
+  <h3>Add Product Images</h3>
+
+  <%= form_for @product, :url  => admin_merchandise_images_product_path(@product), :multipart => true do |form| %>
+    <%= render :partial => 'img_form', :locals => {:form => form} %>
+    <div id='create_image_button'>
+      <%= submit_tag "Save changes", :class  => "button" %>
+    </div>
+  <% end %>
+
+  <%= link_to 'View Images', admin_merchandise_images_product_path(@product), :class  => "button"%>
+  <%= link_to 'Product Details', admin_merchandise_product_path(@product), :class  => "button" %>
+</div>

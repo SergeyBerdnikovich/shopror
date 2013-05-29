@@ -1,0 +1,30 @@
+<div id='menu'>
+  <a href="<%= edit_admin_merchandise_simple_product_path(@product) %>"><p>General</p></a>
+  <a href="<%= description_form_admin_merchandise_simple_product_path(@product) %>"><p>Description</p></a>
+  <a href="<%= images_form_admin_merchandise_simple_product_path(@product) %>"><p>Images</p></a>
+  <a href="<%= property_form_admin_merchandise_simple_product_path(@product) %>"><p>Properties</p></a>
+  <a href="<%= variant_form_admin_merchandise_simple_product_path(@product) %>"><p>Variants</p></a>
+  <a href="<%= inventory_admin_merchandise_simple_product_path(@product) %>"><p>Inventory</p></a>
+</div>
+<div id='form'>
+  <h2> <%= @product.name %> </h2>
+
+  <%= form_for @product, :url => variant_admin_merchandise_simple_product_path(@product), :method => :put, :html => {:class => ''} do |form| %>
+    <div id='variants_container' >
+      <%= render :partial => 'var_form', :locals => {:form => form}%>
+    </div>
+    <div class='clearfix'></div>
+    <div class=" generic_submit_button">
+      <%= link_to("New Variant", create_variant_admin_merchandise_simple_product_path, :method => :post, :class => "button") %>
+      <%= submit_tag "Update",
+                      :class  => "button",
+                      :id     => "update_product_button" %>
+      <%= link_to 'Back to Product', admin_merchandise_product_path(@product), :class => 'button' %>
+    </div>
+
+  <% end %>
+
+  <% content_for :bottom do -%>
+    <%= javascript_include_tag 'admin/edit_variants' %>
+  <% end %>
+</div>

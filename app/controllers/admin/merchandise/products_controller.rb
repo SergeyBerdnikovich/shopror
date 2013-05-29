@@ -97,6 +97,18 @@ class Admin::Merchandise::ProductsController < Admin::BaseController
     redirect_to admin_merchandise_product_url(@product)
   end
 
+  def price_for_all
+    product = Product.find(params[:id])
+    if product && params[:price_for_all].present?
+      product.variants.each do |variant|
+        variant.update_attribute(:price, params[:price_for_all])
+      end
+      redirect_to edit_admin_merchandise_product_path(product)
+    else
+      redirect_to admin_merchandise_products_path
+    end
+  end
+
   private
 
     def form_info
