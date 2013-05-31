@@ -1,0 +1,303 @@
+<% content_for :head do -%>
+  <%= javascript_include_tag 'admin/merchandise_product' %>
+<% end %>
+<% content_for :below_body do -%>
+  <script>
+    Hadean.AdminMerchandiseProductForm.initialize(<%= @product.id %>);
+  </script>
+<% end %>
+
+<div id='menu'>
+  <h5>Product Information</h5>
+  <a href="#" id='btn_general' class='first'><p class='active'>General</p></a>
+  <a href="#" id='btn_property'><p>Properties</p></a>
+  <a href="#" id='btn_description'><p>Description</p></a>
+  <a href="#" id='btn_meta_info'><p>Meta Information</p></a>
+  <a href="#" id='btn_images'><p>Images</p></a>
+  <a href="#" id='btn_variants'><p>Variants</p></a>
+  <a href="#" id='btn_inventory'><p>Inventory</p></a>
+  <a href="#" id='btn_price' class='last'><p>Price</p></a>
+</div>
+<div id='form'>
+  <h3 id='header'>General information</h3>
+
+  <%= form_for @product, :url => admin_merchandise_fast_product_path(@product) do |f| %>
+    <% if @product.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(@product.errors.count, "error") %> prohibited this purchase_order from being saved:</h2>
+        <ul>
+          <% @product.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <table>
+      <tr class='property'>
+        <td><%= f.label :property_id %></td>
+        <td>
+          <div id='select-product-prototype'>
+            <% select_prototypes = [] << Prototype.new %>
+            Prototype:<br />
+            <%= f.select :prototype_id, @prototypes,
+                              { :include_blank => true },{'data-product_id' => @product.id} %>
+          </div>
+          <div id="product_properties" class=' '>
+            <% @all_properties.each do |property| %>
+              <div id='property_<%= property.id %>' class="property_form "<%= "style=display:none;" if @product.id && !@product.properties.detect {|p| p.id == property.id} %>>
+                <%= f.fields_for :product_properties,
+                              property.product_properties.find_or_initialize_by_product_id(@product.id) do |product_property_form|%>
+                  <div class='six'>
+                    <%= property.identifing_name %>:
+                    <%= product_property_form.hidden_field  :property_id %>
+                    <%= product_property_form.text_field    :description %><br/>
+                  </div>
+                <% end %>
+              </div>
+            <% end %>
+          </div>
+        </td>
+      </tr>
+      <tr class='property'>
+        <td></td>
+        <td>
+          <div id="product_properties" class='span-14' style='float:left'>
+            <% @product.product_properties.each do |product_property| %>
+              <div id='product_property_<%= product_property.id %>' class="variant_form left six last">
+                <%= f.fields_for :product_properties, product_property do |product_property_form|%>
+                  <%= render :partial => 'product_property', :locals => {:product_property_form => product_property_form } %>
+                <% end %>
+              </div>
+            <% end %>
+          </div>
+          <div class='span-14' style='margin-top:20px;'>
+            <%= add_child_button "Add New Attribute", :product_properties %>
+            <%= link_to 'Create new Attribute', new_admin_merchandise_property_path(:fast => true,
+                                                                                    :product_id => @product.id),
+                                                                                    :class => 'button' %>
+            <%= new_child_fields_template f, :product_properties, :form_builder_local => :product_property_form %>
+          </div>
+        </td>
+      </tr>
+      <tr class='general'>
+        <td><%= f.label :name %></td>
+        <td><%= f.text_field :name %></td>
+      </tr>
+      <tr class='general'>
+        <td><%= f.label :permalink %></td>
+        <td><%= f.text_field :permalink %></td>
+      </tr>
+      <tr class='general'>
+        <td><%= f.label :featured %></td>
+        <td><%= f.check_box :featured %></td>
+      </tr>
+      <tr class='general'>
+        <td><%= f.label :youtube_url %></td>
+        <td><%= f.text_field :youtube_url %></td>
+      </tr>
+      <tr class='general'>
+        <td><%= f.label :product_type_id %></td>
+        <td><%= f.select :product_type_id, nested_set_options(ProductType, ProductType.new) {|i, level| "#{'-' * level} #{i.name}" },
+                    { :include_blank => true } %></td>
+      </tr>
+      <tr class='general'>
+        <td><%= f.label :shipping_category_id %></td>
+        <td><%= f.select :shipping_category_id, @select_shipping_category %></td>
+      </tr>
+      <tr class='general'>
+        <td><%= f.label :brand_id %></td>
+        <td><%= f.select :brand_id, @brands %></td>
+      </tr>
+      <tr class='meta_info'>
+        <td><%= f.label :set_keywords %></td>
+        <td><%= f.text_field :set_keywords %></td>
+      </tr>
+      <tr class='meta_info'>
+        <td><%= f.label :meta_keywords %></td>
+        <td><%= f.text_field :meta_keywords %></td>
+      </tr>
+      <tr class='meta_info'>
+        <td><%= f.label :meta_description %></td>
+        <td><%= f.text_field :meta_description %></td>
+      </tr>
+      <tr class='description'>
+        <td><%= f.label :description_markup %></td>
+        <td><%= f.text_area :description_markup, :id => "markItUp", :size => '50x5' %></td>
+      </tr>
+      <tr class='inventory'>
+        <td><%= f.label :inventory_id %></td>
+        <td>
+          <%= f.fields_for :variants do |variant_form| %>
+            <% variant_form.fields_for :inventory do |inventory_form| %>
+              <%= inventory_form.object.variant.sku %> -
+              <%= inventory_form.object.variant.name %>
+              <%= inventory_form.label :count_on_hand %>
+              <%= inventory_form.text_field :count_on_hand %>
+              <%= inventory_form.label :count_pending_to_customer %>
+              <%= inventory_form.text_field :count_pending_to_customer %>
+              <%= inventory_form.label :count_pending_from_supplier %>
+              <%= inventory_form.text_field :count_pending_from_supplier %>
+            <% end %>
+          <% end %>
+        </td>
+      </tr>
+      <tr class='images'>
+        <td><b>Images</b></td>
+        <td>
+          <%= render :partial => 'img_form', :locals => {:form => f} %>
+        </td>
+      </tr>
+      <tr class='variants'>
+        <td><b>Variants</b></td>
+        <td>
+          <div id='variants_container' >
+            <%= render :partial => 'var_form', :locals => {:form => f}%>
+          </div>
+          <div class='clearfix'></div>
+          <div class=" generic_submit_button">
+            <%= link_to("New Variant", create_variant_admin_merchandise_fast_product_path, :method => :post, :class => "button") %>
+          </div>
+        </td>
+      </tr>
+    </table>
+
+    <div class=" generic_submit_button">
+      <%= link_to "Back to Product", admin_merchandise_product_path(@product), :class => 'button' %>
+      <%= f.submit 'Update Product', :class  => "button", :id => 'update_fast_product' %>
+    </div>
+  <% end %>
+    <table class='price'>
+      <tr>
+        <%= form_tag price_for_all_admin_merchandise_fast_product_path(:id => @product.id), :method => :put do %>
+        <p>
+          <td><b>Price</b></td>
+          <td>
+            <%= number_field_tag :price_for_all, nil, :min => 0 %>
+            <%= submit_tag 'Set' %>
+          </td>
+        </p>
+      <% end %>
+      </tr>
+    </table>
+
+  <% content_for :head do %>
+    <%= stylesheet_link_tag "markitup/skins/markitup/style" %>
+    <%= stylesheet_link_tag "markitup/sets/default/style" %>
+    <%= javascript_include_tag "markitup/jquery.markitup" %>
+    <%= javascript_include_tag "markitup/sets/default/set" %>
+  <% end %>
+  <% content_for :bottom do -%>
+    <%= javascript_include_tag 'admin/edit_variants' %>
+  <% end %>
+
+  <script type="text/javascript" >
+     $(document).ready(function() {
+        $("#markItUp").markItUp(mySettings);
+        $("#btn_general").click(function() {
+          $(".general").show();
+          $(".property").hide();
+          $(".meta_info").hide();
+          $(".description").hide();
+          $(".inventory").hide();
+          $(".images").hide();
+          $(".variants").hide();
+          $(".price").hide();
+          $("p.active").removeClass('active');
+          $("#btn_general p").addClass('active');
+          $("h3#header").html('').html('General Information');
+        });
+        $("#btn_property").click(function() {
+          $(".general").hide();
+          $(".property").show();
+          $(".meta_info").hide();
+          $(".description").hide();
+          $(".inventory").hide();
+          $(".images").hide();
+          $(".variants").hide();
+          $(".price").hide();
+          $("p.active").removeClass('active');
+          $("#btn_property p").addClass('active');
+          $("h3#header").html('').html('Properties');
+        });
+        $("#btn_meta_info").click(function() {
+          $(".general").hide();
+          $(".property").hide();
+          $(".meta_info").show();
+          $(".description").hide();
+          $(".inventory").hide();
+          $(".images").hide();
+          $(".variants").hide();
+          $(".price").hide();
+          $("p.active").removeClass('active');
+          $("#btn_meta_info p").addClass('active');
+          $("h3#header").html('').html('Meta Information');
+        });
+        $("#btn_description").click(function() {
+          $(".general").hide();
+          $(".property").hide();
+          $(".meta_info").hide();
+          $(".description").show();
+          $(".inventory").hide();
+          $(".images").hide();
+          $(".variants").hide();
+          $(".price").hide();
+          $("p.active").removeClass('active');
+          $("#btn_description p").addClass('active');
+          $("h3#header").html('').html('Description');
+        });
+        $("#btn_inventory").click(function() {
+          $(".general").hide();
+          $(".property").hide();
+          $(".meta_info").hide();
+          $(".description").hide();
+          $(".inventory").show();
+          $(".images").hide();
+          $(".variants").hide();
+          $(".price").hide();
+          $("p.active").removeClass('active');
+          $("#btn_inventory p").addClass('active');
+          $("h3#header").html('').html('Inventory');
+        });
+        $("#btn_images").click(function() {
+          $(".general").hide();
+          $(".property").hide();
+          $(".meta_info").hide();
+          $(".description").hide();
+          $(".inventory").hide();
+          $(".images").show();
+          $(".variants").hide();
+          $(".price").hide();
+          $("p.active").removeClass('active');
+          $("#btn_images p").addClass('active');
+          $("h3#header").html('').html('Images');
+        });
+        $("#btn_variants").click(function() {
+          $(".general").hide();
+          $(".property").hide();
+          $(".meta_info").hide();
+          $(".description").hide();
+          $(".inventory").hide();
+          $(".images").hide();
+          $(".variants").show();
+          $(".price").hide();
+          $("p.active").removeClass('active');
+          $("#btn_variants p").addClass('active');
+          $("h3#header").html('').html('Variants');
+        });
+        $("#btn_price").click(function() {
+          $(".general").hide();
+          $(".property").hide();
+          $(".meta_info").hide();
+          $(".description").hide();
+          $(".inventory").hide();
+          $(".images").hide();
+          $(".variants").hide();
+          $(".price").show();
+          $("p.active").removeClass('active');
+          $("#btn_price p").addClass('active');
+          $("h3#header").html('').html('Price');
+        });
+     });
+  </script>
+</div>

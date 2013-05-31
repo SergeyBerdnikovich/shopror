@@ -1,0 +1,19 @@
+<div id="product_images" class='span-16'>
+  <% @product.images.each do |image| %>
+    <div id='image_<%= image.id %>' class="variant_form" >
+      <%= form.fields_for :images, image do |image_form|%>
+        <%= render :partial => 'image', :locals => {:image_form => image_form } %>
+      <% end %>
+    </div>
+  <% end %>
+</div>
+  <%= new_child_fields_template form, :images, :form_builder_local => :image_form %>
+
+  <div id='new_image_button'>
+    <div style='clear:both'></div>
+    <%= add_child_button "New Image", :images %>
+  </div>
+
+<script>
+  $('.photo_inputs').attr('size', 14);
+</script>

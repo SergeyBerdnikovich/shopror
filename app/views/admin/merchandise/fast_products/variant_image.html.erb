@@ -1,0 +1,38 @@
+<ul id="variant_images_list" class="bordercolor grid">
+  <% @product.images.where(:variant_id => nil).each do |image| %>
+    <li>
+      <div id="image-block" class="bordercolor" style="display: table; #position: relative; text-align:center; width: 185px; height: 185px;">
+        <div style=" #position: absolute; #top: 50%; display: table-cell; vertical-align: middle; ">
+          <div style=" #position: relative; #top: -50%; #left: -50%">
+            <img src="<%= image.photo.url(:medium) %>" id='variant_img' style='max-width:183px;margin-left:-2px;'/>
+          </div>
+        </div>
+      </div>
+      <div class="right_block bordercolor" id='use_button'>
+        <%= link_to 'Use', admin_images_update_with_fast_variant_path(:id => image.id,
+                                                                      :variant_id => params[:variant_id],
+                                                                      :product_id => @product.id),
+                                                                      :class => 'button' %>
+      </div>
+    </li>
+  <% end %>
+</ul>
+
+<div id='new_varian_image'>
+  <span id='new_variant_image_title'>New Image</span><br />
+  <div id='new_variant_image_form'>
+    <%= form_for(@image, url: admin_images_create_with_fast_variant_path) do |form| %>
+      <%= form.label :caption %>
+      <%= form.text_field :caption %>
+      <%= form.hidden_field :imageable_id %>
+      <%= form.hidden_field :imageable_type %>
+      <%= form.hidden_field :variant_id %>
+      <%= form.label :photo %>
+      <%= form.file_field :photo %><br />
+      <%= form.label :for_slider %>
+      <%= form.check_box :for_slider %><br /><br />
+
+      <%= form.submit "Add Image", :class => 'button' %>
+    <% end%>
+  </div>
+</div><br />

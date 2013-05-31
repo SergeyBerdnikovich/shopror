@@ -12,7 +12,10 @@ class Admin::Merchandise::PropertiesController < Admin::BaseController
 
   def create
     @property = Property.new(params[:property])
-    if @property.save
+    product = Product.find(params[:product_id])
+    if product && params[:fast] && @property.save
+      redirect_to edit_admin_merchandise_fast_product_path(product)
+    elsif @property.save
       redirect_to :action => :index
     else
       flash[:error] = "The property could not be saved"

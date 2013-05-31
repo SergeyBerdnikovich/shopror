@@ -78,6 +78,8 @@ Hadean::Application.routes.draw do
     match 'images/create_with_variant/' => 'images#create_with_variant'
     match 'images/update_with_simple_variant/' => 'images#update_with_simple_variant'
     match 'images/create_with_simple_variant/' => 'images#create_with_simple_variant'
+    match 'images/update_with_fast_variant/' => 'images#update_with_fast_variant'
+    match 'images/create_with_fast_variant/' => 'images#create_with_fast_variant'
     resources :images
 
     namespace :rma do
@@ -207,6 +209,13 @@ Hadean::Application.routes.draw do
           get :inventory
           get :images_form
           delete :destroy_image
+          put :price_for_all
+        end
+      end
+      resources :fast_products, :only => [:edit, :update] do
+        member do
+          post :create_variant
+          get :variant_image
           put :price_for_all
         end
       end

@@ -99,6 +99,20 @@ class Admin::ImagesController < ApplicationController
     redirect_to variant_form_admin_merchandise_simple_product_path(params[:product_id])
   end
 
+  def create_with_fast_variant
+    @image = Image.create!(params[:image])
+
+    redirect_to edit_admin_merchandise_fast_product_path(@image.imageable_id)
+  end
+
+  def update_with_fast_variant
+    @image = Image.find(params[:id])
+
+    @image.update_attribute(:variant_id, params[:variant_id])
+
+    redirect_to edit_admin_merchandise_fast_product_path(params[:product_id])
+  end
+
   # DELETE /images/1
   # DELETE /images/1.json
   def destroy

@@ -108,7 +108,7 @@ class Admin::Merchandise::SimpleProductsController < Admin::BaseController
   end
 
   def images_form
-    @product  = Product.includes(:images).find(params[:id])
+    @product = Product.includes(:images).find(params[:id])
   end
 
   def destroy_image
